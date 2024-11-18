@@ -141,7 +141,7 @@
                     <a class="pull-left"><img src="{{asset('images/loaibtdoc.png')}}" class="media-object" alt='' /></a>
                     <div class="media-body">
                         <h4>
-                            <a href="Dsbaihdnguphapforward?pageid=1">Bài hướng dẫn phần ngữ pháp</a>
+                            <a href="grammarguideline?pageid=1">Bài hướng dẫn phần ngữ pháp</a>
                         </h4>
                     </div>
                 </div>
