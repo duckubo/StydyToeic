@@ -14,8 +14,11 @@ return new class extends Migration
     public function up()
     {
         Schema::create('vocabularyguidelines', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->id('vocabularyguidelineid');
+            $table->string('vocabularyname', 45)->nullable(); // varchar(45), cho phép null
+            $table->string('vocabularyimage', 45)->nullable(); // varchar(45), cho phép null
+            $table->integer('checknoidung')->nullable(); // int, cho phép null
+            $table->timestamps(); // Thêm các cột created_at và updated_at
         });
     }
 

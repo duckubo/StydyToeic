@@ -281,3 +281,10 @@ footer {
 #size1 {
     padding-top: 280px;
 }
+#para1 {
+    padding-top: 70px;
+}
+.row.fix:before,
+.row.fix:after {
+    display: none;
+}
