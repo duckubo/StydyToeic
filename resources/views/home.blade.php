@@ -170,7 +170,7 @@
          <a class="pull-left"><img src="{{asset('images/loaibtnghe.png')}}" class="media-object" alt='' /></a>
          <div class="media-body">
             <h4>
-               <a href="Hienthidsbtnghe?pageid=1">Bài tập phần nghe</a>
+               <a href="{{ route('listeningexercise', ['pageid' => 1]) }}">Bài tập phần nghe</a>
            </h4>
        </div>
    </div>
@@ -179,7 +179,7 @@
      <a class="pull-left"><img src="{{asset('images/loaibtdoc.png')}}" class="media-object" alt='' /></a>
      <div class="media-body">
         <h4>
-           <a href="Hienthidsbtphandoc?pageid=1">Bài tập phần đọc</a>
+           <a href="{{ route('listeningexercise', ['pageid' => 1]) }}">Bài tập phần đọc</a>
        </h4>
    </div>
 </div>
