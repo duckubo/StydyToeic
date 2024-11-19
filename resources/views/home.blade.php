@@ -179,7 +179,7 @@
      <a class="pull-left"><img src="{{asset('images/loaibtdoc.png')}}" class="media-object" alt='' /></a>
      <div class="media-body">
         <h4>
-           <a href="{{ route('listeningexercise', ['pageid' => 1]) }}">Bài tập phần đọc</a>
+           <a href="{{ route('readingexercise', ['pageid' => 1]) }}">Bài tập phần đọc</a>
        </h4>
    </div>
 </div>

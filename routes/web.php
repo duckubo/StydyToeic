@@ -3,6 +3,7 @@
 use App\Http\Controllers\GrammarController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ListeningController;
+use App\Http\Controllers\ReadingController;
 use App\Http\Controllers\VocabularyController;
 use Illuminate\Support\Facades\Route;
 
@@ -20,3 +21,6 @@ Route::get('/grammarguideline/{grammarguidelineid}', [GrammarController::class, 
 
 Route::get('/listeningexercise', [ListeningController::class, 'index'])->name('listeningexercise');
 Route::get('/listeningexercise/show', [ListeningController::class, 'show'])->name('listeningexercise.show');
+
+Route::get('/readingexercise', [ReadingController::class, 'index'])->name('readingexercise');
+Route::get('/readingexercise/show', [ReadingController::class, 'show'])->name('readingexercise.show');

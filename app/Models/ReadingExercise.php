@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class ReadingExercise extends Model
 {
     use HasFactory;
+
+    protected $table = 'reading_exercises';
+    protected $fillable = [
+        'readname',
+        'readimage',
+        'checkcauhoi',
+    ];
 }
