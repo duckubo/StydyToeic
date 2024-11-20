@@ -79,4 +79,26 @@ class ListeningController extends Controller
             'currentPage' => $pageid,
         ]);
     }
+    public function result(Request $request)
+    {
+        // Lấy dữ liệu từ request
+        $kq = $request->input('kq');
+        $listenexerciseid = (int) $request->input('listenexerciseid');
+        $num = (int) $request->input('num');
+        // Kiểm tra nếu 'kq' rỗng
+        if (empty($kq)) {
+            $error = 'Yêu cầu trả lời hết các câu hỏi';
+            return view('results.error', compact('error'));
+        }
+
+        // Lấy danh sách câu hỏi từ DB
+        $list = ListeningQuestion::where('listenexerciseid', $listenexerciseid)
+            ->where('num', $num)
+            ->get();
+        // Trả về view với dữ liệu
+        return view('results.listening', [
+            'dapandungbtnghe' => $list,
+            'kq' => $kq,
+        ]);
+    }
 }
