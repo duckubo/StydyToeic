@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\AccountController;
+use App\Http\Controllers\Admin\HomeController as AdminHomeController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ExaminationController;
 use App\Http\Controllers\GrammarController;
@@ -42,3 +44,6 @@ Route::get('/readingexercise/show', [ReadingController::class, 'show'])->name('r
 Route::get('/examination', [ExaminationController::class, 'index'])->name('examination');
 Route::get('/examination/show', [ExaminationController::class, 'show'])->name('examination.show');
 Route::post('/examination', [ExaminationController::class, 'result'])->name('examination.result');
+
+Route::get('/admin/dashboard', [AdminHomeController::class, 'index'])->name('admin.dashboard');
+Route::get('/admin/account', [AccountController::class, 'index'])->name('admin.account');

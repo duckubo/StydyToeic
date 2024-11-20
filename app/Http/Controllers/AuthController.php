@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Requests\Auth\RegisterRequest;
 use App\Services\AuthService;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
@@ -38,9 +39,15 @@ class AuthController extends Controller
         $params = $loginRequest->validated();
         $result = $this->authService->login($params);
         if ($result) {
-            return redirect()->route('home');
-        }
+            $role_id = Auth::user()->role_id;
 
+            if ($role_id == '1') {
+                return redirect()->route('home');
+            } elseif ($role_id == '2') {
+
+                return redirect()->route('admin.dashboard');
+            }
+        }
         return redirect()->route('form_login')->with('msglogin', "Email hoặc mật khẩu không chính xác!");
     }
     public function logout()
