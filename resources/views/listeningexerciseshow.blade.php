@@ -103,9 +103,9 @@
         function Xuatketqua() {
             var xhttp;
             var kq = document.myform.radio.value;
-
-            var url = "/Lambtnghe?kq=" + kq + "&num=" + {{ $currentPage }} + "&listenexerciseid=" + {{ $listenexerciseid }};
-
+            var num = "{{ $currentPage }}"; // Giá trị động từ Blade
+            var listenexerciseid = "{{ $listenexerciseid }}"; // Giá trị động từ Blade
+            var url = "{{ route('resultlistening') }}";
             if (window.XMLHttpRequest) {
                 xhttp = new XMLHttpRequest();
             }
@@ -118,7 +118,9 @@
             }
 
             xhttp.open("POST", url, true);
-            xhttp.send();
+            xhttp.setRequestHeader("X-CSRF-TOKEN", document.querySelector('meta[name="csrf-token"]').getAttribute('content'));
+            xhttp . setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhttp . send("kq="+encodeURIComponent(kq)+"&num="+encodeURIComponent(num)+"&listenexerciseid="+encodeURIComponent(listenexerciseid));
         }
     </script>
 @endsection

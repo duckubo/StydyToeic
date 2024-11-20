@@ -5,18 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\Grammarguideline;
 use App\Models\Sliderbanner;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
 
 class HomeController extends Controller
 {
     public function index()
     {
-        Session::put('user_id', 'us1');
-        Session::put('user_name', ' user->name');
-        Session::put('user_email', 'user->email');
-
         $listslidebanner = Sliderbanner::all();
-
         return view('home', compact('listslidebanner'));
 
     }

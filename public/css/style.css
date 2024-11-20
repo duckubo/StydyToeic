@@ -288,3 +288,28 @@ footer {
 .row.fix:after {
     display: none;
 }
+.demo {
+    width: 580px;
+    padding: 10px;
+    margin: 10px auto;
+    border: 1px solid #fff;
+    background-color: #f7f7f7;
+}
+.pagedemo {
+    border: 1px solid #ccc;
+    width: 310px;
+    margin: 2px;
+    padding: 50px 10px;
+    text-align: center;
+    background-color: white;
+}
+.khoangcach {
+    padding-top: 100px;
+}
+.morong {
+    color: red;
+    padding-bottom: 150px;
+}
+.paddingtop-image {
+    padding-top: 75px;
+}

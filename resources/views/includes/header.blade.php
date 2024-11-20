@@ -1,5 +1,5 @@
 
-@if(session('sessionuser') == null)
+@guest
     <div id="header-row">
         <div class="container">
             <div class="row">
@@ -22,8 +22,8 @@
                             </a>
                             <div class="nav-collapse collapse navbar-responsive-collapse">
                                 <ul class="nav">
-                                    <li><a href="">Đăng nhập</a></li>
-                                    <li><a href="">Đăng Ký</a></li>
+                                    <li><a href="{{route('form_login')}}">Đăng nhập</a></li>
+                                    <li><a href="{{route('register')}}">Đăng Ký</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -33,7 +33,8 @@
             </div>
         </div>
     </div>
-@else
+@endguest
+@auth
     <div id="header-row">
         <div class="container">
             <div class="row">
@@ -56,8 +57,8 @@
                             </a>
                             <div class="nav-collapse collapse navbar-responsive-collapse">
                                 <ul class="nav">
-                                    <li><a>Welcome: {{ session('sessionuser') }}</a></li>
-                                    <li><a href="">Thoát</a></li>
+                                  <li><a>Welcome: {{ Auth::user()->name }}</a></li>
+                                    <li><a href="{{route('logout')}}">Thoát</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -67,4 +68,4 @@
             </div>
         </div>
     </div>
-@endif
+@endauth

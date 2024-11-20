@@ -27,8 +27,11 @@
                 <ul class="thumbnails">
                     <li class="span12">
                         <div class="thumbnail">
-                            <form name="myform" id="ketqualambtnghe">
+                            <form name="myform" id="ketqualambtdoc">
                                 @foreach($readingquestions as $list)
+                                    <p>
+                                         {!! nl2br(e($list->paragraph)) !!}
+                                    </p>
                                     <p>
                                         Câu {{ $list->num }}. {{ $list->question }}
                                     </p>
@@ -94,8 +97,9 @@
         function Xuatketqua() {
             var xhttp;
             var kq = document.myform.radio.value;
-
-            var url = "/Lambtnghe?kq=" + kq + "&num=" + {{ $currentPage }} + "&readexeriseid=" + {{ $readexeriseid }};
+            var num = "{{ $currentPage }}"; // Giá trị động từ Blade
+            var readexeriseid = "{{ $readexeriseid }}"; // Giá trị động từ Blade
+            var url = "{{ route('resultreading') }}";
 
             if (window.XMLHttpRequest) {
                 xhttp = new XMLHttpRequest();
@@ -104,12 +108,14 @@
             xhttp.onreadystatechange = function() {
                 if (xhttp.readyState == 4) {
                     var data = xhttp.responseText;
-                    document.getElementById("ketqualambtnghe").innerHTML = data;
+                    document.getElementById("ketqualambtdoc").innerHTML = data;
                 }
             }
 
             xhttp.open("POST", url, true);
-            xhttp.send();
+            xhttp . setRequestHeader("X-CSRF-TOKEN", document . querySelector('meta[name="csrf-token"]') . getAttribute('content'));
+            xhttp . setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhttp . send("kq="+encodeURIComponent(kq)+"&num="+encodeURIComponent(num)+"&readexeriseid="+encodeURIComponent(readexeriseid));
         }
     </script>
 @endsection

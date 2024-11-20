@@ -90,7 +90,7 @@
             <img src="{{ asset('images/thitoeic.png') }}" alt="Thi thử Toeic">
             <h2>Đề thi thử</h2>
             <p>Chúng tôi cung cấp cho các bạn đề thi sát với thi thật.</p>
-            <a href="{{ url('Hienthidsdethi?pageid=1') }}">Chi tiết &rarr;</a>
+            <a href="{{ route('examination' , ['pageid' => 1]) }}">Chi tiết &rarr;</a>
         </div>
     </div>
     <!-- /.Feature -->
