@@ -26,12 +26,12 @@
                 <div class="reading_description" style="overflow: auto; height: 400px">
                     @foreach($listcorrectanswer as $correctAnswer)
                         @if($correctAnswer->imagequestion != '' && $correctAnswer->audiogg != '' && $correctAnswer->audiomp3 != '')
-                            <img src="Imageaudiodethi/{{ $correctAnswer->imagequestion }}" alt="" style="width:250px;height:150px;" />
+                            <img src="{{asset('images/'. $correctAnswer->imagequestion )}}" alt="" style="width:250px;height:150px;" />
                             <br/><br/>
                             <p>
                                 <audio controls>
-                                    <source src="Imageaudiodethi/{{ $correctAnswer->audiogg }}" type="audio/ogg">
-                                    <source src="Imageaudiodethi/{{ $correctAnswer->audiomp3 }}" type="audio/mpeg">
+                                    <source src="{{asset('audio/'. $correctAnswer->audiogg) }}" type="audio/ogg">
+                                    <source src="{{asset('audio/'. $correctAnswer->audiomp3) }}" type="audio/mpeg">
                                 </audio>
                             </p>
 
@@ -48,8 +48,8 @@
                             <br/><br/>
                             <p>
                                 <audio controls>
-                                    <source src="Imageaudiodethi/{{ $correctAnswer->audiogg }}" type="audio/ogg">
-                                    <source src="Imageaudiodethi/{{ $correctAnswer->audiomp3 }}" type="audio/mpeg">
+                                    <source src="{{asset('audio/'.  $correctAnswer->audiogg) }}" type="audio/ogg">
+                                    <source src="{{asset('audio/'. $correctAnswer->audiomp3) }}" type="audio/mpeg">
                                 </audio>
                             </p>
 
@@ -68,7 +68,7 @@
                                     {!! nl2br(e($correctAnswer->paragraph)) !!}
                                 </p>
                                 <p>{{ $correctAnswer->question }}</p>
-                                <img alt="" src="Image/correct.png"> {{ $correctAnswer->option1 }}
+                                <img alt="" src="{{asset('images/check/correct.png')}}"> {{ $correctAnswer->option1 }}
                                 <br><br>
                                 {{ $correctAnswer->option2 }}
                                 <br><br>
@@ -83,7 +83,7 @@
                                 <p>{{ $correctAnswer->question }}</p>
                                 {{ $correctAnswer->option1 }}
                                 <br><br>
-                                <img alt="" src="Image/correct.png">{{ $correctAnswer->option2 }}
+                                <img alt="" src="{{asset('images/check/correct.png')}}">{{ $correctAnswer->option2 }}
                                 <br><br>
                                 {{ $correctAnswer->option3 }}
                                 <br><br>
@@ -98,7 +98,7 @@
                                 <br><br>
                                 {{ $correctAnswer->option2 }}
                                 <br><br>
-                                <img alt="" src="Image/correct.png">{{ $correctAnswer->option3 }}
+                                <img alt="" src="{{asset('images/check/correct.png')}}">{{ $correctAnswer->option3 }}
                                 <br><br>
                                 {{ $correctAnswer->option4 }}
                                 <br><br>
@@ -113,7 +113,7 @@
                                 <br><br>
                                 {{ $correctAnswer->option3 }}
                                 <br><br>
-                                <img alt="" src="Image/correct.png">{{ $correctAnswer->option4 }}
+                                <img alt="" src="{{asset('images/check/correct.png')}}">{{ $correctAnswer->option4 }}
                                 <br><br>
                             @endif
                         @endif
