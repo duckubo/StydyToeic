@@ -62,7 +62,7 @@
             <b class="arrow"></b>
             <ul class="submenu">
                 <li>
-                    <a href="{{ url('Listgrammarguidelinemanage?pageid=1') }}">
+                    <a href="{{ route('admin.grammar', ['pageid' => 1]) }}">
                         <i class="menu-icon fa fa-caret-right"></i>
                         Ngữ pháp
                     </a>
@@ -70,7 +70,7 @@
                 </li>
 
                 <li>
-                    <a href="{{ url('Hienthidstuvung?pageid=1') }}">
+                    <a href="{{ route('admin.vocabulary', ['pageid' => 1]) }}">
                         <i class="menu-icon fa fa-caret-right"></i>
                         Từ vựng
                     </a>
@@ -90,7 +90,7 @@
             <b class="arrow"></b>
             <ul class="submenu">
                 <li>
-                    <a href="{{ url('Hienthidsbtdoc?pageid=1') }}">
+                    <a href="{{ route('admin.readingexercise', ['pageid' => 1]) }}">
                         <i class="menu-icon fa fa-caret-right"></i>
                         Bài tập đọc
                     </a>
@@ -98,7 +98,7 @@
                 </li>
 
                 <li>
-                    <a href="{{ url('Hienthidsquanlybtnghe?pageid=1') }}">
+                    <a href="{{ route('admin.listeningexercise', ['pageid' => 1]) }}">
                         <i class="menu-icon fa fa-caret-right"></i>
                         Bài tập nghe
                     </a>
@@ -118,7 +118,7 @@
             <b class="arrow"></b>
             <ul class="submenu">
                 <li>
-                    <a href="{{ url('Hienthidsquanlydethi?pageid=1') }}">
+                    <a href="{{ route('admin.examination', ['pageid' => 1]) }}">
                         <i class="menu-icon fa fa-caret-right"></i>
                         Đề thi
                     </a>

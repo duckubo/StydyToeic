@@ -1,7 +1,7 @@
 <div id="navbar" class="navbar navbar-default          ace-save-state">
     <div class="navbar-container ace-save-state" id="navbar-container">
             <div class="navbar-header pull-left">
-                <a href="Adminforward" class="navbar-brand">
+                <a href="{{route('admin.dashboard')}}" class="navbar-brand">
                     <small>
                         <i class="fa fa-leaf"></i>
                         Trang quản trị
