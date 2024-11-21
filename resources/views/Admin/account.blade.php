@@ -16,73 +16,87 @@
         @include('Admin.includes.menu')
         <!-- End menu -->
 
-<div class="container">
-    <div class= row>
-        <canvas id="accountsLineChart" ></canvas>
-    </div>
-        <div class="col-md-12">
-            <h2 class="my-4">Quản Lý Người Dùng</h2>
-
-            <!-- Hiển thị thông báo -->
-            @if(session('success'))
-                <div class="alert alert-success">
-                    {{ session('success') }}
+    <div class="main-content">
+            <div class="main-content-inner">
+                <div class="breadcrumbs ace-save-state" id="breadcrumbs">
+                    <ul class="breadcrumb">
+                        <li>
+                            <i class="ace-icon fa fa-home home-icon"></i>
+                            <a href="{{ route('admin.dashboard') }}">Trang chủ</a>
+                        </li>
+                    </ul>
+                    <!-- /.breadcrumb -->
                 </div>
-            @endif
-            @if(session('error'))
-                <div class="alert alert-danger">
-                    {{ session('error') }}
+                <div class= "container">
+                <div class= row>
+                    <canvas id="accountsLineChart" ></canvas>
                 </div>
-            @endif
+                    <div class="col-md-12">
+                        <h2 class="my-4">Quản Lý Người Dùng</h2>
 
-            <!-- Nút Thêm Người Dùng -->
-            <div class="mb-3 text-end">
-                <a href="" class="btn btn-success">
-                    <i class="fa fa-plus"></i> Thêm Người Dùng
-                </a>
-            </div>
+                        <!-- Hiển thị thông báo -->
+                        @if(session('success'))
+                            <div class="alert alert-success">
+                                {{ session('success') }}
+                            </div>
+                        @endif
+                        @if(session('error'))
+                            <div class="alert alert-danger">
+                                {{ session('error') }}
+                            </div>
+                        @endif
 
-            <!-- Bảng danh sách người dùng -->
-            <table class="table table-bordered table-striped">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Tên Người Dùng</th>
-                        <th>Email</th>
-                        <th>Vai Trò</th>
-                        <th>Hành Động</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @forelse($users as $user)
-                        <tr>
-                            <td>{{ $loop->iteration }}</td>
-                            <td>{{ $user->name }}</td>
-                            <td>{{ $user->email }}</td>
-                            <td>{{ $user->role }}</td>
-                            <td>
-                                <a href="" class="btn btn-warning btn-sm">
-                                    <i class="fa fa-pencil"></i> Sửa
-                                </a>
-                                <form action="" method="POST" class="d-inline" onsubmit="return confirm('Bạn có chắc chắn muốn xóa người dùng này?');">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm">
-                                        <i class="fa fa-trash"></i> Xóa
-                                    </button>
-                                </form>
-                            </td>
-                        </tr>
-                    @empty
-                        <tr>
-                            <td colspan="5" class="text-center">Không có người dùng nào.</td>
-                        </tr>
-                    @endforelse
-                </tbody>
-            </table>
+                        <!-- Nút Thêm Người Dùng -->
+                        <div class="mb-3 text-end">
+                            <a href="" class="btn btn-success">
+                                <i class="fa fa-plus"></i> Thêm Người Dùng
+                            </a>
+                        </div>
 
-            <!-- Phân trang -->
-            <div class="mt-3">
+                        <!-- Bảng danh sách người dùng -->
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Tên Người Dùng</th>
+                                    <th>Email</th>
+                                    <th>Vai Trò</th>
+                                    <th>Hành Động</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @forelse($users as $user)
+                                    <tr>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $user->name }}</td>
+                                        <td>{{ $user->email }}</td>
+                                        <td>{{ $user->role }}</td>
+                                        <td>
+                                            <a href="" class="btn btn-warning btn-sm">
+                                                <i class="fa fa-pencil"></i> Sửa
+                                            </a>
+                                            <form action="" method="POST" class="d-inline" onsubmit="return confirm('Bạn có chắc chắn muốn xóa người dùng này?');">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger btn-sm">
+                                                    <i class="fa fa-trash"></i> Xóa
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <td colspan="5" class="text-center">Không có người dùng nào.</td>
+                                    </tr>
+                                @endforelse
+                            </tbody>
+                        </table>
+
+                        <!-- Phân trang -->
+                        <div class="mt-3">
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
