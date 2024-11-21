@@ -9,6 +9,12 @@
     <div class="row">
         <div class="span12">
             <div class="page-header">
+                 <a href="{{route('vocabularyguideline')}}">
+                        <ul class="breadcrumb" >
+                                <i class="menu-icon fa fa-arrow-left"></i>
+                            <li style="color: #0088cc">&nbsp; &nbsp;Quay Lại</li>
+                        </ul><!-- /.breadcrumb -->
+                    </a>
                 <h3>
                     Nội dung chủ đề từ vựng
                 </h3>

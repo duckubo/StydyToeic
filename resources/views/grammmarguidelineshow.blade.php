@@ -40,6 +40,12 @@
     <div class="row">
         <div class="span12">
             <div class="page-header">
+                 <a href="{{route('grammarguideline')}}">
+                        <ul class="breadcrumb" >
+                                <i class="menu-icon fa fa-arrow-left"></i>
+                            <li style="color: #0088cc">&nbsp; &nbsp;Quay Lại</li>
+                        </ul><!-- /.breadcrumb -->
+                    </a>
                 <h3>Bài hướng dẫn học ngữ pháp</h3>
             </div>
         </div>

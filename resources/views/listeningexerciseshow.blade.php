@@ -8,13 +8,21 @@
 @include('includes.header')
     <!-- /HEADER ROW -->
 
+        </div>
     <div class="container">
+
         <!--PAGE TITLE-->
         <div class="row">
             <div class="span12">
                 <div class="page-header">
+                    <a href="{{route('listeningexercise')}}">
+                        <ul class="breadcrumb" >
+                                <i class="menu-icon fa fa-arrow-left"></i>
+                            <li style="color: #0088cc">&nbsp; &nbsp;Quay Lại</li>
+                        </ul><!-- /.breadcrumb -->
+                    </a>
                     <h4>
-                        Lựa chọn câu trả lời đúng nhất
+                            Lựa chọn câu trả lời đúng nhất
                     </h4>
                 </div>
             </div>
@@ -32,13 +40,15 @@
                                     <p>
                                         Câu {{ $list->num }}. {{ $list->question }}
                                     </p>
+                                    @if($list->imagename)
                                     <p>
-                                        <img src="images/{{ $list->imagename }}" alt="" style="width:250px;height:150px;"/>
+                                        <img src="{{asset('images/'.$list->imagename) }}" alt="" style="width:300px;height:200px;"/>
                                     </p>
+                                    @endif
                                     <p>
                                         <audio controls>
-                                            <source src="audio/{{ $list->audiogg }}" type="audio/ogg">
-                                            <source src="audio/{{ $list->audiomp3 }}" type="audio/mpeg">
+                                            <source src="{{asset('audio/'.$list->audiogg) }}" type="audio/ogg">
+                                            <source src="{{asset('audio/'.$list->audiomp3) }}" type="audio/mpeg">
                                         </audio>
                                     </p>
                                     <p>

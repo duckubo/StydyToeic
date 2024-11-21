@@ -27,12 +27,15 @@
             </div>
         </div>
     @endif
-    <div class="row">
+   <div class="row fix" style="
+            display: grid;
+            grid-template-columns: repeat(2,1fr);
+            ">
         @foreach($examList as $list)
             <div class="span6">
                 <div class="media">
                     <a href="#" class="pull-left">
-                        <img src="{{ asset('images/slide/' . $list->examinatioimage) }}" class="media-object" alt='' width="128px" height="128px"/>
+                        <img src="{{ asset('images/' . $list->examinatioimage) }}" class="media-object" alt='' width="200px" height="200px"/>
                     </a>
                     <div class="media-body">
                         <p>

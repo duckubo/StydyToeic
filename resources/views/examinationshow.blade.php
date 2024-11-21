@@ -18,6 +18,12 @@
     <div class="container" onLoad="auto_submit1();">
         <div class="row">
             <div class="span12">
+                 <a href="{{route('examination')}}">
+                        <ul class="breadcrumb" >
+                                <i class="menu-icon fa fa-arrow-left"></i>
+                            <li style="color: #0088cc">&nbsp; &nbsp;Quay Lại</li>
+                        </ul><!-- /.breadcrumb -->
+                    </a>
                 <h3>Làm bài thi Toeic hoàn chỉnh</h3>
                 <script>
                     function doneHandler(result) {
