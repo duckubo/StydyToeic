@@ -12,7 +12,7 @@ class GrammarController extends Controller
         try {
             // Lấy pageid từ request và thiết lập các thông số phân trang
             $pageId = $request->input('pageid', 1); // Giá trị mặc định là 1 nếu không có pageid
-            $count = 2;
+            $count = 4;
 
             if ($pageId == 1) {
                 $offset = 0;

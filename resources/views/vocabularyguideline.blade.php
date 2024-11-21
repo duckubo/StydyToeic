@@ -28,7 +28,10 @@
             </div>
         </div>
     @else
-        <div class="row">
+        <div class="row fix" style="
+            display: grid;
+            grid-template-columns: repeat(2,1fr);
+            ">
             @foreach($vocabularyList as $list)
                 <div class="span6">
                     <div class="media">

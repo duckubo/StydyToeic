@@ -34,7 +34,7 @@
                 <div class="span6">
                     <div class="media">
                         <a href="#" class="pull-left">
-                            <img src="{{ asset('images/' . $item->listenexerciseimage) }}" class="media-object" alt="" width="128px" height="128px"/>
+                            <img src="{{ asset('images/' . $item->listenexerciseimage) }}" class="media-object" alt="" width="200px" height="200px"/>
                         </a>
                         <div class="media-body">
                             <p>
