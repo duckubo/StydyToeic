@@ -70,7 +70,7 @@
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $user->name }}</td>
                                         <td>{{ $user->email }}</td>
-                                        <td>{{ $user->role }}</td>
+                                        <td>{{ $user->role ->name }}</td>
                                         <td>
                                             <a href="" class="btn btn-warning btn-sm">
                                                 <i class="fa fa-pencil"></i> Sửa
@@ -103,7 +103,7 @@
 </div>
 <script>
     // Dữ liệu giả lập
-    const labels = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"]; // Các tháng
+    const labels = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     const data ={!! json_encode($data) !!};// Số tài khoản theo thời gian
 
     const ctx = document.getElementById('accountsLineChart').getContext('2d');

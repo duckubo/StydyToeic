@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Requests\Auth\RegisterRequest;
 use App\Services\AuthService;
-use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Facades\Auth;
+use Laravel\Socialite\Facades\Socialite;
 
 class AuthController extends Controller
 {
@@ -87,5 +87,17 @@ class AuthController extends Controller
             return redirect('/login')->with('error', 'Something went wrong. Please try again.');
         }
     }
+    public function profile($id)
+    {
+        // Lấy thông tin user hiện tại
+        $user = Auth::find($id);
 
+        // Kiểm tra xem user đã đăng nhập chưa
+        if (!$user) {
+            return redirect()->route('login')->with('error', 'Bạn cần đăng nhập để xem trang cá nhân.');
+        }
+
+        // Trả về view kèm thông tin user
+        return view('profile', compact('user'));
+    }
 }

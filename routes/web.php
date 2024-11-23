@@ -33,6 +33,8 @@ Route::get('login', [AuthController::class, 'formLogin'])->name('form_login');
 Route::post('login', [AuthController::class, 'login'])->name('login');
 Route::get('logout', [AuthController::class, 'logout'])->name('logout')->middleware('check_user');
 
+Route::get('profile/{id}', [AuthController::class, 'profile'])->name('profile');
+
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::post('/search', [HomeController::class, 'search'])->name('search');
 Route::post('/resultlistening', [ListeningController::class, 'result'])->name('resultlistening');
