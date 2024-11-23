@@ -111,6 +111,15 @@
                                             </fieldset>
                                         </form>
 
+                                        <div class="clearfix">
+                                                    <button type="button" class="width-100 pull-right btn btn-sm"
+                                                        onclick="window.location.href='/auth/google'"
+                                                        style="border-color: #ec640f; background-color: #ec640f !important; outline: none">
+                                                        <i class="ace-icon fa fa-key"></i>
+                                                        <span class="bigger-110">Login with Google</span>
+                                                    </button>
+                                                </div>
+
                                         <div class="social-or-login center">
                                             <span class="bigger-110"></span>
                                         </div>

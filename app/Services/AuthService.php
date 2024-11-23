@@ -72,4 +72,32 @@ class AuthService
 
         return true;
     }
+
+    public function loginGoogle($params)
+    {
+        try {
+            // Kiểm tra xem người dùng có tồn tại không
+            $existedUser = $this->user->where('email', $params['email'])->first();
+
+            if (!$existedUser) {
+                $params['password'] = Hash::make($params['password']);
+                $existedUser = $this->user->create($params);
+            }
+
+            // Đăng nhập người dùng
+            Auth::login($existedUser);
+
+            // Tạo token API cho người dùng khi đăng nhập thành công
+            $existedUser->createToken('user')->plainTextToken;
+
+            // Trả về true nếu đăng nhập thành công
+            return true;
+
+        } catch (Exception $e) {
+            // Log lỗi nếu có sự cố
+            Log::error($e);
+
+            return false;
+        }
+    }
 }

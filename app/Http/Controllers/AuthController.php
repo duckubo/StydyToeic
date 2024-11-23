@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Requests\Auth\RegisterRequest;
 use App\Services\AuthService;
+use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
@@ -56,6 +57,34 @@ class AuthController extends Controller
 
         if ($result) {
             return redirect()->route('form_login');
+        }
+    }
+
+    public function redirectToGoogle()
+    {
+        return Socialite::driver('google')->redirect();
+    }
+
+    public function handleGoogleCallback()
+    {
+        try {
+            $googleUser = Socialite::driver('google')->stateless()->user();
+            // dd($googleUser);
+
+            $result = $this->authService->loginGoogle([
+                'name' => $googleUser->name,
+                'email' => $googleUser->email,
+                'password' => $googleUser->id,
+                'role_id' => 1,
+            ]);
+
+            if ($result) {
+                return redirect()->route('home');
+            }
+
+            return redirect()->route('form_login')->with('msglogin', "Vui lòng thử lại sau!");
+        } catch (\Exception $e) {
+            return redirect('/login')->with('error', 'Something went wrong. Please try again.');
         }
     }
 

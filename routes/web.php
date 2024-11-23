@@ -22,6 +22,10 @@ Route::get('/', function () {
 // Route để hiển thị form đăng ký
 Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register');
 
+// Router login google
+Route::get('auth/google', [AuthController::class, 'redirectToGoogle'])->name('auth.google');
+Route::get('auth/google/callback', [AuthController::class, 'handleGoogleCallback']);
+
 // Route để xử lý đăng ký
 Route::post('/register', [AuthController::class, 'register']);
 
