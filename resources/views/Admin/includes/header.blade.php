@@ -25,6 +25,10 @@
 
 
                             <li>
+                                 <a href="{{ route('profile', ['id'=> Auth::user()->id]) }}">
+                                    <i class="ace-icon fa fa-users"></i>
+                                    Profile
+                                </a>
                                 <a href="{{ route('logout')}}">
                                     <i class="ace-icon fa fa-power-off"></i>
                                     Thoát

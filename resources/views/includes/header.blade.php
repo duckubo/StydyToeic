@@ -57,8 +57,8 @@
                             </a>
                             <div class="nav-collapse collapse navbar-responsive-collapse">
                                 <ul class="nav">
-                                  <li><a>Welcome: {{ Auth::user()->name }}</a></li>
-                                    <li><a href="{{route('logout')}}">Thoát</a></li>
+                                    <li><a href="{{ route('profile', ['id' => Auth::user()->id]) }}">Welcome: {{ Auth::user()->name }}</a></li>
+                                    <li><a href="{{ route('logout') }}">Thoát</a></li>
                                 </ul>
                             </div>
                         </div>
