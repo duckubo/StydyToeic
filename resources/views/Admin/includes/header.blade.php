@@ -25,7 +25,7 @@
 
 
                             <li>
-                                 <a href="{{ route('profile')}}">
+                                 <a href="{{ route('profile', ['id'=> Auth::user()->id]) }}">
                                     <i class="ace-icon fa fa-users"></i>
                                     Profile
                                 </a>

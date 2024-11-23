@@ -1,13 +1,25 @@
-@extends('layouts.app')
+@extends('Admin.layouts.admin')
 
-@section('title', 'Edit Profile')
-
+@section('title', 'Trang Chủ')
 @section('content')
-@include('includes.header')
+<body class="no-skin">
+    <!-- Header -->
+    @include('Admin.includes.header')
+    <!-- End Header -->
+
+        <!-- Begin menu -->
+        @include('Admin.includes.menu')
     <!-- Bootstrap CSS -->
     <div class="container mt-5">
+       <a href="{{route('admin.account')}}">
+            <ul class="breadcrumb" >
+                    <i class="menu-icon fa fa-arrow-left"></i>
+                <li style="color: #0088cc">&nbsp; &nbsp;Quay Lại</li>
+            </ul><!-- /.breadcrumb -->
+        </a>
         <div class="row justify-content-center" >
             <div class="col-md-8">
+
                 <!-- Card -->
                 <div class="card shadow" style="margin:auto;">
 
@@ -16,7 +28,7 @@
                     </div>
                     <div class="card-body" style="width: 500px; margin: auto;">
                         <!-- Form -->
-                        <form action="{{route('update.profile', ['id' => $user->id])}}" method="POST" enctype="multipart/form-data">
+                        <form action="{{route('admin.update.profile', ['id' => $user->id])}}" method="POST" enctype="multipart/form-data">
                             <!-- CSRF Token (Laravel) -->
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             @if(session('success'))
@@ -75,6 +87,7 @@
             </div>
         </div>
     </div>
+    @include('Admin.includes.footer')
 
     <!-- Bootstrap JS -->
 @endsection

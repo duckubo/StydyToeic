@@ -34,6 +34,7 @@ Route::post('login', [AuthController::class, 'login'])->name('login');
 Route::get('logout', [AuthController::class, 'logout'])->name('logout')->middleware('check_user');
 
 Route::get('profile/{id}', [AuthController::class, 'profile'])->name('profile');
+Route::post('/update-profile', [AuthController::class, 'update'])->name('update.profile');
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::post('/search', [HomeController::class, 'search'])->name('search');
@@ -58,6 +59,11 @@ Route::post('/examination', [ExaminationController::class, 'result'])->name('exa
 
 Route::get('/admin/dashboard', [AdminHomeController::class, 'index'])->name('admin.dashboard');
 Route::get('/admin/account', [AccountController::class, 'index'])->name('admin.account');
+Route::post('/account', [AccountController::class, 'store'])->name('account.store');
+
+Route::get('profile-manage/{id}', [AccountController::class, 'profile'])->name('admin.profile');
+Route::post('/update-profile-manage', [AccountController::class, 'update'])->name('admin.update.profile');
+
 // Danh sách bài hướng dẫn ngữ pháp
 Route::get('/admin/grammarguideline', [GrammarManageController::class, 'index'])->name('admin.grammar');
 Route::post('/admin/grammarguideline', [GrammarManageController::class, 'store'])->name('insert.grammarguideline');

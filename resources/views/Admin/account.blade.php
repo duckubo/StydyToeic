@@ -47,11 +47,13 @@
                         @endif
 
                         <!-- Nút Thêm Người Dùng -->
-                        <div class="mb-3 text-end">
-                            <a href="" class="btn btn-success">
-                                <i class="fa fa-plus"></i> Thêm Người Dùng
-                            </a>
-                        </div>
+                        <div class="row">
+                                <div class="col-xs-12">
+                                    <button type="button" class="btn btn-white btn-warning btn-bold" data-toggle="modal" data-target="#myModal">
+                                        Thêm người dùng
+                                    </button>
+                                </div>
+                            </div>
 
                         <!-- Bảng danh sách người dùng -->
                         <table class="table table-bordered table-striped">
@@ -72,7 +74,7 @@
                                         <td>{{ $user->email }}</td>
                                         <td>{{ $user->role ->name }}</td>
                                         <td>
-                                            <a href="" class="btn btn-warning btn-sm">
+                                            <a href="{{route('admin.profile', ['id'=>$user->id])}}" class="btn btn-warning btn-sm">
                                                 <i class="fa fa-pencil"></i> Sửa
                                             </a>
                                             <form action="" method="POST" class="d-inline" onsubmit="return confirm('Bạn có chắc chắn muốn xóa người dùng này?');">
@@ -101,6 +103,107 @@
         </div>
     </div>
 </div>
+ @include('Admin.includes.footer')
+ <!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+            <form action="{{ route('account.store') }}" method="POST">
+                @csrf
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Thêm người dùng</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <!-- Nhập tên người dùng -->
+                            <div class="col-xs-12">
+                                <div class="col-sm-9">
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1">Nhập tên</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" id="form-field-1" placeholder="Tên người dùng" class="form-control" name="name" required />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Nhập email -->
+                            <div class="col-xs-12">
+                                <div class="col-sm-9">
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label no-padding-right" for="form-field-2">Nhập email</label>
+                                        <div class="col-sm-9">
+                                            <input type="email" id="form-field-2" placeholder="Email người dùng" class="form-control" name="email" required />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Nhập mật khẩu -->
+                            <div class="col-xs-12">
+                                <div class="col-sm-9">
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label no-padding-right" for="form-field-3">Nhập mật khẩu</label>
+                                        <div class="col-sm-9">
+                                            <input type="password" id="form-field-3" placeholder="Mật khẩu" class="form-control" name="password" required />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Xác nhận mật khẩu -->
+                            <div class="col-xs-12">
+                                <div class="col-sm-9">
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label no-padding-right" for="form-field-4">Xác nhận mật khẩu</label>
+                                        <div class="col-sm-9">
+                                            <input type="password" id="form-field-4" placeholder="Xác nhận mật khẩu" class="form-control" name="password_confirmation" required />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                <!-- Trường Role -->
+                            <div class="col-xs-12">
+                                <div class="col-sm-9">
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label no-padding-right" for="form-field-6">Chọn vai trò</label>
+                                        <div class="col-sm-9">
+                                            <select id="form-field-6" class="form-control" name="role_id" required>
+                                                <option value="2">Quản trị </option>
+                                                <option value="1">Người dùng</option>
+                                                <!-- Thêm các vai trò khác nếu cần -->
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Thêm avatar (tùy chọn) -->
+                            <div class="col-xs-12">
+                                <div class="col-sm-9">
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label no-padding-right" for="form-field-5">Ảnh đại diện</label>
+                                        <div class="col-sm-9">
+                                            <input type="file" id="form-field-5" class="form-control" name="profile_picture" accept="image/*" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <br />
+                    <div class="modal-footer">
+                        <button class="btn btn-info" type="submit">
+                            <i class="ace-icon fa fa-check bigger-110"></i>
+                            Thêm người dùng
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
 <script>
     // Dữ liệu giả lập
     const labels = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
