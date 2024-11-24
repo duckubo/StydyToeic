@@ -14,6 +14,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ListeningController;
 use App\Http\Controllers\ReadingController;
 use App\Http\Controllers\VocabularyController;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -33,8 +35,30 @@ Route::get('login', [AuthController::class, 'formLogin'])->name('form_login');
 Route::post('login', [AuthController::class, 'login'])->name('login');
 Route::get('logout', [AuthController::class, 'logout'])->name('logout')->middleware('check_user');
 
-Route::get('profile/{id}', [AuthController::class, 'profile'])->name('profile');
-Route::post('/update-profile', [AuthController::class, 'update'])->name('update.profile');
+Route::get('/email/verify', function () {
+    return view('auth.verify-email');
+})->middleware('auth')->name('verification.notice');
+
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill();
+    if (Auth::user()->role_id == 1) {
+        return redirect('/home');
+    }
+    if (Auth::user()->role_id == 2) {
+        return redirect('/admin/dashboard');
+    }
+})->middleware(['auth', 'signed'])->name('verification.verify');
+
+Route::post('/email/verification-notification', function () {
+    auth()->user()->sendEmailVerificationNotification();
+    return back()->with('message', 'Verification link sent!');
+})->middleware(['auth', 'throttle:6,1'])->name('verification.send');
+
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('profile/{id}', [AuthController::class, 'profile'])->name('profile');
+    Route::post('/update-profile', [AuthController::class, 'update'])->name('update.profile');
+});
+
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::post('/search', [HomeController::class, 'search'])->name('search');
