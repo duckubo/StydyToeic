@@ -14,6 +14,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ListeningController;
 use App\Http\Controllers\ReadingController;
 use App\Http\Controllers\VocabularyController;
+use App\Http\Controllers\CourseController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -89,3 +90,9 @@ Route::get('/admin/examination', [ExaminationManageController::class, 'index'])-
 Route::post('/admin/examination', [ExaminationManageController::class, 'store'])->name('insert.examination');
 Route::delete('/admin/examination/{examinationid}', [ExaminationManageController::class, 'delete'])->name('delete.examination');
 Route::get('/admin/examination/edit/{examinationid}', [ExaminationManageController::class, 'edit'])->name('edit.examinationcontent');
+
+// Course
+Route::get('/courses', [CourseController::class, 'index'])->name('courses');
+Route::get('/courses/{courseid}', [CourseController::class, 'show'])->name('course.show');
+Route::get('/courses/enroll/{courseid}', [CourseController::class, 'enroll'])->name('course.enroll');
+Route::get('/lession/{lessionid}', [CourseController::class, 'showLession'])->name('lession');
