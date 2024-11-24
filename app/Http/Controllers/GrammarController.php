@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cmtgrammar;
 use App\Models\Grammarguideline;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class GrammarController extends Controller
 {
@@ -49,9 +51,32 @@ class GrammarController extends Controller
         if (!$grammar) {
             return redirect()->route('somewhere')->with('msg', 'Không tìm thấy chủ đề từ vựng');
         }
-        $listcommentgrammar = [];
+
+        $listcommentgrammar = Cmtgrammar::where('grammarguidelineid', $grammarguidelineid)->get();
+
         $countrow = 1;
         return view('grammmarguidelineshow', compact('grammar', 'listcommentgrammar', 'countrow'));
+
+    }
+    public function commentHandle(Request $request)
+    {
+        // Lấy dữ liệu từ request
+        $memberid = Auth::id(); // Lấy id của user đang đăng nhập
+        $cmtgrammarcontent = $request->input('cmtgrammarcontent', "abc");
+        $grammarguidelineid = (int) $request->input('grammarguidelineid', 1);
+
+        // Tạo đối tượng mới và lưu vào DB
+        $cmtgrammar = new Cmtgrammar();
+        $cmtgrammar->cmtgrammarcontent = $cmtgrammarcontent;
+        $cmtgrammar->memberid = $memberid;
+        $cmtgrammar->grammarguidelineid = $grammarguidelineid;
+        $cmtgrammar->save();
+
+        // Lấy danh sách comment grammar theo grammarguidelineid
+        $list = Cmtgrammar::where('grammarguidelineid', $grammarguidelineid)->get();
+
+        // Gửi dữ liệu qua view
+        return view('partials.listcmtgrammarguide', ['listcommentgrammar' => $list]);
 
     }
 }
