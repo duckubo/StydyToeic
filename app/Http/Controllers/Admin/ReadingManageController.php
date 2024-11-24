@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Imports\ReadQuestionImport;
 use App\Models\ReadingExercise;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ReadingManageController extends Controller
 {
@@ -37,8 +39,31 @@ class ReadingManageController extends Controller
     public function edit(Request $request)
     {
         $readexerciseid = $request->input('readexerciseid');
-        dd($readexerciseid);
         // Trả về view và truyền giá trị "grammarguidelineid" vào view
         return view('admin.insertreadcontent')->with('readexerciseid', $readexerciseid);
+    }
+
+    public function importExcel(Request $request)
+    {
+        // Kiểm tra xem file có tồn tại không
+        $request->validate([
+            'excel_file' => 'required|mimes:xlsx,xls',
+        ]);
+
+        // Lấy file từ form
+        $file = $request->file('excel_file');
+
+        $readexerciseid = $request->input('readexerciseid');
+        // Sử dụng gói Excel để đọc dữ liệu
+        try {
+            // Import dữ liệu từ file
+            Excel::import(new ReadQuestionImport($readexerciseid), $file);
+
+            return redirect()->back()->with('success', 'Dữ liệu đã được import thành công!');
+        } catch (\Exception $e) {
+
+            return redirect()->back()->withErrors('Có lỗi xảy ra: ' . $e->getMessage());
+
+        }
     }
 }

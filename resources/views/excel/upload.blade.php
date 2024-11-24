@@ -1,5 +1,6 @@
 <form action="{{ route('excel.import') }}" method="POST" enctype="multipart/form-data">
     @csrf
+    <input type="hidden" name="vocabularyguidelineid" value="1">
     <input type="file" name="excel_file" />
     <button type="submit">Upload</button>
 </form>

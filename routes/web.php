@@ -60,7 +60,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/update-profile', [AuthController::class, 'update'])->name('update.profile');
 });
 
-
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::post('/search', [HomeController::class, 'search'])->name('search');
 Route::post('/resultlistening', [ListeningController::class, 'result'])->name('resultlistening');
@@ -129,3 +128,7 @@ Route::post('/admin/examinationmedia', [ExaminationManageController::class, 'med
 Route::get('excel/upload', [ExcelController::class, 'showUploadForm']);
 Route::post('excel/import', [ExcelController::class, 'importExcel'])->name('excel.import');
 
+Route::post('/vocabulary/import', [VocabularyManageController::class, 'importExcel'])->name('vocabulary.import');
+Route::post('/readingexercise/import', [ReadingManageController::class, 'importExcel'])->name('readingexercise.import');
+Route::post('/listenexercise/import', [ListeningManageController::class, 'importExcel'])->name('listenexercise.import');
+Route::post('/examination/import', [ExaminationManageController::class, 'importExcel'])->name('examination.import');

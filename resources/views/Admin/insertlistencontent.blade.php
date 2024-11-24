@@ -28,6 +28,12 @@
                         <div class="position-relative">
                             <div id="login-box" class="login-box visible widget-box no-border">
                                 <div class="widget-body">
+                                    <a href="{{ route('admin.listeningexercise', ['pageid' => 1]) }}">
+										<ul class="breadcrumb" >
+												<i class="menu-icon fa fa-arrow-left"></i>
+												<li style="color: #0088cc">&nbsp; &nbsp;Quay Lại</li>
+											</ul><!-- /.breadcrumb -->
+										</a>
                                     <div class="widget-main">
                                         <h4 class="header blue lighter bigger">
                                             <i class="ace-icon fa fa-coffee green"></i>
@@ -36,7 +42,7 @@
 
                                         <div class="space-6"></div>
 
-                                        <form action="{{ route('edit.listeningexercisecontent', ['listenexerciseid' => $listenexerciseid]) }}"
+                                        <form action="{{ route('listenexercise.import', ['listenexerciseid' => $listenexerciseid]) }}"
                                               method="POST"
                                               enctype="multipart/form-data">
                                             @csrf
@@ -44,10 +50,16 @@
                                                 <label class="block clearfix">
                                                     {{ session('msgthemhinhchudetuvung', ' ') }}
                                                 </label>
+                                                @if (session('success'))
+                                                    <div class="alert alert-success">{{ session('success') }}</div>
+                                                @endif
 
+                                                @if ($errors->any())
+                                                    <div class="alert alert-danger">{{ $errors->first() }}</div>
+                                                @endif
                                                 <label class="block clearfix">
-                                                    Thêm file:
-                                                    <input type="file" name="file" class="btn btn-white btn-warning btn-bold">
+                                                    Thêm file(.xlsx):
+                                                    <input type="file" name="excel_file" class="btn btn-white btn-warning btn-bold">
                                                 </label>
 
                                                 <div class="space"></div>

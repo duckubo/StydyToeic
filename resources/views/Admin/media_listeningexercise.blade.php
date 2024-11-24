@@ -37,21 +37,32 @@
 							<div class="position-relative">
 								<div id="login-box" class="login-box visible widget-box no-border">
 									<div class="widget-body">
+										<a href="{{ route('admin.listeningexercise', ['pageid' => 1]) }}">
+										<ul class="breadcrumb" >
+												<i class="menu-icon fa fa-arrow-left"></i>
+												<li style="color: #0088cc">&nbsp; &nbsp;Quay Lại</li>
+											</ul><!-- /.breadcrumb -->
+										</a>
 										<div class="widget-main">
 											<h4 class="header blue lighter bigger">
 												<i class="ace-icon fa fa-coffee green"></i>
-												Thêm media
+												Thêm audio và hình ảnh cho bài tập nghe
 											</h4>
 
 											<div class="space-6"></div>
 
-											<form action="{{route('media.insert.vocabularyguideline')}}" method="POST" enctype="multipart/form-data">
+											<form action="{{route('media.insert.listeningexercise')}}" method="POST" enctype="multipart/form-data">
 												@csrf
 												<fieldset>
 													<label class="block clearfix">
                                                     {{ session('msgthemhinhchudetuvung', ' ') }}
                                                 </label>
-
+												   @if (session('success'))
+                                                    <div class="alert alert-success">{{ session('success') }}</div>
+                                                @endif
+ 												 @if (session('error'))
+                                                    <div class="alert alert-danger">{{ session('error') }}</div>
+                                                @endif
 													<table id="fileTable">
 												 			 <tr>
 										                   		 <td><input name="files[0]" type="file" /></td>

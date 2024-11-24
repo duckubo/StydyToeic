@@ -91,11 +91,11 @@ class AccountController extends Controller
             'password' => 'nullable|min:6',
             'profile_picture' => 'nullable|image|mimes:jpg,jpeg,png|max:2048', // Chỉ chấp nhận file ảnh
         ]);
-
         // Cập nhật thông tin người dùng
         $user->name = $request->input('name');
         $user->email = $request->input('email');
         $user->phone = $request->input('phone');
+        $user->role_id = $request->input('role_id');
 
         // Nếu có mật khẩu mới, cập nhật mật khẩu
         if ($request->filled('password')) {

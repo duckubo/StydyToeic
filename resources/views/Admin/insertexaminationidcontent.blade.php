@@ -28,7 +28,14 @@
                         <div class="position-relative">
                             <div id="login-box" class="login-box visible widget-box no-border">
                                 <div class="widget-body">
+                                    <a href="{{ route('admin.examination', ['pageid' => 1]) }}">
+										<ul class="breadcrumb" >
+												<i class="menu-icon fa fa-arrow-left"></i>
+												<li style="color: #0088cc">&nbsp; &nbsp;Quay Lại</li>
+											</ul><!-- /.breadcrumb -->
+										</a>
                                     <div class="widget-main">
+
                                         <h4 class="header blue lighter bigger">
                                             <i class="ace-icon fa fa-coffee green"></i>
                                           	Thêm câu hỏi đề thi
@@ -46,7 +53,7 @@
                                                 </label>
 
                                                 <label class="block clearfix">
-                                                    Thêm file:
+                                                  Thêm file(.xlsx):
                                                     <input type="file" name="file" class="btn btn-white btn-warning btn-bold">
                                                 </label>
 

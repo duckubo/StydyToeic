@@ -117,7 +117,7 @@
                                     <button type="button" class="btn btn-white btn-warning btn-bold" data-toggle="modal" data-target="#myModal">
                                         Thêm đề thi
                                     </button>
-                                      <a href="{{route('media.vocabularyguideline')}}" role="button" class="btn btn-white btn-warning btn-bold">Thêm audio và hình ảnh đề thi</a>
+                                      <a href="{{route('media.examination')}}" role="button" class="btn btn-white btn-warning btn-bold">Thêm audio và hình ảnh đề thi</a>
                                 </div>
                             </div>
                         </div>
