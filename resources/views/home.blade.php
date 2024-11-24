@@ -113,6 +113,27 @@
 
 </div>
 </div>
+<div class="chatboxai" >
+    <div>
+        <div >
+            <span>Chat với chúng tôi!</span>
+        </div>
+    </div>
+    <img src="{{asset('images/chatbox.png')}}"  id="toggleChatBtn"  alt=''  />
+
+</div>
+<div id="chatbox" class="chatbox">
+        <div class="chatbox-header" style="justify-content: end;">
+            <button id="closeChatBtn" >Đóng</button>
+        </div>
+         <div id="messages" class="chatbox-content">
+            <p>Chào bạn! Bạn cần hỗ trợ gì?</p>
+        </div>
+        <div class="chatbox-footer">
+            <input type="text" id="message-input" placeholder="Nhập câu hỏi...">
+            <button id="sendBtn">Gửi</button>
+        </div>
+    </div>
 <div id="size1">
     @include('includes.footer')
 </div>
@@ -195,7 +216,76 @@
 
 @endsection
 @section('scripts')
+
 <script type="text/javascript">
+    // Lấy các phần tử trong HTML
+   // Lấy các phần tử trong HTML
+    const chatbox = document.getElementById("chatbox");
+    const toggleChatBtn = document.getElementById("toggleChatBtn");
+    const closeChatBtn = document.getElementById("closeChatBtn");
+
+    // Lắng nghe sự kiện click vào nút toggle
+    toggleChatBtn.addEventListener("click", function() {
+        if (chatbox.style.display === "none" || chatbox.style.display === "") {
+            chatbox.style.display = "block"; // Hiển thị chatbox
+            toggleChatBtn.style.display = "none";
+        } else {
+            chatbox.style.display = "none"; // Ẩn chatbox
+             toggleChatBtn.style.display = "block";
+        }
+    });
+
+    // Lắng nghe sự kiện click vào nút đóng chatbox
+    closeChatBtn.addEventListener("click", function() {
+        chatbox.style.display = "none"; // Ẩn chatbox khi click vào nút đóng
+        toggleChatBtn.style.display = "block";
+    });
+ document
+        .getElementById("sendBtn")
+        .addEventListener("click", function () {
+            var messageInput = document.getElementById("message-input");
+            var message = messageInput.value.trim();
+
+            if (message !== "") {
+                // Hiển thị câu hỏi của người dùng
+                var messages = document.getElementById("messages");
+                var userMessage = document.createElement("div");
+                userMessage.classList.add("message");
+                userMessage.textContent = "Bạn: " + message;
+                messages.appendChild(userMessage);
+
+                // Trả lời tự động từ bot
+                var botResponse = getBotResponse(message);
+
+                // Hiển thị câu trả lời của bot
+                var botMessage = document.createElement("div");
+                botMessage.classList.add("message");
+                botMessage.textContent = "Bot: " + botResponse;
+                messages.appendChild(botMessage);
+
+                // Cuộn xuống dưới khi có tin nhắn mới
+                messages.scrollTop = messages.scrollHeight;
+
+                // Xóa nội dung ô nhập liệu
+                messageInput.value = "";
+            }
+        });
+
+    // Định nghĩa các câu trả lời tự động
+    function getBotResponse(message) {
+        message = message.toLowerCase();
+
+        if (message.includes("xin chào") || message.includes("hello")) {
+            return "Chào bạn! Tôi có thể giúp gì cho bạn?";
+        } else if (message.includes("cảm ơn")) {
+            return "Bạn thật tuyệt vời! Nếu cần thêm gì, cứ hỏi tôi nhé!";
+        } else if (message.includes("thời tiết")) {
+            return "Tôi không biết thời tiết hôm nay, nhưng bạn có thể kiểm tra trên Google!";
+        } else {
+            return "Xin lỗi, tôi không hiểu câu hỏi của bạn. Bạn có thể thử hỏi lại không?";
+        }
+    }
+
     function Search() {
         var xhttp;
         var grammarname = document.myform.grammarname.value;
