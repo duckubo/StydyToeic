@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\ListeningManageController;
 use App\Http\Controllers\Admin\ReadingManageController;
 use App\Http\Controllers\Admin\VocabularyManageController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ChatGPTController;
 use App\Http\Controllers\ExaminationController;
 use App\Http\Controllers\ExcelController;
 use App\Http\Controllers\GrammarController;
@@ -134,3 +135,6 @@ Route::post('/vocabulary/import', [VocabularyManageController::class, 'importExc
 Route::post('/readingexercise/import', [ReadingManageController::class, 'importExcel'])->name('readingexercise.import');
 Route::post('/listenexercise/import', [ListeningManageController::class, 'importExcel'])->name('listenexercise.import');
 Route::post('/examination/import', [ExaminationManageController::class, 'importExcel'])->name('examination.import');
+
+Route::post('/chat', [ChatGPTController::class, 'sendMessage']);
+Route::get('/chatbox', [ChatGPTController::class, 'chatInit'])->name('chatbox');
