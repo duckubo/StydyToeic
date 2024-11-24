@@ -34,4 +34,11 @@ class ReadingManageController extends Controller
             return view('admin.reading')->with('error', $e->getMessage());
         }
     }
+    public function edit(Request $request)
+    {
+        $readexerciseid = $request->input('readexerciseid');
+        dd($readexerciseid);
+        // Trả về view và truyền giá trị "grammarguidelineid" vào view
+        return view('admin.insertreadcontent')->with('readexerciseid', $readexerciseid);
+    }
 }

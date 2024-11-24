@@ -59,7 +59,7 @@
                                                 <tr>
                                                     <td class="center">{{ $list->listenexerciseid }}</td>
                                                     <td class="center">{{ $list->listenexercisename }}</td>
-                                                    <td class="center">{{ $list->listenexercisename }}</td>
+                                                    <td class="center">{{ $list->listenexerciseimage }}</td>
                                                     <td class="center">
                                                         <a class="red" href="{{ route('delete.listeningexercise', ['listenexerciseid' => $list->listenexerciseid]) }}">
                                                             <i class="ace-icon fa fa-trash-o bigger-130"></i>
@@ -112,8 +112,9 @@
                             <div class="row">
                                 <div class="col-xs-12">
                                     <button type="button" class="btn btn-white btn-warning btn-bold" data-toggle="modal" data-target="#myModal">
-                                        Thêm đề bài tập đọc
+                                        Thêm đề bài tập nghe
                                     </button>
+                                      <a href="{{route('media.listeningexercise')}}" role="button" class="btn btn-white btn-warning btn-bold">Thêm audio và hình ảnh bài tập nghe</a>
                                 </div>
                             </div>
                         </div>
@@ -135,7 +136,7 @@
     <!-- Modal thêm tên đề thi -->
     <div class="modal fade" id="myModal" role="dialog">
         <div class="modal-dialog">
-            <form action="{{ route('insert.listeningexercise') }}" method="POST">
+              <form action="{{ route('insert.listeningexercise')}}" method="POST">
                 @csrf
                 <!-- Modal content-->
                 <div class="modal-content">
@@ -155,14 +156,25 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="col-xs-12">
+                                <div class="col-sm-9">
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1">Chọn ảnh</label>
+                                        <div class="col-sm-9">
+                                            <input type="file" class="form-control" id="listenexerciseimage" name="listenexerciseimage" accept="image/*">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <br />
                     <div class="modal-footer">
                         <button class="btn btn-info" type="submit">
                             <i class="ace-icon fa fa-check bigger-110"></i>
-                            Thêm tên bài tập đọc
+                            Thêm tên bài tập nghe
                         </button>
+
                     </div>
                 </div>
             </form>

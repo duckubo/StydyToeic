@@ -33,4 +33,21 @@ class ListeningManageController extends Controller
             return view('admin.listening')->with('error', $e->getMessage());
         }
     }
+    public function edit(Request $request)
+    {
+        $listenexerciseid = $request->input('listenexerciseid');
+
+        // Trả về view và truyền giá trị "grammarguidelineid" vào view
+        return view('admin.insertlistencontent')->with('listenexerciseid', $listenexerciseid);
+    }
+    public function media()
+    {
+        return view('admin.media');
+    }
+
+    public function media_insert(Request $request)
+    {
+        dd($request->all());
+        return view('admin.media');
+    }
 }

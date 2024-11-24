@@ -40,7 +40,13 @@
                         </h4>
                         <div class="hr hr-18 dotted hr-double"></div>
                     @endif
-
+                    @if(session('msggrammarguidelinecontent'))
+                        <h4 class="pink">
+                            <i class="ace-icon fa fa-hand-o-right icon-animated-hand-pointer blue"></i>
+                            <a class="green" data-toggle="modal">{{ session('msggrammarguidelinecontent') }}</a>
+                        </h4>
+                        <div class="hr hr-18 dotted hr-double"></div>
+                    @endif
                     <div class="row">
                         <div class="col-xs-12">
                             <div class="row">
@@ -68,7 +74,7 @@
                                                         </a>
                                                     </td>
                                                     <td class="center">
-                                                        <a class="green" href="{{ route('edit.grammarguidelinecontent', $list->grammarguidelineid) }}">
+                                                        <a class="green" href="{{ route('edit.grammarguidelinecontent', ['id'=>$list->grammarguidelineid]) }}">
                                                             <i class="ace-icon fa fa-pencil bigger-130"></i>
                                                         </a>
                                                     </td>
@@ -134,7 +140,7 @@
     <!-- Modal -->
     <div class="modal fade" id="myModal" role="dialog">
         <div class="modal-dialog">
-            <form action="{{ route('insert.grammarguideline') }}" method="POST">
+            <form action="{{ route('insert.grammarguideline') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-content">
                     <div class="modal-header">
@@ -149,6 +155,16 @@
                                         <label class="col-sm-3 control-label no-padding-right" for="form-field-1">Nhập tên</label>
                                         <div class="col-sm-9">
                                             <input type="text" id="form-field-1-1" placeholder="Tên bài hướng dẫn ngữ pháp" class="form-control" name="grammarname" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12">
+                                <div class="col-sm-9">
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1">Chọn ảnh</label>
+                                        <div class="col-sm-9">
+                                            <input type="file" class="form-control" id="grammarimage" name="grammarimage" accept="image/*">
                                         </div>
                                     </div>
                                 </div>
