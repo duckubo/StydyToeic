@@ -90,7 +90,6 @@ class GrammarManageController extends Controller
 
             // Tạo tên ảnh mới
             $imageName = time() . '_' . $image->getClientOriginalName();
-            dd($imageName);
             // Lưu ảnh vào thư mục public/images
             $image->move(public_path('images'), $imageName);
 

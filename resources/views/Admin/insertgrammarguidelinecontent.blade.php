@@ -38,6 +38,12 @@
                     <div class="row">
                         <div class="col-xs-12">
                             <!-- PAGE CONTENT BEGINS -->
+							 <a href="{{ route('admin.grammar', ['pageid' => 1]) }}">
+										<ul class="breadcrumb" >
+												<i class="menu-icon fa fa-arrow-left"></i>
+												<li style="color: #0088cc">&nbsp; &nbsp;Quay Lại</li>
+											</ul><!-- /.breadcrumb -->
+										</a>
                             <div class="row">
                                 <div class="col-sm-7">
                                     <h4 class="header green">Soạn thảo nội dung bài ngữ pháp</h4>

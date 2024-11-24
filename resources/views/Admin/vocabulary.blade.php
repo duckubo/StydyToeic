@@ -71,7 +71,8 @@
                                                     </td>
 
                                                     <td class="center">
-                                                        <a class="green" href="{{ route('edit.vocabularyguidelinecontent', $list->vocabularyguidelineid) }}">
+                                                        <a class="green" href="{{ route('edit.vocabularyguidelinecontent',[
+                                                            'vocabularyguidelineid' => $list->vocabularyguidelineid]) }}">
                                                             <i class="ace-icon fa fa-pencil bigger-130"></i>
                                                         </a>
                                                     </td>
@@ -118,7 +119,7 @@
                                     <button type="button" class="btn btn-white btn-warning btn-bold" data-toggle="modal" data-target="#myModal">
                                         Thêm chủ đề từ vựng
                                     </button>
-                                    <a href="{{route('media.vocabularyguideline')}}" role="button" class="btn btn-white btn-warning btn-bold">Thêm audio và hình ảnh cho chủ đề từ vựng</a>
+                                    <a href="{{route('media.vocabularyguideline')}}" role="button" class="btn btn-white btn-warning btn-bold">Thêm hình ảnh cho chủ đề từ vựng</a>
                                 </div>
                             </div>
                         </div>

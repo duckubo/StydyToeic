@@ -24,12 +24,12 @@ class ExcelController extends Controller
 
         // Lấy file từ form
         $file = $request->file('excel_file');
-        $examinationId = 1;
+        $vocabularyguidelineid = $request->vocabularyguidelineid;
 
         // Sử dụng gói Excel để đọc dữ liệu
         try {
             // Import dữ liệu từ file
-            Excel::import(new ExaminationQuestionImport($examinationId), $file);
+            Excel::import(new ExaminationQuestionImport($vocabularyguidelineid), $file);
 
             return redirect()->back()->with('success', 'Dữ liệu đã được import thành công!');
         } catch (\Exception $e) {

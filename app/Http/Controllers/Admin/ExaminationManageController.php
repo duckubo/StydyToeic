@@ -65,13 +65,47 @@ class ExaminationManageController extends Controller
 
     public function media()
     {
-        return view('admin.media');
+        return view('admin.media_examination');
     }
 
     public function media_insert(Request $request)
     {
-        dd($request->all());
-        return view('admin.media');
+        $files = $request->file('files'); // Mảng chứa các file
+        if (!$files) {
+            return redirect()->back()->with('error', 'Hãy thêm ảnh hoặc âm thanh');
+        }
+
+        foreach ($files as $file) {
+            // Xử lý từng file
+            if ($file->isValid()) {
+                $fileName = $file->getClientOriginalName();
+                $fileExtension = $file->getClientOriginalExtension(); // Lấy phần mở rộng của file
+                // Xác định thư mục lưu trữ dựa vào loại file
+                if (in_array($fileExtension, ['jpg', 'jpeg', 'png', 'gif', 'bmp'])) {
+                    // Nếu file là ảnh, lưu vào thư mục images
+                    $filePath = public_path('images') . '/' . $fileName;
+                    // Kiểm tra nếu file đã tồn tại
+                    if (file_exists($filePath)) {
+                        continue; // Bỏ qua và tiếp tục với file tiếp theo
+                    }
+                    $file->move(public_path('images'), $fileName);
+                } elseif (in_array($fileExtension, ['mp3', 'ogg', 'wav'])) {
+                    // Nếu file là âm thanh, lưu vào thư mục audio
+                    $filePath = public_path('audio') . '/' . $fileName;
+                    // Kiểm tra nếu file đã tồn tại
+                    if (file_exists($filePath)) {
+                        continue; // Bỏ qua và tiếp tục với file tiếp theo
+                    }
+                    $file->move(public_path('audio'), $fileName);
+                } else {
+
+                    return redirect()->back()->with('error', 'File không hợp lệ!');
+                }
+            }
+        }
+
+        return redirect()->back()->with('success', 'Lưu ảnh và âm thanh thành công!');
+
     }
 
 }

@@ -37,10 +37,16 @@
 							<div class="position-relative">
 								<div id="login-box" class="login-box visible widget-box no-border">
 									<div class="widget-body">
+										<a href="{{ route('admin.vocabulary', ['pageid' => 1]) }}">
+										<ul class="breadcrumb" >
+												<i class="menu-icon fa fa-arrow-left"></i>
+												<li style="color: #0088cc">&nbsp; &nbsp;Quay Lại</li>
+											</ul><!-- /.breadcrumb -->
+										</a>
 										<div class="widget-main">
 											<h4 class="header blue lighter bigger">
 												<i class="ace-icon fa fa-coffee green"></i>
-												Thêm media
+												Thêm ảnh cho chủ đề từ vụng
 											</h4>
 
 											<div class="space-6"></div>
@@ -51,7 +57,12 @@
 													<label class="block clearfix">
                                                     {{ session('msgthemhinhchudetuvung', ' ') }}
                                                 </label>
-
+												   @if (session('success'))
+                                                    <div class="alert alert-success">{{ session('success') }}</div>
+                                                @endif
+					  						  @if (session('error'))
+                                                    <div class="alert alert-danger">{{ session('error') }}</div>
+                                                @endif
 													<table id="fileTable">
 												 			 <tr>
 										                   		 <td><input name="files[0]" type="file" /></td>
@@ -66,7 +77,7 @@
 
 													<div class="clearfix">
 
-														<input type="submit" value="Thêm audio và hình ảnh" class="btn btn-sm btn-primary">
+														<input type="submit" value="Thêm hình ảnh" class="btn btn-sm btn-primary">
 													 	<input id="addFile" type="button" value="Thêm choose file" class="btn btn-sm btn-primary"/>
 
 													</div>
