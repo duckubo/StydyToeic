@@ -33,4 +33,24 @@ class VocabularyManageController extends Controller
             return view('admin.vocabulary')->with('msgdstuvung', $e->getMessage());
         }
     }
+    public function edit(Request $request)
+    {
+        $vocabularyguidelineid = $request->input('vocabularyguidelineid');
+
+        // Trả về view và truyền giá trị "grammarguidelineid" vào view
+        return view('admin.insertvocabcontent')->with('vocabularyguidelineid', $vocabularyguidelineid);
+    }
+    public function media()
+    {
+        return view('admin.media_vocabularyguideline');
+    }
+
+    public function media_insert(Request $request)
+    {
+        $files = $request->file('files'); // Mảng chứa các file
+        $fileCount = count($files); // Đếm số lượng file
+
+        echo "Số lượng file đã upload: " . $fileCount;
+
+    }
 }

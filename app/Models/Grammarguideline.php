@@ -8,4 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Grammarguideline extends Model
 {
     use HasFactory;
+    protected $table = 'grammarguidelines';
+
+    protected $primaryKey = 'grammarguidelineid';
+    protected $fillable = [
+        'grammarname',
+        'grammarimage',
+        'content',
+
+    ];
 }

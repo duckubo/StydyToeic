@@ -117,6 +117,7 @@
                                     <button type="button" class="btn btn-white btn-warning btn-bold" data-toggle="modal" data-target="#myModal">
                                         Thêm đề thi
                                     </button>
+                                      <a href="{{route('media.vocabularyguideline')}}" role="button" class="btn btn-white btn-warning btn-bold">Thêm audio và hình ảnh đề thi</a>
                                 </div>
                             </div>
                         </div>
@@ -154,6 +155,16 @@
                                         <label class="col-sm-3 control-label no-padding-right" for="form-field-1">Nhập tên</label>
                                         <div class="col-sm-9">
                                             <input type="text" id="form-field-1-1" placeholder="Tên đề thi" class="form-control" name="examinationame"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12">
+                                <div class="col-sm-9">
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1">Chọn ảnh</label>
+                                        <div class="col-sm-9">
+                                            <input type="file" class="form-control" id="examinationimage" name="examinationimage" accept="image/*">
                                         </div>
                                     </div>
                                 </div>

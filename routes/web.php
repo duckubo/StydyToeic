@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\ReadingManageController;
 use App\Http\Controllers\Admin\VocabularyManageController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ExaminationController;
+use App\Http\Controllers\ExcelController;
 use App\Http\Controllers\GrammarController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ListeningController;
@@ -92,24 +93,39 @@ Route::post('/update-profile-manage', [AccountController::class, 'update'])->nam
 Route::get('/admin/grammarguideline', [GrammarManageController::class, 'index'])->name('admin.grammar');
 Route::post('/admin/grammarguideline', [GrammarManageController::class, 'store'])->name('insert.grammarguideline');
 Route::delete('/admin/grammarguideline/{grammarguidelineid}', [GrammarManageController::class, 'delete'])->name('delete.grammarguideline');
-Route::get('/admin/grammarguideline/edit/{grammarguidelineid}', [GrammarManageController::class, 'edit'])->name('edit.grammarguidelinecontent');
+Route::get('/admin/grammarguideline/edit', [GrammarManageController::class, 'edit'])->name('edit.grammarguidelinecontent');
+Route::post('/admin/grammarguidelinecontent', [GrammarManageController::class, 'update'])->name('grammarguidelinecontent.update');
 
 Route::get('/admin/vocabularyguideline', [VocabularyManageController::class, 'index'])->name('admin.vocabulary');
 Route::post('/admin/vocabularyguideline', [VocabularyManageController::class, 'store'])->name('insert.vocabularyguideline');
 Route::delete('/admin/vocabularyguidelineline/{vocabularyguidelineid}', [VocabularyManageController::class, 'delete'])->name('delete.vocabularyguideline');
-Route::get('/admin/vocabularyguideline/edit/{vocabularyguidelineid}', [VocabularyManageController::class, 'edit'])->name('edit.vocabularyguidelinecontent');
+Route::get('/admin/vocabularyguideline/edit', [VocabularyManageController::class, 'edit'])->name('edit.vocabularyguidelinecontent');
+Route::get('/admin/vocabularyguidelinemedia', [VocabularyManageController::class, 'media'])->name('media.vocabularyguideline');
+Route::post('/admin/vocabularyguidelinemedia', [VocabularyManageController::class, 'media_insert'])->name('media.insert.vocabularyguideline');
 
 Route::get('/admin/readingexercise', [ReadingManageController::class, 'index'])->name('admin.readingexercise');
 Route::post('/admin/readingexercise', [ReadingManageController::class, 'store'])->name('insert.readingexercise');
 Route::delete('/admin/readingexercise/{readexerciseid}', [ReadingManageController::class, 'delete'])->name('delete.readingexercise');
-Route::get('/admin/readingexercise/edit/{readexerciseid}', [ReadingManageController::class, 'edit'])->name('edit.readingexercisecontent');
+Route::get('/admin/readingexercise/edit', [ReadingManageController::class, 'edit'])->name('edit.readingexercisecontent');
+Route::post('/admin/readingexercisecontent', [ReadingManageController::class, 'update'])->name('readingexercisecontent.update');
 
 Route::get('/admin/listeningexercise', [ListeningManageController::class, 'index'])->name('admin.listeningexercise');
-Route::post('/admin/listeningexercise', [ListeningManageController::class, 'store'])->name('insert.listeningexercise');
+Route::post('/admin/listeningexercise', [ListeningExerciseController::class, 'store'])->name('insert.listeningexercise');
 Route::delete('/admin/listeningexercise/{listenexerciseid}', [ListeningManageController::class, 'delete'])->name('delete.listeningexercise');
-Route::get('/admin/listeningexercise/edit/{listenexerciseid}', [ListeningManageController::class, 'edit'])->name('edit.listeningexercisecontent');
+Route::get('/admin/listeningexercise/edit', [ListeningManageController::class, 'edit'])->name('edit.listeningexercisecontent');
+Route::post('/admin/listeningexercisecontent', [ListeningManageController::class, 'update'])->name('listeningexercisecontent.update');
+Route::get('/admin/listeningexercisemedia', [ListeningManageController::class, 'media'])->name('media.listeningexercise');
+Route::post('/admin/listeningexercisemedia', [ListeningManageController::class, 'media_insert'])->name('media.insert.listeningexercise');
 
 Route::get('/admin/examination', [ExaminationManageController::class, 'index'])->name('admin.examination');
 Route::post('/admin/examination', [ExaminationManageController::class, 'store'])->name('insert.examination');
 Route::delete('/admin/examination/{examinationid}', [ExaminationManageController::class, 'delete'])->name('delete.examination');
-Route::get('/admin/examination/edit/{examinationid}', [ExaminationManageController::class, 'edit'])->name('edit.examinationcontent');
+
+Route::get('/admin/examination/edit', [ExaminationManageController::class, 'edit'])->name('edit.examinationcontent');
+Route::post('/admin/examinationcontent', [ExaminationManageController::class, 'update'])->name('examinationcontent.update');
+Route::get('/admin/examinationmedia', [ExaminationManageController::class, 'media'])->name('media.examination');
+Route::post('/admin/examinationmedia', [ExaminationManageController::class, 'media_insert'])->name('media.insert.examination');
+
+Route::get('excel/upload', [ExcelController::class, 'showUploadForm']);
+Route::post('excel/import', [ExcelController::class, 'importExcel'])->name('excel.import');
+

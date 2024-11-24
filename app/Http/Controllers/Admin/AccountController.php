@@ -108,7 +108,7 @@ class AccountController extends Controller
             $image = $request->file('profile_picture');
 
             // Tạo tên ảnh mới
-            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $imageName = time() . '.' . $image->getClientOriginalName();
 
             // Lưu ảnh vào thư mục public/images
             $image->move(public_path('images'), $imageName);

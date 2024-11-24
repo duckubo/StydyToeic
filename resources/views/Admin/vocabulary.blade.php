@@ -118,6 +118,7 @@
                                     <button type="button" class="btn btn-white btn-warning btn-bold" data-toggle="modal" data-target="#myModal">
                                         Thêm chủ đề từ vựng
                                     </button>
+                                    <a href="{{route('media.vocabularyguideline')}}" role="button" class="btn btn-white btn-warning btn-bold">Thêm audio và hình ảnh cho chủ đề từ vựng</a>
                                 </div>
                             </div>
                         </div>
@@ -155,6 +156,16 @@
                                         <label class="col-sm-3 control-label no-padding-right" for="form-field-1">Nhập tên</label>
                                         <div class="col-sm-9">
                                             <input type="text" id="form-field-1-1" placeholder="Tên chủ đề từ vựng" class="form-control" name="vocabularyname" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12">
+                                <div class="col-sm-9">
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1">Chọn ảnh</label>
+                                        <div class="col-sm-9">
+                                            <input type="file" class="form-control" id="grammarimage" name="grammarimage" accept="image/*">
                                         </div>
                                     </div>
                                 </div>
