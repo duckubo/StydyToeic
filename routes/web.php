@@ -17,6 +17,7 @@ use App\Http\Controllers\ListeningController;
 use App\Http\Controllers\ReadingController;
 use App\Http\Controllers\VocabularyController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -141,3 +142,11 @@ Route::post('/examination/import', [ExaminationManageController::class, 'importE
 Route::post('/chat', [ChatGPTController::class, 'sendMessage']);
 Route::get('/chatbox', [ChatGPTController::class, 'chatInit'])->name('chatbox');
 
+Route::get('/reset-password', function (Request $request) {
+    $token = $request->query('token');
+    return view('auth.reset-password', ['token' => $token]);
+})->name('password.reset');
+
+Route::post('/reset-password', [AuthController::class, 'resetPassword'])->name('password.update');
+Route::post('/password/email', [AuthController::class, 'sendResetLinkEmail'])->name('password.email');
+Route::get('/password/email', [AuthController::class, 'showResetLinkEmailForm'])->name('password.email.show');

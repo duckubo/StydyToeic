@@ -225,9 +225,7 @@
     <script>
         // Dữ liệu giả lập
         const labels = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-        const data = {
-        !!json_encode($data)!!
-    }; // Số tài khoản theo thời gian
+        const data = {!!json_encode($data)!!}; // Số tài khoản theo thời gian
 
         const ctx = document.getElementById('accountsLineChart').getContext('2d');
 
