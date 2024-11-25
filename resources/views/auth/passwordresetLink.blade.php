@@ -32,15 +32,7 @@
 
 </body>
 </html> -->
-
-<!-- Thêm jQuery (Bootstrap cần jQuery để hoạt động) -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-
-<!-- Thêm Bootstrap JS -->
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
-
 <!-- Bootstrap CSS -->
-<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="{{ asset('template/css/bootstrap.min.css') }}" />
 
 <!-- Font CSS -->
@@ -71,63 +63,48 @@
                         <div class="position-relative">
                             <div id="login-box" class="login-box visible widget-box no-border">
                                 <div class="widget-body">
+                                      <a href="{{ route('login', ['pageid' => 1]) }}">
+										<ul class="breadcrumb" >
+												<i class="menu-icon fa fa-arrow-left"></i>
+												<li style="color: #0088cc">&nbsp; &nbsp;Quay Lại</li>
+											</ul><!-- /.breadcrumb -->
+										</a>
                                     <div class="widget-main">
                                         <h4 class="header blue lighter bigger">
                                             <i class="ace-icon fa fa-coffee green"></i>
-                                            {{ __('label.account_information') }}
+                                            Nhập thông tin thông tin email
                                         </h4>
 
                                         <div class="space-6"></div>
 
-                                        <form action="{{ route('login') }}" method="POST">
-                                            @csrf
-                                            <fieldset>
-                                                <label class="block clearfix" style="color:red">
-                                                    @if(session('msglogin'))
-                                                        {{ session('msglogin') }}
+                                      <form method="POST" action="{{ route('password.email') }}">
+                                        @csrf
+                                        <div class="">
+                                            <!-- Hiển thị thông báo thành công -->
+
+
+                                            <!-- Input email -->
+                                            <div class="mb-3">
+                                                <label for="email" class="form-label">Email Address</label>
+                                            @if (session('success'))
+                                                        <div class="alert alert-success">
+                                                            {{ session('success') }}
+                                                        </div>
                                                     @endif
-                                                </label>
-                                                @error('email')
-                                                    <span style="color:red">{{ $message }}</span>
-                                                @enderror
-                                                <label class="block clearfix">
-                                                    <span class="block input-icon input-icon-right">
-                                                        <input type="email" class="form-control" placeholder="{{ __('label.nhapemail') }}" name="email" value="" required/>
-                                                        <i class="ace-icon fa fa-user"></i>
-                                                    </span>
-                                                </label>
-                                                @error('password')
-                                                    <span style="color:red">{{ $message }}</span>
-                                                @enderror
-                                                <label class="block clearfix">
-                                                    <span class="block input-icon input-icon-right">
-                                                        <input type="password" class="form-control" placeholder="{{ __('label.nhappass') }}" name="password" required/>
-                                                        <i class="ace-icon fa fa-lock"></i>
-                                                    </span>
-                                                </label>
 
-                                                <div class="space"></div>
+                                                    <!-- Hiển thị thông báo lỗi -->
+                                                    @if (session('error'))
+                                                        <div class="alert alert-danger">
+                                                            {{ session('error') }}
+                                                        </div>
+                                                    @endif
+                                                <input id="email" type="email" class="form-control" name="email" required autofocus>
+                                            </div>
 
-                                                <div class="clearfix text-center">
-                                                    <button type="submit" class="width-35 btn btn-sm btn-primary">
-                                                        <i class="ace-icon fa fa-key"></i>
-                                                        <span class="bigger-110">{{ __('label.login') }}</span>
-                                                    </button>
-                                                </div>
-
-                                                <span> <a href="{{route('password.email.show')}}">Forget Password?</a></span>
-                                                <div class="space-4"></div>
-                                            </fieldset>
-                                        </form>
-
-                                        <div class="clearfix">
-                                                    <button type="button" class="width-100 pull-right btn btn-sm"
-                                                        onclick="window.location.href='/auth/google'"
-                                                        style="border-color: #ec640f; background-color: #ec640f !important; outline: none">
-                                                        <i class="ace-icon fa fa-key"></i>
-                                                        <span class="bigger-110">{{ __('label.loginwg') }}</span>
-                                                    </button>
-                                                </div>
+                                            <!-- Button gửi yêu cầu -->
+                                            <button type="submit" class="btn btn-primary">Send</button>
+                                        </div>
+                                    </form>
 
                                         <div class="social-or-login center">
                                             <span class="bigger-110"></span>
@@ -141,47 +118,28 @@
                                         <div>
                                             <a href="{{ route('home') }}" class="forgot-password-link">
                                                 <i class="ace-icon fa fa-arrow-left"></i>
-                                                {{ __('label.ghome') }}
+                                                Trở về trang chủ
                                             </a>
                                         </div>
 
-                                        <div>
-                                            <a href="{{ route('register') }}" class="user-signup-link">
-                                            {{ __('label.register') }}
-                                                <i class="ace-icon fa fa-arrow-right"></i>
-                                            </a>
-                                        </div>
+
                                     </div>
                                 </div><!-- /.widget-body -->
                             </div><!-- /.login-box -->
                         </div><!-- /.position-relative -->
 
-                       
-                        
                         <div class="navbar-fixed-top align-right">
-                        <div class="btn-group pull-right">
-                            <div class="btn-group">
-                        <!-- Button to toggle the language dropdown -->
-                                <button type="button" class="btn btn-default dropdown-toggle usa" data-toggle="dropdown">
-                                {{ __('label.languages') }}
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li><a href="{{ url('lang/vi') }}">Tiếng Việt</a></li>
-                                    <li><a href="{{ url('lang/en') }}">English</a></li>
-                                </ul>
-                            </div>
-                        </div>
                             <br />
                             &nbsp;
-                            <a id="btn-login-dark" href="#">{{ __('label.dark') }}</a>
+                            <a id="btn-login-dark" href="#">Dark</a>
                             &nbsp;
                             <span class="blue">/</span>
                             &nbsp;
-                            <a id="btn-login-blur" href="#">{{ __('label.blue') }}</a>
+                            <a id="btn-login-blur" href="#">Blur</a>
                             &nbsp;
                             <span class="blue">/</span>
                             &nbsp;
-                            <a id="btn-login-light" href="#">{{ __('label.light') }}</a>
+                            <a id="btn-login-light" href="#">Light</a>
                             &nbsp; &nbsp; &nbsp;
                         </div>
                     </div>

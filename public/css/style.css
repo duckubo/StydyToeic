@@ -313,3 +313,86 @@ footer {
 .paddingtop-image {
     padding-top: 75px;
 }
+.chatboxai {
+    position: fixed;
+    bottom: 117px;
+    right: 8px;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+.chatboxai img {
+    border-radius: 50%;
+}
+.chatboxai img:hover {
+    cursor: pointer;
+}
+#chat-box {
+}
+.chatbox {
+    position: fixed;
+    bottom: 100px;
+    right: 20px;
+    width: 300px;
+    background-color: #f1f1f1;
+    border-radius: 10px;
+    display: none; /* Chatbox bắt đầu ở trạng thái ẩn */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+
+.chatbox-header {
+    background-color: #007bff;
+    padding: 10px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 10px 10px 0 0;
+}
+
+.chatbox-content {
+    padding: 10px;
+    height: 200px;
+    overflow-y: auto;
+}
+
+.chatbox-footer {
+    display: flex;
+    padding: 10px;
+    justify-content: space-between;
+    border-radius: 0 0 10px 10px;
+    background-color: #f9f9f9;
+}
+
+.chatbox-footer input {
+    width: 80%;
+    padding: 5px;
+}
+
+.chatbox-footer button {
+    padding: 6px 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Hiển thị nút đóng */
+#closeChatBtn {
+    background-color: rgb(221, 104, 104);
+    color: white;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+}
+.menu-btn {
+    width: 290px;
+}
+#menuPrompts {
+    display: none;
+}
+#prompt i {
+    cursor: pointer;
+}

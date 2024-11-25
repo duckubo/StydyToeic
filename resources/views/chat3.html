@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Chatbox Toggle</title>
+    </head>
+    <style>
+        /* Thiết kế chatbox */
+        .chatbox {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 300px;
+            background-color: #f1f1f1;
+            border-radius: 10px;
+            display: none; /* Chatbox bắt đầu ở trạng thái ẩn */
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+        }
+
+        .chatbox-header {
+            background-color: #007bff;
+            padding: 10px;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 10px 10px 0 0;
+        }
+
+        .chatbox-content {
+            padding: 10px;
+            height: 200px;
+            overflow-y: auto;
+        }
+
+        .chatbox-footer {
+            display: flex;
+            padding: 10px;
+            justify-content: space-between;
+            border-radius: 0 0 10px 10px;
+            background-color: #f9f9f9;
+        }
+
+        .chatbox-footer input {
+            width: 80%;
+            padding: 5px;
+        }
+
+        .chatbox-footer button {
+            padding: 6px 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* Hiển thị nút đóng */
+        #closeChatBtn {
+            background-color: red;
+            color: white;
+            border: none;
+            padding: 5px;
+            cursor: pointer;
+        }
+
+        /* Hiển thị nút Toggle */
+        #toggleChatBtn {
+            position: fixed;
+            bottom: 100px;
+            right: 20px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+    <body>
+        <!-- Nút Toggle Chatbox -->
+        <button id="toggleChatBtn">Mở Chatbox</button>
+
+        <!-- Chatbox -->
+        <div id="chatbox" class="chatbox">
+            <div class="chatbox-header">
+                <span>Chat với chúng tôi!</span>
+                <button id="closeChatBtn">Đóng</button>
+            </div>
+            <div class="chatbox-content">
+                <p>Chào bạn! Bạn cần hỗ trợ gì?</p>
+            </div>
+            <div class="chatbox-footer">
+                <input
+                    type="text"
+                    id="chatInput"
+                    placeholder="Nhập câu hỏi..."
+                />
+                <button id="sendBtn">Gửi</button>
+            </div>
+        </div>
+
+        <script>
+            // Lấy các phần tử trong HTML
+            const chatbox = document.getElementById("chatbox");
+            const toggleChatBtn = document.getElementById("toggleChatBtn");
+            const closeChatBtn = document.getElementById("closeChatBtn");
+
+            // Lắng nghe sự kiện click vào nút toggle
+            toggleChatBtn.addEventListener("click", function () {
+                if (
+                    chatbox.style.display === "none" ||
+                    chatbox.style.display === ""
+                ) {
+                    chatbox.style.display = "block"; // Hiển thị chatbox
+                    toggleChatBtn.textContent = "Đóng Chatbox"; // Thay đổi tên nút
+                } else {
+                    chatbox.style.display = "none"; // Ẩn chatbox
+                    toggleChatBtn.textContent = "Mở Chatbox"; // Thay đổi tên nút
+                }
+            });
+
+            // Lắng nghe sự kiện click vào nút đóng chatbox
+            closeChatBtn.addEventListener("click", function () {
+                chatbox.style.display = "none"; // Ẩn chatbox khi click vào nút đóng
+                toggleChatBtn.textContent = "Mở Chatbox"; // Thay đổi tên nút
+            });
+        </script>
+    </body>
+</html>

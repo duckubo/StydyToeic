@@ -8,14 +8,17 @@ use App\Http\Controllers\Admin\ListeningManageController;
 use App\Http\Controllers\Admin\ReadingManageController;
 use App\Http\Controllers\Admin\VocabularyManageController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ChatGPTController;
 use App\Http\Controllers\ExaminationController;
 use App\Http\Controllers\ExcelController;
 use App\Http\Controllers\GrammarController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ListeningController;
 use App\Http\Controllers\ReadingController;
+use App\Http\Controllers\SmsController;
 use App\Http\Controllers\VocabularyController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -77,8 +80,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::post('/search', [HomeController::class, 'search'])->name('search');
+
 Route::post('/resultlistening', [ListeningController::class, 'result'])->name('resultlistening');
 Route::post('/resultreading', [ReadingController::class, 'result'])->name('resultreading');
+Route::post('/comment', [GrammarController::class, 'commentHandle'])->name('comment');
 
 Route::get('/vocabularyguideline', [VocabularyController::class, 'index'])->name('vocabularyguideline');
 Route::get('/vocabularyguideline/{vocabularyguidelineid}', [VocabularyController::class, 'show'])->name('vocabularyguideline.show');
@@ -98,7 +103,8 @@ Route::post('/examination', [ExaminationController::class, 'result'])->name('exa
 
 Route::get('/admin/dashboard', [AdminHomeController::class, 'index'])->name('admin.dashboard');
 Route::get('/admin/account', [AccountController::class, 'index'])->name('admin.account');
-Route::post('/account', [AccountController::class, 'store'])->name('account.store');
+Route::post('/admin/account', [AccountController::class, 'store'])->name('account.store');
+Route::delete('/admin/account/{id}', [AccountController::class, 'delete'])->name('account.delete');
 
 Route::get('profile-manage/{id}', [AccountController::class, 'profile'])->name('admin.profile');
 Route::post('/update-profile-manage', [AccountController::class, 'update'])->name('admin.update.profile');
@@ -112,7 +118,7 @@ Route::post('/admin/grammarguidelinecontent', [GrammarManageController::class, '
 
 Route::get('/admin/vocabularyguideline', [VocabularyManageController::class, 'index'])->name('admin.vocabulary');
 Route::post('/admin/vocabularyguideline', [VocabularyManageController::class, 'store'])->name('insert.vocabularyguideline');
-Route::delete('/admin/vocabularyguidelineline/{vocabularyguidelineid}', [VocabularyManageController::class, 'delete'])->name('delete.vocabularyguideline');
+Route::delete('/admin/vocabularyguideline/{vocabularyguidelineid}', [VocabularyManageController::class, 'delete'])->name('delete.vocabularyguideline');
 Route::get('/admin/vocabularyguideline/edit', [VocabularyManageController::class, 'edit'])->name('edit.vocabularyguidelinecontent');
 Route::get('/admin/vocabularyguidelinemedia', [VocabularyManageController::class, 'media'])->name('media.vocabularyguideline');
 Route::post('/admin/vocabularyguidelinemedia', [VocabularyManageController::class, 'media_insert'])->name('media.insert.vocabularyguideline');
@@ -124,7 +130,7 @@ Route::get('/admin/readingexercise/edit', [ReadingManageController::class, 'edit
 Route::post('/admin/readingexercisecontent', [ReadingManageController::class, 'update'])->name('readingexercisecontent.update');
 
 Route::get('/admin/listeningexercise', [ListeningManageController::class, 'index'])->name('admin.listeningexercise');
-Route::post('/admin/listeningexercise', [ListeningExerciseController::class, 'store'])->name('insert.listeningexercise');
+Route::post('/admin/listeningexercise', [ListeningManageController::class, 'store'])->name('insert.listeningexercise');
 Route::delete('/admin/listeningexercise/{listenexerciseid}', [ListeningManageController::class, 'delete'])->name('delete.listeningexercise');
 Route::get('/admin/listeningexercise/edit', [ListeningManageController::class, 'edit'])->name('edit.listeningexercisecontent');
 Route::post('/admin/listeningexercisecontent', [ListeningManageController::class, 'update'])->name('listeningexercisecontent.update');
@@ -146,4 +152,20 @@ Route::post('excel/import', [ExcelController::class, 'importExcel'])->name('exce
 Route::post('/vocabulary/import', [VocabularyManageController::class, 'importExcel'])->name('vocabulary.import');
 Route::post('/readingexercise/import', [ReadingManageController::class, 'importExcel'])->name('readingexercise.import');
 Route::post('/listenexercise/import', [ListeningManageController::class, 'importExcel'])->name('listenexercise.import');
+
 Route::post('/examination/import', [ExaminationManageController::class, 'importExcel'])->name('examination.import');
+
+Route::post('/chat', [ChatGPTController::class, 'sendMessage']);
+Route::get('/chatbox', [ChatGPTController::class, 'chatInit'])->name('chatbox');
+
+Route::get('/reset-password', function (Request $request) {
+    $token = $request->query('token');
+    return view('auth.reset-password', ['token' => $token]);
+})->name('password.reset');
+
+Route::post('/reset-password', [AuthController::class, 'resetPassword'])->name('password.update');
+Route::post('/password/email', [AuthController::class, 'sendResetLinkEmail'])->name('password.email');
+Route::get('/password/email', [AuthController::class, 'showResetLinkEmailForm'])->name('password.email.show');
+
+Route::get('/send-sms', [SmsController::class, 'showForm'])->name('send.sms.form');
+Route::post('/send-sms', [SmsController::class, 'sendSMS'])->name('send.sms');

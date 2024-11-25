@@ -2,6 +2,7 @@
 
 @section('title', 'Trang Chủ')
 @section('content')
+
 <body class="no-skin">
     <!-- Header -->
     @include('Admin.includes.header')
@@ -9,7 +10,9 @@
 
     <div class="main-container ace-save-state" id="main-container">
         <script type="text/javascript">
-            try { ace.settings.loadState('main-container') } catch (e) { }
+            try {
+                ace.settings.loadState('main-container')
+            } catch (e) { }
         </script>
 
         <!-- Begin menu -->
@@ -65,16 +68,24 @@
                                         <tbody>
                                             @foreach($listgrammarguidelinemanage as $list)
                                                 <tr>
-                                                    <td class="center">{{ $list->grammarguidelineid }}</td>
+                                                    <td class="center">{{ $loop->iteration }}</td>
                                                     <td class="center">{{ $list->grammarname }}</td>
                                                     <td class="center">{{ $list->grammarimage }}</td>
                                                     <td class="center">
-                                                        <a class="red" href="{{ route('delete.grammarguideline', $list->grammarguidelineid) }}">
-                                                            <i class="ace-icon fa fa-trash-o bigger-130"></i>
-                                                        </a>
+                                                        <form
+                                                            action="{{ route('delete.grammarguideline', ['grammarguidelineid' => $list->grammarguidelineid]) }}"
+                                                            method="POST"
+                                                            onsubmit="return confirm('Bạn có chắc chắn muốn xóa bài HD ngữ pháp này?');">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="btn btn-danger">
+                                                                <i class="ace-icon fa fa-trash bigger-130"></i>
+                                                            </button>
+                                                        </form>
                                                     </td>
                                                     <td class="center">
-                                                        <a class="green" href="{{ route('edit.grammarguidelinecontent', ['id'=>$list->grammarguidelineid]) }}">
+                                                        <a class="green"
+                                                            href="{{ route('edit.grammarguidelinecontent', ['id' => $list->grammarguidelineid]) }}">
                                                             <i class="ace-icon fa fa-pencil bigger-130"></i>
                                                         </a>
                                                     </td>
@@ -94,7 +105,7 @@
                                 </div>
                             </div>
 
-                          <!-- Pagination -->
+                            <!-- Pagination -->
                             <div class="row">
                                 <div class="col-xs-12">
                                     <div>
@@ -108,6 +119,7 @@
                                             @else
                                                 <li><a href="{{ route('admin.grammar', ['pageid' => $pageid - 1]) }}">{{ __('label.prev') }}</a></li>
                                                 <li><a href="{{ route('admin.grammar', ['pageid' => $pageid + 1]) }}">{{ __('label.next') }}</a></li>
+
                                             @endif
                                         </ul>
                                     </div>
@@ -118,6 +130,7 @@
                                 <div class="col-xs-12">
                                     <button type="button" class="btn btn-white btn-warning btn-bold" data-toggle="modal" data-target="#myModal">
                                     {{ __('label.add_grammar_guideline') }}
+
                                     </button>
                                 </div>
                             </div>
@@ -155,6 +168,7 @@
                                         <label class="col-sm-3 control-label no-padding-right" for="form-field-1">{{ __('label.enter_name') }}</label>
                                         <div class="col-sm-9">
                                             <input type="text" id="form-field-1-1" placeholder="{{ __('label.grammar_guideline_name') }}" class="form-control" name="grammarname" />
+
                                         </div>
                                     </div>
                                 </div>
@@ -163,8 +177,10 @@
                                 <div class="col-sm-9">
                                     <div class="form-group">
                                         <label class="col-sm-3 control-label no-padding-right" for="form-field-1">{{ __('label.choose_image') }}</label>
+
                                         <div class="col-sm-9">
-                                            <input type="file" class="form-control" id="grammarimage" name="grammarimage" accept="image/*">
+                                            <input type="file" class="form-control" id="grammarimage"
+                                                name="grammarimage" accept="image/*">
                                         </div>
                                     </div>
                                 </div>
