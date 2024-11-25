@@ -149,7 +149,7 @@
     @include('includes.footer')
 </div>
 <!-- start Modal -->
-<div class="modal fade" id="myModal" role="dialog">
+<div class="modal fade" id="myModal" role="dialog" style="display:none">
     <div class="modal-dialog">
 
         <!-- Modal content-->
@@ -187,7 +187,7 @@
 </div>
 <!-- end modal -->
 <!-- start Modal làm bt -->
-<div class="modal fade" id="myModal1" role="dialog">
+<div class="modal fade" id="myModal1" role="dialog" style="display:none">
   <div class="modal-dialog">
 
     <!-- Modal content-->
