@@ -17,7 +17,7 @@ class SmsController extends Controller
     {
         $phone = $request->input('phone');
 
-        return view('send_sms', compact('phone'));
+        return view('Admin.send_sms', compact('phone'));
     }
     public function sendSMS(Request $request)
     {
