@@ -109,4 +109,12 @@ class ListeningManageController extends Controller
 
         }
     }
+
+    public function delete($listenexerciseid)
+    {
+        $listenexercise = ListeningExercise::find($listenexerciseid);
+
+        $listenexercise->delete();
+        return redirect()->back()->with('success', 'Xóa thành công!');
+    }
 }

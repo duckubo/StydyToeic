@@ -2,6 +2,7 @@
 
 @section('title', 'Trang Chủ')
 @section('content')
+
 <body class="no-skin">
     <!-- Header -->
     @include('Admin.includes.header')
@@ -9,14 +10,16 @@
 
     <div class="main-container ace-save-state" id="main-container">
         <script type="text/javascript">
-            try { ace.settings.loadState('main-container') } catch (e) {}
+            try {
+                ace.settings.loadState('main-container')
+            } catch (e) { }
         </script>
 
         <!-- Begin menu -->
         @include('Admin.includes.menu')
         <!-- End menu -->
 
-    <div class="main-content">
+        <div class="main-content">
             <div class="main-content-inner">
                 <div class="breadcrumbs ace-save-state" id="breadcrumbs">
                     <ul class="breadcrumb">
@@ -27,10 +30,10 @@
                     </ul>
                     <!-- /.breadcrumb -->
                 </div>
-                <div class= "container">
-                <div class= row>
-                    <canvas id="accountsLineChart" ></canvas>
-                </div>
+                <div class="container">
+                    <div class=row>
+                        <canvas id="accountsLineChart"></canvas>
+                    </div>
                     <div class="col-md-12">
                         <h2 class="my-4">Quản Lý Người Dùng</h2>
 
@@ -48,12 +51,13 @@
 
                         <!-- Nút Thêm Người Dùng -->
                         <div class="row">
-                                <div class="col-xs-12">
-                                    <button type="button" class="btn btn-white btn-warning btn-bold" data-toggle="modal" data-target="#myModal">
-                                        Thêm người dùng
-                                    </button>
-                                </div>
+                            <div class="col-xs-12">
+                                <button type="button" class="btn btn-white btn-warning btn-bold" data-toggle="modal"
+                                    data-target="#myModal">
+                                    Thêm người dùng
+                                </button>
                             </div>
+                        </div>
 
                         <!-- Bảng danh sách người dùng -->
                         <table class="table table-bordered table-striped">
@@ -72,12 +76,15 @@
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $user->name }}</td>
                                         <td>{{ $user->email }}</td>
-                                        <td>{{ $user->role ->name }}</td>
+                                        <td>{{ $user->role->name }}</td>
                                         <td>
-                                            <a href="{{route('admin.profile', ['id'=>$user->id])}}" class="btn btn-warning btn-sm">
+                                            <a href="{{route('admin.profile', ['id' => $user->id])}}"
+                                                class="btn btn-warning btn-sm">
                                                 <i class="fa fa-pencil"></i> Sửa
                                             </a>
-                                            <form action="" method="POST" class="d-inline" onsubmit="return confirm('Bạn có chắc chắn muốn xóa người dùng này?');">
+                                            <form action="{{ route('account.delete', $user->id) }}" method="POST"
+                                                class="d-inline"
+                                                onsubmit="return confirm('Bạn có chắc chắn muốn xóa người dùng này?');">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-danger btn-sm">
@@ -102,9 +109,9 @@
             </div>
         </div>
     </div>
-</div>
- @include('Admin.includes.footer')
- <!-- Modal -->
+    </div>
+    @include('Admin.includes.footer')
+    <!-- Modal -->
     <div class="modal fade" id="myModal" role="dialog">
         <div class="modal-dialog">
             <form action="{{ route('account.store') }}" method="POST">
@@ -120,9 +127,11 @@
                             <div class="col-xs-12">
                                 <div class="col-sm-9">
                                     <div class="form-group">
-                                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1">Nhập tên</label>
+                                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1">Nhập
+                                            tên</label>
                                         <div class="col-sm-9">
-                                            <input type="text" id="form-field-1" placeholder="Tên người dùng" class="form-control" name="name" required />
+                                            <input type="text" id="form-field-1" placeholder="Tên người dùng"
+                                                class="form-control" name="name" required />
                                         </div>
                                     </div>
                                 </div>
@@ -132,9 +141,11 @@
                             <div class="col-xs-12">
                                 <div class="col-sm-9">
                                     <div class="form-group">
-                                        <label class="col-sm-3 control-label no-padding-right" for="form-field-2">Nhập email</label>
+                                        <label class="col-sm-3 control-label no-padding-right" for="form-field-2">Nhập
+                                            email</label>
                                         <div class="col-sm-9">
-                                            <input type="email" id="form-field-2" placeholder="Email người dùng" class="form-control" name="email" required />
+                                            <input type="email" id="form-field-2" placeholder="Email người dùng"
+                                                class="form-control" name="email" required />
                                         </div>
                                     </div>
                                 </div>
@@ -144,9 +155,11 @@
                             <div class="col-xs-12">
                                 <div class="col-sm-9">
                                     <div class="form-group">
-                                        <label class="col-sm-3 control-label no-padding-right" for="form-field-3">Nhập mật khẩu</label>
+                                        <label class="col-sm-3 control-label no-padding-right" for="form-field-3">Nhập
+                                            mật khẩu</label>
                                         <div class="col-sm-9">
-                                            <input type="password" id="form-field-3" placeholder="Mật khẩu" class="form-control" name="password" required />
+                                            <input type="password" id="form-field-3" placeholder="Mật khẩu"
+                                                class="form-control" name="password" required />
                                         </div>
                                     </div>
                                 </div>
@@ -156,18 +169,21 @@
                             <div class="col-xs-12">
                                 <div class="col-sm-9">
                                     <div class="form-group">
-                                        <label class="col-sm-3 control-label no-padding-right" for="form-field-4">Xác nhận mật khẩu</label>
+                                        <label class="col-sm-3 control-label no-padding-right" for="form-field-4">Xác
+                                            nhận mật khẩu</label>
                                         <div class="col-sm-9">
-                                            <input type="password" id="form-field-4" placeholder="Xác nhận mật khẩu" class="form-control" name="password_confirmation" required />
+                                            <input type="password" id="form-field-4" placeholder="Xác nhận mật khẩu"
+                                                class="form-control" name="password_confirmation" required />
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                <!-- Trường Role -->
+                            <!-- Trường Role -->
                             <div class="col-xs-12">
                                 <div class="col-sm-9">
                                     <div class="form-group">
-                                        <label class="col-sm-3 control-label no-padding-right" for="form-field-6">Chọn vai trò</label>
+                                        <label class="col-sm-3 control-label no-padding-right" for="form-field-6">Chọn
+                                            vai trò</label>
                                         <div class="col-sm-9">
                                             <select id="form-field-6" class="form-control" name="role_id" required>
                                                 <option value="2">Quản trị </option>
@@ -182,9 +198,11 @@
                             <div class="col-xs-12">
                                 <div class="col-sm-9">
                                     <div class="form-group">
-                                        <label class="col-sm-3 control-label no-padding-right" for="form-field-5">Ảnh đại diện</label>
+                                        <label class="col-sm-3 control-label no-padding-right" for="form-field-5">Ảnh
+                                            đại diện</label>
                                         <div class="col-sm-9">
-                                            <input type="file" id="form-field-5" class="form-control" name="profile_picture" accept="image/*" />
+                                            <input type="file" id="form-field-5" class="form-control"
+                                                name="profile_picture" accept="image/*" />
                                         </div>
                                     </div>
                                 </div>
@@ -204,54 +222,56 @@
         </div>
     </div>
 
-<script>
-    // Dữ liệu giả lập
-    const labels = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-    const data ={!! json_encode($data) !!};// Số tài khoản theo thời gian
+    <script>
+        // Dữ liệu giả lập
+        const labels = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+        const data = {
+        !!json_encode($data)!!
+    }; // Số tài khoản theo thời gian
 
-    const ctx = document.getElementById('accountsLineChart').getContext('2d');
+        const ctx = document.getElementById('accountsLineChart').getContext('2d');
 
-    const chart = new Chart(ctx, {
-        type: 'line', // Loại biểu đồ
-        data: {
-            labels: labels, // Gán nhãn cho trục X
-            datasets: [{
-                label: 'Số tài khoản',
-                data: data, // Dữ liệu
-                borderColor: 'rgba(75, 192, 192, 1)', // Màu đường biểu đồ
-                backgroundColor: 'rgba(75, 192, 192, 0.2)', // Màu nền (dưới đường)
-                tension: 0.4, // Độ cong của đường
-                fill: true // Đổ màu phía dưới
-            }]
-        },
-        options: {
-            responsive: true,
-            plugins: {
-                legend: {
-                    display: true,
-                    position: 'top'
-                },
-                tooltip: {
-                    enabled: true
-                }
+        const chart = new Chart(ctx, {
+            type: 'line', // Loại biểu đồ
+            data: {
+                labels: labels, // Gán nhãn cho trục X
+                datasets: [{
+                    label: 'Số tài khoản',
+                    data: data, // Dữ liệu
+                    borderColor: 'rgba(75, 192, 192, 1)', // Màu đường biểu đồ
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)', // Màu nền (dưới đường)
+                    tension: 0.4, // Độ cong của đường
+                    fill: true // Đổ màu phía dưới
+                }]
             },
-            scales: {
-                x: {
-                    title: {
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
                         display: true,
-                        text: 'Thời gian (Tháng)'
+                        position: 'top'
+                    },
+                    tooltip: {
+                        enabled: true
                     }
                 },
-                y: {
-                    title: {
-                        display: true,
-                        text: 'Số tài khoản'
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Thời gian (Tháng)'
+                        }
                     },
-                    beginAtZero: true // Bắt đầu trục Y từ 0
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Số tài khoản'
+                        },
+                        beginAtZero: true // Bắt đầu trục Y từ 0
+                    }
                 }
             }
-        }
-    });
-</script>
+        });
+    </script>
 
-@endsection
+    @endsection
