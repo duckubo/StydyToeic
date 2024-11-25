@@ -252,6 +252,10 @@
             }
         }
     });
+<<<<<<< Updated upstream
 </script>
+=======
+    </script>
+>>>>>>> Stashed changes
 
 @endsection

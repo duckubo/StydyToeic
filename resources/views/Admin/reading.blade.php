@@ -96,7 +96,7 @@
                                         <ul class="pagination">
                                             @if ($pageid == 1)
                                                 <li class="active"><a href="#">{{ __('label.prev') }}</a></li>
-                                                <li><a href="{{ route('admin.readingexercise', ['pageid' => $pageid + 1]) }}">{{ __('label.{{ __('label.next') }}') }}</a></li>
+                                                <li><a href="{{ route('admin.readingexercise', ['pageid' => $pageid + 1]) }}">{{ __('label.next') }}</a></li>
                                             @elseif ($pageid == $maxPageId)
                                                 <li><a href="{{ route('admin.readingexercise', ['pageid' => $pageid - 1]) }}">{{ __('label.prev') }}</a></li>
                                                 <li class="active"><a href="#">{{ __('label.next') }}</a></li>
