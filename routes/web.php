@@ -15,6 +15,7 @@ use App\Http\Controllers\GrammarController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ListeningController;
 use App\Http\Controllers\ReadingController;
+use App\Http\Controllers\SmsController;
 use App\Http\Controllers\VocabularyController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
@@ -150,3 +151,6 @@ Route::get('/reset-password', function (Request $request) {
 Route::post('/reset-password', [AuthController::class, 'resetPassword'])->name('password.update');
 Route::post('/password/email', [AuthController::class, 'sendResetLinkEmail'])->name('password.email');
 Route::get('/password/email', [AuthController::class, 'showResetLinkEmailForm'])->name('password.email.show');
+
+Route::get('/send-sms', [SmsController::class, 'showForm'])->name('send.sms.form');
+Route::post('/send-sms', [SmsController::class, 'sendSMS'])->name('send.sms');

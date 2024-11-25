@@ -66,8 +66,10 @@
                                     <th>#</th>
                                     <th>Tên Người Dùng</th>
                                     <th>Email</th>
+                                    <th>SDT</th>
                                     <th>Vai Trò</th>
                                     <th>Hành Động</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -76,6 +78,7 @@
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $user->name }}</td>
                                         <td>{{ $user->email }}</td>
+                                        <td>{{ $user->phone }}</td>
                                         <td>{{ $user->role->name }}</td>
                                         <td>
                                             <a href="{{route('admin.profile', ['id' => $user->id])}}"
@@ -91,6 +94,12 @@
                                                     <i class="fa fa-trash"></i> Xóa
                                                 </button>
                                             </form>
+                                        </td>
+                                        <td>
+                                             <a href="{{route('send.sms.form',['phone'=>$user->phone])}}"
+                                                class="btn btn-success btn-sm">
+                                                <i class="fa fa-envelope"></i> Gửi tin nhắn
+                                            </a>
                                         </td>
                                     </tr>
                                 @empty
