@@ -197,4 +197,6 @@ return [
     'incorrect_questions' => 'Incorrect Questions',
     'activecource' => 'Activate Courses',
     'my-course' => 'My Courses',
+    'course_management' => 'Courses Management',
+    'course' => 'Course',
 ];

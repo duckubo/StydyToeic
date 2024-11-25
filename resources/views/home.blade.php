@@ -133,11 +133,12 @@
             <div class="chatbox-footer"  style="">
                  <div style="margin: 10px 10px 0px 0px; position:relative;" id="prompt" >
                     <div class="menu-prompts" id="menuPrompts" style="position:absolute;bottom: 44px; left:-6px;">
-                    <button class="menu-btn" data-question="What are your hours of operation?">What are your hours of operation?</button>
-                    <button class="menu-btn" data-question="How can I contact support?">How can I contact support?</button>
-                    <button class="menu-btn" data-question="Where is your office located?">Where is your office located?</button>
-                    <button class="menu-btn" data-question="What services do you offer?">What services do you offer?</button>
-                    <button class="menu-btn" data-question="Xin chào">Xin chào</button>
+                    <button class="menu-btn" data-question="website này cung cấp gì">Website này cung cấp gì?</button>
+                    <button class="menu-btn" data-question="các loại bài thi có sẵn là gì">Các loại bài thi có sẵn là gì?</button>
+                    <button class="menu-btn" data-question="làm thế nào để làm bài thi">Làm thế nào để làm bài thi?</button>
+                    <button class="menu-btn" data-question="có giới hạn thời gian cho bài thi không">Có giới hạn thời gian cho bài thi không?</button>
+                    <button class="menu-btn" data-question="làm thế nào để kiểm tra kết quả">Làm thế nào để kiểm tra kết quả?</button>
+                    <button class="menu-btn" data-question="làm thế nào để cải thiện điểm số">làm thế nào để cải thiện điểm số?</button>
                     </div>
                     <i class="fa fa-list" aria-hidden="true"></i>
                 </div>
@@ -322,8 +323,29 @@ buttons.forEach(button => {
         } else if (message.includes("cảm ơn")) {
             return "Bạn thật tuyệt vời! Nếu cần thêm gì, cứ hỏi tôi nhé!";
         } else if (message.includes("thời tiết")) {
-            return "Tôi không biết thời tiết hôm nay, nhưng bạn có thể kiểm tra trên Google!";
-        } else {
+        return "Tôi không biết thời tiết hôm nay, nhưng bạn có thể kiểm tra trên Google!";
+            } else if (message.includes("website này cung cấp gì")) {
+            return "Website này cung cấp các bài thi tiếng Anh online để giúp người dùng cải thiện kỹ năng tiếng Anh của mình.";
+        } else if (message.includes("làm thế nào để đăng ký")) {
+            return "Bạn có thể đăng ký bằng cách nhấn vào nút 'Đăng Ký' và điền thông tin của mình.";
+        } else if (message . includes("các loại bài thi có sẵn là gì")) {
+            return "Chúng tôi cung cấp nhiều loại bài thi tiếng Anh, bao gồm ngữ pháp, từ vựng, đọc hiểu và viết.";
+        } else if (message . includes("làm thế nào để làm bài thi")) {
+            return "Để làm bài thi, bạn chỉ cần đăng nhập vào tài khoản của mình, chọn bài thi và bắt đầu trả lời các câu hỏi.";
+        } else if (message . includes("có giới hạn thời gian cho bài thi không")) {
+            return "Có, hầu hết các bài thi đều có giới hạn thời gian để mô phỏng điều kiện thi thật, nhưng bạn có thể xem lại câu trả lời trước khi nộp bài.";
+        } else if (message . includes("làm thế nào để kiểm tra kết quả")) {
+            return "Sau khi hoàn thành bài thi, kết quả sẽ có sẵn trong phần 'Kết Quả' của tài khoản của bạn.";
+        } else if (message . includes("tôi có thể làm lại bài thi không")) {
+            return "Có, bạn có thể làm lại bài thi bất cứ lúc nào, nhưng hãy xem lại những lỗi đã mắc phải để cải thiện.";
+        } else if (message . includes("làm thế nào để cải thiện điểm số")) {
+            return "Để cải thiện điểm số, bạn nên luyện tập thường xuyên và xem lại các lỗi trong các bài thi trước.";
+        } else if (message . includes("tôi có cần tài khoản để làm bài thi không")) {
+            return "Có, bạn cần tạo tài khoản để làm bài thi và theo dõi tiến trình của mình.";
+        } else if (message . includes("làm thế nào để liên hệ với hỗ trợ")) {
+            return "Bạn có thể liên hệ với bộ phận hỗ trợ bằng cách nhấn vào nút 'Trợ Giúp' ở dưới cùng của trang và gửi tin nhắn.";
+        }
+        else {
             return "Xin lỗi, tôi không hiểu câu hỏi của bạn. Bạn có thể thử hỏi lại không?";
         }
     }

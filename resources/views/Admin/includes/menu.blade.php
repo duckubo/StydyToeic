@@ -126,6 +126,24 @@
                 </li>
             </ul>
         </li>
+        <li>
+            <a href="#" class="dropdown-toggle">
+                <i class="menu-icon fa fa-list"></i>
+                <span class="menu-text">{{ __('label.course_management') }}</span>
+                <b class="arrow fa fa-angle-down"></b>
+            </a>
+
+            <b class="arrow"></b>
+            <ul class="submenu">
+                <li>
+                    <a href="{{ route('admin.courses', ['pageid' => 1]) }}">
+                        <i class="menu-icon fa fa-caret-right"></i>
+                        {{ __('label.course') }}
+                    </a>
+                    <b class="arrow"></b>
+                </li>
+            </ul>
+        </li>
     </ul>
 
     <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">

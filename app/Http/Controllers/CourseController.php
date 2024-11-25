@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Course;
 use App\Models\Enrollment;
-use App\Models\User;
 use App\Models\Lesson;
-use Illuminate\Support\Facades\Log;
+use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class CourseController extends Controller
 {
-    public function index(Request $request) {
+    public function index(Request $request)
+    {
         try {
             // Lấy pageid từ request và thiết lập các thông số phân trang
             $pageId = $request->query('pageid', 1); // Giá trị mặc định là 1 nếu không có pageid
@@ -46,17 +46,18 @@ class CourseController extends Controller
         }
     }
 
-    public function show($courseid) {
+    public function show($courseid)
+    {
         if (auth()->check()) {
             $userId = auth()->id();
         } else {
-            return redirect('login'); 
+            return redirect('login');
         }
         $course = Course::findOrFail($courseid);
         $user = User::find($userId);
         $enroll = $user->enrollments()->where('course_id', $courseid)->first();
         if ($enroll) {
-            $is_enroll = $enroll->is_success; 
+            $is_enroll = $enroll->is_success;
         } else {
             $is_enroll = false;
         }
@@ -64,31 +65,32 @@ class CourseController extends Controller
         return view('coursedetail', compact('course', 'lessons', 'is_enroll'));
     }
 
-    public function enroll($courseid) {
+    public function enroll($courseid)
+    {
         if (auth()->check()) {
             $userId = auth()->id();
         } else {
-            return redirect('login'); 
+            return redirect('login');
         }
-        
+
         // Insert into Enrollment
         $user = User::find($userId);
         $course = Course::findOrFail($courseid);
         $vnp_TxnRef = "enroll{$course->id}{$userId}";
         $enrollmentData = [
-            'user_id' => $userId, 
-            'course_id' => $course->id, 
+            'user_id' => $userId,
+            'course_id' => $course->id,
             'phone' => $user->phone,
             'enroll_code' => $vnp_TxnRef,
-            'payment_content' => ''
+            'payment_content' => '',
         ];
         Enrollment::create($enrollmentData);
 
         // Vnpay config
         $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
         // Sửa url khi chạy lại ngrok
-        $vnp_Returnurl = 'https://d20f-2001-ee0-4c4d-ecb0-cdd4-3d46-6a12-db80.ngrok-free.app/return-payment';
-        $vnp_TmnCode = "GY1TKPFT"; 
+        $vnp_Returnurl = 'https://19fa-2401-d800-2740-e22-4e1-c8b0-d74a-9c14.ngrok-free.app/return-payment';
+        $vnp_TmnCode = "GY1TKPFT";
         $vnp_HashSecret = "CXHOO01MZM7UOS1W8IIEQPKBGFLQQ53C";
         $vnp_OrderInfo = "Dang ky khoa hoc";
         $vnp_OrderType = 'billpayment';
@@ -110,13 +112,13 @@ class CourseController extends Controller
             "vnp_OrderType" => $vnp_OrderType,
             "vnp_BankCode" => $vnp_BankCode,
             "vnp_TxnRef" => $vnp_TxnRef,
-            "vnp_ReturnUrl" => $vnp_Returnurl
+            "vnp_ReturnUrl" => $vnp_Returnurl,
         );
-        
+
         if (isset($vnp_BankCode) && $vnp_BankCode != "") {
             $inputData['vnp_BankCode'] = $vnp_BankCode;
         }
-        
+
         ksort($inputData);
         $query = "";
         $i = 0;
@@ -130,33 +132,35 @@ class CourseController extends Controller
             }
             $query .= urlencode($key) . "=" . urlencode($value) . '&';
         }
-        
+
         $vnp_Url = $vnp_Url . "?" . $query;
         if (isset($vnp_HashSecret)) {
-            $vnpSecureHash =   hash_hmac('sha512', $hashdata, $vnp_HashSecret);//  
+            $vnpSecureHash = hash_hmac('sha512', $hashdata, $vnp_HashSecret); //
             $vnp_Url .= 'vnp_SecureHash=' . $vnpSecureHash;
         }
         $returnData = array('code' => '00'
             , 'message' => 'success'
             , 'enroll_code' => $vnp_TxnRef
             , 'data' => $vnp_Url);
-            if (isset($_POST['redirect'])) {
-                header('Location: ' . $vnp_Url);
-                die();
-            } else {
-                echo json_encode($returnData);
-            }
+        if (isset($_POST['redirect'])) {
+            header('Location: ' . $vnp_Url);
+            die();
+        } else {
+            echo json_encode($returnData);
+        }
     }
 
-    public function showLession($lessionid) {
+    public function showLession($lessionid)
+    {
         $lession = Lesson::find($lessionid);
         $nextLes = Lesson::where('id', '>', $lession->id)
-                 ->orderBy('id', 'asc')
-                 ->first();
-        return view('lession',compact('lession','nextLes'));
+            ->orderBy('id', 'asc')
+            ->first();
+        return view('lession', compact('lession', 'nextLes'));
     }
 
-    public function returnPayment(Request $request) {
+    public function returnPayment(Request $request)
+    {
         $enrollcode = $request->input('vnp_TxnRef');
         $price = $request->input('vnp_Amount');
         $price = $price / 100;
@@ -164,29 +168,32 @@ class CourseController extends Controller
         if ($enrollment) {
             $enrollment->is_success = true;
             $enrollment->price = $price;
-            $enrollment->save(); 
+            $enrollment->save();
         }
-        return view('returnpayment',compact('enrollcode','price'));
+        return view('returnpayment', compact('enrollcode', 'price'));
     }
 
-    public function myCourses(Request $request) {
+    public function myCourses(Request $request)
+    {
+
         if (auth()->check()) {
             $userId = auth()->id();
         } else {
-            return redirect('login'); 
+            return redirect('login');
         }
-        $enrollments = Enrollment::where('user_id', $userId)->where('is_success',1)->get();
+        $enrollments = Enrollment::where('user_id', $userId)->where('is_success', 1)->get();
         $courses = [];
         foreach ($enrollments as $enroll) {
             $course = Course::find($enroll->course_id);
-            if($course) {
+
+            if ($course) {
                 $courses[] = $course;
             }
         }
         try {
             // Lấy pageid từ request và thiết lập các thông số phân trang
             $pageId = $request->query('pageid', 1); // Giá trị mặc định là 1 nếu không có pageid
-            $count = 4;
+            $count = 2;
 
             if ($pageId == 1) {
                 $offset = 0;
@@ -194,6 +201,8 @@ class CourseController extends Controller
                 $offset = ($pageId - 1) * $count;
             }
             $totalRows = count($courses);
+
+            $courses = array_slice($courses, $offset, $count);
 
             // Tính tổng số trang
             $maxPageId = ceil($totalRows / $count);
@@ -210,6 +219,6 @@ class CourseController extends Controller
             // Xử lý lỗi và hiển thị thông báo
             return view('courses')->with('errorMessage', $e->getMessage());
         }
-        return view('courses',compact('courses'));
+        return view('courses', compact('courses'));
     }
 }
