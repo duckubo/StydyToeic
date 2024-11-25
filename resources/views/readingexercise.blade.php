@@ -10,7 +10,7 @@
         <div class="span12">
             <div class="page-header">
                 <h3>
-                    Danh sách bài tập phần đọc
+                {{ __('label.list_reading_exercises') }}
                 </h3>
             </div>
         </div>
@@ -40,7 +40,7 @@
                             <p>
                                 {{ $item->readname }}
                             </p>
-                            <a href="{{ route('readingexercise.show',['pageid' => 1, 'readexeriseid' => $item->readexeriseid]) }}" class="btn" type="button">Làm bài tập</a>
+                            <a href="{{ route('readingexercise.show',['pageid' => 1, 'readexeriseid' => $item->readexeriseid]) }}" class="btn" type="button">{{ __('label.do_exercise') }}</a>
                         </div>
                     </div>
                 </div>
@@ -54,13 +54,13 @@
                 <ul>
                     @if($currentPage == 1)
                         <li class="disabled"><a href="#">Prev</a></li>
-                        <li><a href="{{ route('readingexercise', ['pageid' => $currentPage + 1]) }}">Next</a></li>
+                        <li><a href="{{ route('readingexercise', ['pageid' => $currentPage + 1]) }}">{{ __('label.{{ __('label.prev') }}') }}</a></li>
                     @elseif($currentPage == $maxPageId)
                         <li><a href="{{ route('readingexercise', ['pageid' => $currentPage - 1]) }}">Prev</a></li>
-                        <li class="disabled"><a href="#">Next</a></li>
+                        <li class="disabled"><a href="#">{{ __('label.{{ __('label.prev') }}') }}</a></li>
                     @else
                         <li><a href="{{ route('readingexercise', ['pageid' => $currentPage - 1]) }}">Prev</a></li>
-                        <li><a href="{{ route('readingexercise', ['pageid' => $currentPage + 1]) }}">Next</a></li>
+                        <li><a href="{{ route('readingexercise', ['pageid' => $currentPage + 1]) }}">{{ __('label.{{ __('label.prev') }}') }}</a></li>
                     @endif
                 </ul>
             </div>

@@ -21,6 +21,7 @@ class AuthService
         try {
             // Mã hóa mật khẩu trước khi lưu vào cơ sở dữ liệu
             $params['password'] = Hash::make($params['password']);
+            $params['role_id'] = 1;
             return $this->user->create($params);
 
         } catch (Exception $e) {

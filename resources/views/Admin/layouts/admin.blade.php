@@ -24,7 +24,7 @@
 </head>
 <body >
     @yield('content')
-    @yield('scripts')
+
 	<script src="{{ asset('template/js/jquery-2.1.4.min.js') }}"></script>
 
     <script type="text/javascript">
@@ -34,9 +34,17 @@
 
     <script src="{{ asset('template/js/jquery.colorbox.min.js') }}"></script>
 
-    <script src="{{ asset('template/js/ace-elements.min.js') }}"></script>
-    <script src="{{ asset('template/js/ace.min.js') }}"></script>
+    <script src="{{ asset('template/js/jquery-ui.custom.min.js')}}"></script>
+		<script src="{{ asset('template/js/jquery.ui.touch-punch.min.js')}}"></script>
+		<script src="{{ asset('template/js/markdown.min.js')}}"></script>
+		<script src="{{ asset('template/js/bootstrap-markdown.min.js')}}"></script>
+		<script src="{{ asset('template/js/jquery.hotkeys.index.min.js')}}"></script>
+		<script src="{{ asset('template/js/bootstrap-wysiwyg.min.js')}}"></script>
+		<script src="{{ asset('template/js/bootbox.js')}}"></script>
 
+
+		<script src="{{ asset('template/js/ace-elements.min.js')}}"></script>
+		<script src="{{ asset('template/js/ace.min.js')}}"></script>
     <script type="text/javascript">
         jQuery(function($) {
             var $overflow = '';
@@ -70,6 +78,7 @@
             });
         });
     </script>
+     @yield('scripts')
 </body>
 
 </html>

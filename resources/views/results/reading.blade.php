@@ -93,10 +93,14 @@
         @if($kq == 'A')
         <p>{!! nl2br(e($listcorrectanswer->paragraph)) !!}</p>
             <p>{{ $listcorrectanswer->num }}. {{ $listcorrectanswer->question }}</p>
-            <p><img alt="" src="{{ asset('images/check/incorrect.png') }}"> {{ $listcorrectanswer->option1 }}</p>
+            <p><img alt="" src="{{ asset('images/check/incorrect.png') }}"/> {{ $listcorrectanswer->option1 }}</p>
             <p>{{ $listcorrectanswer->option2 }}</p>
             <p>{{ $listcorrectanswer->option3 }}</p>
-            <p><img alt="" src="{{ asset('images/check/correct.png') }}"> {{ $listcorrectanswer->option4 }}</p>
+            <p>
+    <img alt="" src="{{ asset('images/check/correct.png') }}" />
+    {{ $listcorrectanswer->option4 }}
+</p>
+
         @elseif($kq == 'B')
         <p>{!! nl2br(e($listcorrectanswer->paragraph)) !!}</p>
             <p>{{ $listcorrectanswer->num }}. {{ $listcorrectanswer->question }}</p>

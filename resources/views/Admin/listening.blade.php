@@ -2,6 +2,7 @@
 
 @section('title', 'Trang Chủ')
 @section('content')
+
 <body class="no-skin">
     <!-- Header -->
     @include('Admin.includes.header')
@@ -9,7 +10,9 @@
 
     <div class="main-container ace-save-state" id="main-container">
         <script type="text/javascript">
-            try { ace.settings.loadState('main-container') } catch (e) {}
+            try {
+                ace.settings.loadState('main-container')
+            } catch (e) { }
         </script>
 
         <!-- Begin menu -->
@@ -23,10 +26,10 @@
                     <ul class="breadcrumb">
                         <li>
                             <i class="ace-icon fa fa-home home-icon"></i>
-                            <a href="{{ route('admin.dashboard') }}">Trang chủ</a>
+                            <a href="{{ route('admin.dashboard') }}">{{ __('label.home') }}</a>
                         </li>
                         <li>
-                            <a class="active">Quản lý danh sách bài tập đọc</a>
+                            <a class="active">{{ __('label.manage_reading_exercise_list') }}</a>
                         </li>
                     </ul><!-- /.breadcrumb -->
                 </div>
@@ -47,11 +50,11 @@
                                         <thead>
                                             <tr>
                                                 <th class="center">ID</th>
-                                                <th class="center">Tên bài tập nghe</th>
-                                                <th class="center">Tên hình bài tập nghe</th>
-                                                <th class="center">Xóa bài tập nghe</th>
-                                                <th class="center">Thêm câu hỏi bài tập nghe</th>
-                                                <th class="center">Checked câu hỏi bài tập nghe</th>
+                                                <th class="center">{{ __('label.listen_exercise_name') }}</th>
+                                                <th class="center">{{ __('label.listen_exercise_image_name') }}</th>
+                                                <th class="center">{{ __('label.delete_listen_exercise') }}</th>
+                                                <th class="center">{{ __('label.add_listen_exercise_question') }}</th>
+                                                <th class="center">{{ __('label.checked_listen_exercise_question') }}</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -59,14 +62,22 @@
                                                 <tr>
                                                     <td class="center">{{ $list->listenexerciseid }}</td>
                                                     <td class="center">{{ $list->listenexercisename }}</td>
-                                                    <td class="center">{{ $list->listenexercisename }}</td>
+                                                    <td class="center">{{ $list->listenexerciseimage }}</td>
                                                     <td class="center">
-                                                        <a class="red" href="{{ route('delete.listeningexercise', ['listenexerciseid' => $list->listenexerciseid]) }}">
-                                                            <i class="ace-icon fa fa-trash-o bigger-130"></i>
-                                                        </a>
+                                                        <form
+                                                            action="{{ route('delete.listeningexercise', ['listenexerciseid' => $list->listenexerciseid]) }}"
+                                                            method="POST"
+                                                            onsubmit="return confirm('Bạn có chắc chắn muốn xóa bài tập nghe này?');">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="btn btn-danger">
+                                                                <i class="ace-icon fa fa-trash bigger-130"></i>
+                                                            </button>
+                                                        </form>
                                                     </td>
                                                     <td class="center">
-                                                        <a class="green" href="{{ route('edit.listeningexercisecontent', ['listenexerciseid' => $list->listenexerciseid]) }}">
+                                                        <a class="green"
+                                                            href="{{ route('edit.listeningexercisecontent', ['listenexerciseid' => $list->listenexerciseid]) }}">
                                                             <i class="ace-icon fa fa-pencil bigger-130"></i>
                                                         </a>
                                                     </td>
@@ -95,14 +106,15 @@
                                     <div>
                                         <ul class="pagination">
                                             @if ($pageid == 1)
-                                                <li class="active"><a href="#">Prev</a></li>
-                                                <li><a href="{{ route('admin.listeningexercise', ['pageid' => $pageid + 1]) }}">Next</a></li>
+                                                <li class="active"><a href="#">{{ __('label.prev') }}</a></li>
+                                                <li><a href="{{ route('admin.listeningexercise', ['pageid' => $pageid + 1]) }}">{{ __('label.next') }}</a></li>
                                             @elseif ($pageid == $maxPageId)
-                                                <li><a href="{{ route('admin.listeningexercise', ['pageid' => $pageid - 1]) }}">Prev</a></li>
-                                                <li class="active"><a href="#">Next</a></li>
+                                                <li><a href="{{ route('admin.listeningexercise', ['pageid' => $pageid - 1]) }}">{{ __('label.prev') }}</a></li>
+                                                <li class="active"><a href="#">{{ __('label.next') }}</a></li>
                                             @else
-                                                <li><a href="{{ route('admin.listeningexercise', ['pageid' => $pageid - 1]) }}">Prev</a></li>
-                                                <li><a href="{{ route('admin.listeningexercise', ['pageid' => $pageid + 1]) }}">Next</a></li>
+                                                <li><a href="{{ route('admin.listeningexercise', ['pageid' => $pageid - 1]) }}">{{ __('label.prev') }}</a></li>
+                                                <li><a href="{{ route('admin.listeningexercise', ['pageid' => $pageid + 1]) }}">{{ __('label.next') }}</a></li>
+
                                             @endif
                                         </ul>
                                     </div>
@@ -112,8 +124,10 @@
                             <div class="row">
                                 <div class="col-xs-12">
                                     <button type="button" class="btn btn-white btn-warning btn-bold" data-toggle="modal" data-target="#myModal">
-                                        Thêm đề bài tập đọc
+                                    {{ __('label.add_listen_exercise') }}
                                     </button>
+                                      <a href="{{route('media.listeningexercise')}}" role="button" class="btn btn-white btn-warning btn-bold">{{ __('label.add_listen_exercise_audio_image') }}</a>
+
                                 </div>
                             </div>
                         </div>
@@ -135,22 +149,36 @@
     <!-- Modal thêm tên đề thi -->
     <div class="modal fade" id="myModal" role="dialog">
         <div class="modal-dialog">
-            <form action="{{ route('insert.listeningexercise') }}" method="POST">
+            <form action="{{ route('insert.listeningexercise')}}" method="POST">
                 @csrf
                 <!-- Modal content-->
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Thêm đề bài tập đọc</h4>
+                        <h4 class="modal-title">{{ __('label.add_read_exercise') }}</h4>
                     </div>
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-xs-12">
                                 <div class="col-sm-9">
                                     <div class="form-group">
-                                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1">Nhập tên</label>
+                                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1">{{ __('label.enter_name') }}</label>
+
                                         <div class="col-sm-9">
-                                            <input type="text" id="form-field-1-1" placeholder="Tên đề thi" class="form-control" name="readname" />
+                                            <input type="text" id="form-field-1-1" placeholder="Tên đề thi"
+                                                class="form-control" name="readname" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12">
+                                <div class="col-sm-9">
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1">{{ __('label.choose_image') }}</label>
+
+                                        <div class="col-sm-9">
+                                            <input type="file" class="form-control" id="listenexerciseimage"
+                                                name="listenexerciseimage" accept="image/*">
                                         </div>
                                     </div>
                                 </div>
@@ -161,8 +189,9 @@
                     <div class="modal-footer">
                         <button class="btn btn-info" type="submit">
                             <i class="ace-icon fa fa-check bigger-110"></i>
-                            Thêm tên bài tập đọc
+                            {{ __('label.add_listen_exercise_name') }}
                         </button>
+
                     </div>
                 </div>
             </form>

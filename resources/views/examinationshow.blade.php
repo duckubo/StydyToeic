@@ -21,10 +21,10 @@
                  <a href="{{route('examination')}}">
                         <ul class="breadcrumb" >
                                 <i class="menu-icon fa fa-arrow-left"></i>
-                            <li style="color: #0088cc">&nbsp; &nbsp;Quay Lại</li>
+                            <li style="color: #0088cc">&nbsp; &nbsp;{{ __('label.back') }}</li>
                         </ul><!-- /.breadcrumb -->
                     </a>
-                <h3>Làm bài thi Toeic hoàn chỉnh</h3>
+                <h3>{{ __('label.complete_toeic_test') }}</h3>
                 <script>
                     function doneHandler(result) {
                         var year = result.getFullYear();
@@ -59,7 +59,7 @@
                 <div id="paginationdemo" class="thumbnail">
                     <div class="reading_description" style="overflow: auto; height: 400px">
                         <div id="p1" class="_current">
-                            <h1 class="khoangcach">Nhấn page 2 để xem đề thi</h1>
+                            <h1 class="khoangcach">{{ __('label.click_page_2') }}</h1>
                         </div>
 
                         @foreach($questions as $item)
@@ -128,7 +128,7 @@
                         </div>
                     </div>
                     <br>
-                    <input type="submit" class="btn btn-primary" value="Nộp bài">
+                    <input type="submit" class="btn btn-primary" value="{{ __('label.submit') }}">
                 </div>
             </form>
         </div>

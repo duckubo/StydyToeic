@@ -91,11 +91,11 @@ class AccountController extends Controller
             'password' => 'nullable|min:6',
             'profile_picture' => 'nullable|image|mimes:jpg,jpeg,png|max:2048', // Chỉ chấp nhận file ảnh
         ]);
-
         // Cập nhật thông tin người dùng
         $user->name = $request->input('name');
         $user->email = $request->input('email');
         $user->phone = $request->input('phone');
+        $user->role_id = $request->input('role_id');
 
         // Nếu có mật khẩu mới, cập nhật mật khẩu
         if ($request->filled('password')) {
@@ -108,7 +108,7 @@ class AccountController extends Controller
             $image = $request->file('profile_picture');
 
             // Tạo tên ảnh mới
-            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $imageName = time() . '.' . $image->getClientOriginalName();
 
             // Lưu ảnh vào thư mục public/images
             $image->move(public_path('images'), $imageName);
@@ -122,5 +122,13 @@ class AccountController extends Controller
 
         // Redirect hoặc trả về thông báo thành công
         return redirect()->back()->with('success', 'Profile updated successfully!');
+    }
+
+    public function delete($id)
+    {
+        $user = User::find($id);
+
+        $user->delete();
+        return redirect()->back()->with('success', 'Profile soft deleted successfully!');
     }
 }

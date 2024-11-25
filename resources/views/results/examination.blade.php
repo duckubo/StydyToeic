@@ -13,12 +13,12 @@
     <div class="row">
         <div class="span9">
             <h4>
-                Đáp án đúng
+            {{ __('label.correct_answer') }}
             </h4>
         </div>
         <div class="span3">
             <h4>
-                Đáp án người dùng
+            {{ __('label.your_answer') }}
             </h4>
         </div>
         <div class="span9">
@@ -36,13 +36,13 @@
                             </p>
 
                             @if($correctAnswer->correctanswer == 'A')
-                                <p style="color:red">Câu {{ $correctAnswer->num }}. Đáp án A đúng</p>
+                                <p style="color:red">{{ __('label.question') }} {{ $correctAnswer->num }}. {{ __('label.answer_a_correct') }}</p>
                             @elseif($correctAnswer->correctanswer == 'B')
-                                <p style="color:red">Câu {{ $correctAnswer->num }}. Đáp án B đúng</p>
+                                <p style="color:red">{{ __('label.question') }} {{ $correctAnswer->num }}. {{ __('label.answer_b_correct') }}</p>
                             @elseif($correctAnswer->correctanswer == 'C')
-                                <p style="color:red">Câu {{ $correctAnswer->num }}. Đáp án C đúng</p>
+                                <p style="color:red">{{ __('label.question') }} {{ $correctAnswer->num }}. {{ __('label.answer_c_correct') }}</p>
                             @elseif($correctAnswer->correctanswer == 'D')
-                                <p style="color:red">Câu {{ $correctAnswer->num }}. Đáp án D đúng</p>
+                                <p style="color:red">{{ __('label.question') }} {{ $correctAnswer->num }}. {{ __('label.answer_d_correct') }}</p>
                             @endif
                         @elseif($correctAnswer->imagequestion == '' && $correctAnswer->audiogg != '' && $correctAnswer->audiomp3 != '')
                             <br/><br/>
@@ -54,13 +54,13 @@
                             </p>
 
                             @if($correctAnswer->correctanswer == 'A')
-                                <p style="color:red">Câu {{ $correctAnswer->num }}. Đáp án A đúng</p>
+                                <p style="color:red">{{ __('label.question') }} {{ $correctAnswer->num }}. {{ __('label.answer_a_correct') }}</p>
                             @elseif($correctAnswer->correctanswer == 'B')
-                                <p style="color:red">Câu {{ $correctAnswer->num }}. Đáp án B đúng</p>
+                                <p style="color:red">{{ __('label.question') }} {{ $correctAnswer->num }}.{{ __('label.answer_b_correct') }}</p>
                             @elseif($correctAnswer->correctanswer == 'C')
-                                <p style="color:red">Câu {{ $correctAnswer->num }}. Đáp án C đúng</p>
+                                <p style="color:red">{{ __('label.question') }} {{ $correctAnswer->num }}. {{ __('label.answer_c_correct') }}</p>
                             @elseif($correctAnswer->correctanswer == 'D')
-                                <p style="color:red">Câu {{ $correctAnswer->num }}. Đáp án D đúng</p>
+                                <p style="color:red">{{ __('label.question') }} {{ $correctAnswer->num }}. {{ __('label.answer_d_correct') }}</p>
                             @endif
                         @elseif($correctAnswer->imagequestion == '' && $correctAnswer->audiogg == '' && $correctAnswer->audiomp3 == '')
                             @if($correctAnswer->correctanswer == 'A')
@@ -135,8 +135,8 @@
                 </div>
             </div>
             <br/>
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Xem kết quả thi</button>
-            <a href="{{ route('examination.show', ['examinationid' => $examinationid]) }}" class="btn btn-primary">Làm lại</a>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">{{ __('label.view_results') }}</button>
+            <a href="{{ route('examination.show', ['examinationid' => $examinationid]) }}" class="btn btn-primary">{{ __('label.retake') }}</a>
         </div>
     </div>
 </div>
@@ -153,19 +153,21 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Kết quả thi của người dùng</h4>
+                <h4 class="modal-title">{{ __('label.exam_results') }}</h4>
             </div>
             <div class="modal-body">
                 @foreach($ketquathi as $list)
+                <div style="display:flex; column-gap:20px;">
+                    <div>
                     <div class="media">
                         <div class="media-body">
-                            <h3>Thời gian: {{ $list->created_at }}</h3>
+                            <h3>{{ __('label.time') }}: {{ $list->created_at }}</h3>
                             <h4>
-                                Số câu đúng: {{ $list->correctanswernum }}
+                                {{ __('label.correct_questions') }}: {{ $list->correctanswernum }}
                                 <br/>
-                                - Số câu đúng phần nghe: {{ $list->correctanswerlisten }}
+                                {{ __('label.correct_listening') }}:  {{ $list->correctanswerlisten }}
                                 <br/>
-                                - Số câu đúng phần đọc: {{ $list->correctanswerread }}
+                                {{ __('label.correct_reading') }}: {{ $list->correctanswerread }}
                             </h4>
                         </div>
                     </div>
@@ -173,18 +175,78 @@
                     <div class="media">
                         <div class="media-body">
                             <h4>
-                                Số câu sai: {{ $list->incorrectanswernum }}
+                            {{ __('label.incorrect_questions') }}: {{ $list->incorrectanswernum }}
                             </h4>
                         </div>
                     </div>
+
+                    </div>
+
+                    <div>
+                            <canvas class="myPieChart" width="200" height="200"></canvas>
+                    </div>
+                     </div>
                     <hr>
                 @endforeach
             </div>
+
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Thoát</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">{{ __('label.exit') }}</button>
             </div>
         </div>
     </div>
 </div>
+   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    // Truyền toàn bộ dữ liệu từ PHP sang JavaScript
+    var ketquathi = @json($ketquathi);
+
+    var pieCharts = document.querySelectorAll('.myPieChart');
+
+    pieCharts.forEach(function(canvas, index) {
+        var ctx = canvas.getContext('2d'); // Lấy context của mỗi canvas
+
+        // Sử dụng index để lấy dữ liệu từ mảng ketquathi
+        var correctAnswerNum = ketquathi[index].correctanswernum;
+        var incorrectAnswerNum = ketquathi[index].incorrectanswernum;
+
+        console.log(correctAnswerNum, incorrectAnswerNum);
+
+        var myPieChart = new Chart(ctx, {
+            type: "pie",
+            data: {
+                labels: ["True", "False"], // Các nhãn cho các phần
+                datasets: [
+                    {
+                        label: "My First Dataset",
+                        data: [correctAnswerNum, incorrectAnswerNum], // Dữ liệu cho các phần của pie chart
+                        backgroundColor: ["red", "blue"], // Màu sắc cho mỗi phần
+                        hoverOffset: 4,
+                    },
+                ],
+            },
+            options: {
+                responsive: false, // Đảm bảo biểu đồ phản hồi theo kích thước màn hình
+                plugins: {
+                    legend: {
+                        position: "top",
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function (tooltipItem) {
+                                return (
+                                    tooltipItem.label +
+                                    ": " +
+                                    tooltipItem.raw
+                                );
+                            },
+                        },
+                    },
+                },
+            },
+        });
+    });
+</script>
+
 <!-- end modal -->
 @endsection

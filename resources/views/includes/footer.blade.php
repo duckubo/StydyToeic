@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6">
-                Thông tin doanh nghiệp<br>
+            {{ __('label.bsinfo') }}<br>
                 <small>It.Myclass.vn</small>
             </div>
             <div class="col-md-6">

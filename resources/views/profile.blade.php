@@ -12,7 +12,7 @@
                 <div class="card shadow" style="margin:auto;">
 
                     <div class="card-header bg-primary text-white text-center">
-                        <h3>Thông tin cá nhân</h3>
+                        <h3>{{ __('label.personal_information') }}</h3>
                     </div>
                     <div class="card-body" style="width: 500px; margin: auto;">
                         <!-- Form -->
@@ -28,7 +28,7 @@
                              <div style="display:flex ; column-gap: 100px;">
                              <div>
                             <div class="mb-3">
-                                <label for="name" class="form-label">Full Name</label>
+                                <label for="name" class="form-label">{{ __('label.fname') }}</label>
                                 <input type="text" class="form-control" id="name" name="name" value="{{$user->name}}" required>
                             </div>
 
@@ -40,20 +40,20 @@
 
                             <!-- Phone Number -->
                             <div class="mb-3">
-                                <label for="phone" class="form-label">Phone Number</label>
+                                <label for="phone" class="form-label">{{ __('label.phone') }}</label>
                                 <input type="text" class="form-control" id="phone" name="phone" value="{{$user->phone}}" required>
                             </div>
 
                             <!-- Password -->
                             <div class="mb-3">
-                                <label for="password" class="form-label">New Password</label>
+                                <label for="password" class="form-label">{{ __('label.newpass') }}</label>
                                 <input type="password" class="form-control" id="password" name="password" placeholder="Leave blank to keep current password">
                             </div>
                             </div>
                             <div>
                             <!-- Profile Picture -->
                             <div class="mb-3">
-                                <label for="profile_picture" class="form-label">Profile Picture</label>
+                                <label for="profile_picture" class="form-label">{{ __('label.avatar') }}</label>
                                 @if($user->profile_picture)
                                     <img src="{{ asset($user->profile_picture) }}" alt="Profile Picture" class="img-fluid" width="100px"/>
                                 @endif
@@ -65,7 +65,7 @@
                             </div>
                     </div>
                      <div class="d-grid">
-                                <button type="submit" class="btn btn-primary">Save Changes</button>
+                                <button type="submit" class="btn btn-primary">{{ __('label.savechange') }}</button>
                             </div>
                         </form>
                         <!-- End Form -->

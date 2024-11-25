@@ -2,6 +2,7 @@
 
 @section('title', 'Trang Chủ')
 @section('content')
+
 <body class="no-skin">
     <!-- Header -->
     @include('Admin.includes.header')
@@ -9,11 +10,13 @@
 
     <div class="main-container ace-save-state" id="main-container">
         <script type="text/javascript">
-            try { ace.settings.loadState('main-container'); } catch (e) {}
+            try {
+                ace.settings.loadState('main-container');
+            } catch (e) { }
         </script>
 
         <!-- Begin menu -->
-      @include('Admin.includes.menu')
+        @include('Admin.includes.menu')
         <!-- End menu -->
 
         <!-- Begin Content -->
@@ -23,10 +26,10 @@
                     <ul class="breadcrumb">
                         <li>
                             <i class="ace-icon fa fa-home home-icon"></i>
-                            <a href="{{ route('admin.dashboard') }}">Trang chủ</a>
+                            <a href="{{ route('admin.dashboard') }}">{{ __('label.home') }}</a>
                         </li>
                         <li>
-                            <a class="active">Quản lý đề thi</a>
+                            <a class="active">{{ __('label.exam_management') }} </a>
                         </li>
                     </ul><!-- /.breadcrumb -->
                 </div>
@@ -46,12 +49,13 @@
                                     <table id="simple-table" class="table table-bordered table-hover">
                                         <thead>
                                             <tr>
-                                                <th class="center">ID</th>
-                                                <th class="center">Tên đề thi</th>
-                                                <th class="center">Tên hình đề thi</th>
-                                                <th class="center">Xóa đề thi</th>
-                                                <th class="center">Thêm câu hỏi đề thi</th>
-                                                <th class="center">Checked câu hỏi đề thi</th>
+                                                <th class="center">{{ __('label.id') }}</th>
+                                                <th class="center">{{ __('label.exam_name') }}</th>
+                                                <th class="center">{{ __('label.exam_image_name') }}</th>
+                                                <th class="center">{{ __('label.delete_exam') }}</th>
+                                                <th class="center">{{ __('label.add_exam_question') }}</th>
+                                                <th class="center">{{ __('label.checked_exam_question') }}</th>
+
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -62,13 +66,21 @@
                                                     <td class="center">{{ $list->examinatioimage }}</td>
 
                                                     <td class="center">
-                                                        <a class="red" href="{{ route('delete.examination', ['examinationid' => $list->examinationid]) }}">
-                                                            <i class="ace-icon fa fa-trash-o bigger-130"></i>
-                                                        </a>
+                                                        <form
+                                                            action="{{ route('delete.examination', ['examinationid' => $list->examinationid]) }}"
+                                                            method="POST"
+                                                            onsubmit="return confirm('Bạn có chắc chắn muốn xóa đề thi này?');">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="btn btn-danger">
+                                                                <i class="ace-icon fa fa-trash bigger-130"></i>
+                                                            </button>
+                                                        </form>
                                                     </td>
 
                                                     <td class="center">
-                                                        <a class="green" href="{{ route('edit.examinationcontent', ['examinationid' => $list->examinationid]) }}">
+                                                        <a class="green"
+                                                            href="{{ route('edit.examinationcontent', ['examinationid' => $list->examinationid]) }}">
                                                             <i class="ace-icon fa fa-pencil bigger-130"></i>
                                                         </a>
                                                     </td>
@@ -98,14 +110,15 @@
                                     <div>
                                         <ul class="pagination">
                                             @if($pageid == 1)
-                                                <li class="active"><a href="#">Prev</a></li>
-                                                <li><a href="{{ route('admin.examination', ['pageid' => $pageid+1]) }}">Next</a></li>
+                                                <li class="active"><a href="#">{{ __('label.prev') }}</a></li>
+                                                <li><a href="{{ route('admin.examination', ['pageid' => $pageid+1]) }}">{{ __('label.next') }}</a></li>
                                             @elseif($pageid == $maxPageId)
-                                                <li><a href="{{ route('admin.examination', ['pageid' => $pageid-1]) }}">Prev</a></li>
-                                                <li class="active"><a href="#">Next</a></li>
+                                                <li><a href="{{ route('admin.examination', ['pageid' => $pageid-1]) }}">{{ __('label.prev') }}</a></li>
+                                                <li class="active"><a href="#">{{ __('label.next') }}</a></li>
                                             @else
-                                                <li><a href="{{ route('admin.examination', ['pageid' => $pageid-1]) }}">Prev</a></li>
-                                                <li><a href="{{ route('admin.examination', ['pageid' => $pageid+1]) }}">Next</a></li>
+                                                <li><a href="{{ route('admin.examination', ['pageid' => $pageid-1]) }}">{{ __('label.prev') }}</a></li>
+                                                <li><a href="{{ route('admin.examination', ['pageid' => $pageid+1]) }}">{{ __('label.next') }}</a></li>
+
                                             @endif
                                         </ul>
                                     </div>
@@ -115,8 +128,10 @@
                             <div class="row">
                                 <div class="col-xs-12">
                                     <button type="button" class="btn btn-white btn-warning btn-bold" data-toggle="modal" data-target="#myModal">
-                                        Thêm đề thi
+                                    {{ __('label.add_exam') }}
                                     </button>
+                                      <a href="{{route('media.examination')}}" role="button" class="btn btn-white btn-warning btn-bold">{{ __('label.add_audio_image') }}</a>
+
                                 </div>
                             </div>
                         </div>
@@ -144,27 +159,41 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Thêm đề thi</h4>
+                        <h4 class="modal-title">{{ __('label.add_exam') }}</h4>
                     </div>
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-xs-12">
                                 <div class="col-sm-9">
                                     <div class="form-group">
-                                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1">Nhập tên</label>
+                                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1">{{ __('label.enter_name') }}</label>
+
                                         <div class="col-sm-9">
-                                            <input type="text" id="form-field-1-1" placeholder="Tên đề thi" class="form-control" name="examinationame"/>
+                                            <input type="text" id="form-field-1-1" placeholder="Tên đề thi"
+                                                class="form-control" name="examinationame" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12">
+                                <div class="col-sm-9">
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1">{{ __('label.choose_image') }}</label>
+
+                                        <div class="col-sm-9">
+                                            <input type="file" class="form-control" id="examinationimage"
+                                                name="examinationimage" accept="image/*">
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <br/>
+                    <br />
                     <div class="modal-footer">
                         <button class="btn btn-info" type="submit">
                             <i class="ace-icon fa fa-check bigger-110"></i>
-                            Thêm tên đề thi
+                            {{ __('label.add_exam_name') }} 
                         </button>
                     </div>
                 </div>
