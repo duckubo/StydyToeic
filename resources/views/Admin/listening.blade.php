@@ -2,6 +2,7 @@
 
 @section('title', 'Trang Chủ')
 @section('content')
+
 <body class="no-skin">
     <!-- Header -->
     @include('Admin.includes.header')
@@ -9,7 +10,9 @@
 
     <div class="main-container ace-save-state" id="main-container">
         <script type="text/javascript">
-            try { ace.settings.loadState('main-container') } catch (e) {}
+            try {
+                ace.settings.loadState('main-container')
+            } catch (e) { }
         </script>
 
         <!-- Begin menu -->
@@ -61,12 +64,20 @@
                                                     <td class="center">{{ $list->listenexercisename }}</td>
                                                     <td class="center">{{ $list->listenexerciseimage }}</td>
                                                     <td class="center">
-                                                        <a class="red" href="{{ route('delete.listeningexercise', ['listenexerciseid' => $list->listenexerciseid]) }}">
-                                                            <i class="ace-icon fa fa-trash-o bigger-130"></i>
-                                                        </a>
+                                                        <form
+                                                            action="{{ route('delete.listeningexercise', ['listenexerciseid' => $list->listenexerciseid]) }}"
+                                                            method="POST"
+                                                            onsubmit="return confirm('Bạn có chắc chắn muốn xóa bài tập nghe này?');">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="btn btn-danger">
+                                                                <i class="ace-icon fa fa-trash bigger-130"></i>
+                                                            </button>
+                                                        </form>
                                                     </td>
                                                     <td class="center">
-                                                        <a class="green" href="{{ route('edit.listeningexercisecontent', ['listenexerciseid' => $list->listenexerciseid]) }}">
+                                                        <a class="green"
+                                                            href="{{ route('edit.listeningexercisecontent', ['listenexerciseid' => $list->listenexerciseid]) }}">
                                                             <i class="ace-icon fa fa-pencil bigger-130"></i>
                                                         </a>
                                                     </td>
@@ -103,6 +114,7 @@
                                             @else
                                                 <li><a href="{{ route('admin.listeningexercise', ['pageid' => $pageid - 1]) }}">{{ __('label.prev') }}</a></li>
                                                 <li><a href="{{ route('admin.listeningexercise', ['pageid' => $pageid + 1]) }}">{{ __('label.next') }}</a></li>
+
                                             @endif
                                         </ul>
                                     </div>
@@ -115,6 +127,7 @@
                                     {{ __('label.add_listen_exercise') }}
                                     </button>
                                       <a href="{{route('media.listeningexercise')}}" role="button" class="btn btn-white btn-warning btn-bold">{{ __('label.add_listen_exercise_audio_image') }}</a>
+
                                 </div>
                             </div>
                         </div>
@@ -136,7 +149,7 @@
     <!-- Modal thêm tên đề thi -->
     <div class="modal fade" id="myModal" role="dialog">
         <div class="modal-dialog">
-              <form action="{{ route('insert.listeningexercise')}}" method="POST">
+            <form action="{{ route('insert.listeningexercise')}}" method="POST">
                 @csrf
                 <!-- Modal content-->
                 <div class="modal-content">
@@ -150,8 +163,10 @@
                                 <div class="col-sm-9">
                                     <div class="form-group">
                                         <label class="col-sm-3 control-label no-padding-right" for="form-field-1">{{ __('label.enter_name') }}</label>
+
                                         <div class="col-sm-9">
-                                            <input type="text" id="form-field-1-1" placeholder="Tên đề thi" class="form-control" name="readname" />
+                                            <input type="text" id="form-field-1-1" placeholder="Tên đề thi"
+                                                class="form-control" name="readname" />
                                         </div>
                                     </div>
                                 </div>
@@ -160,8 +175,10 @@
                                 <div class="col-sm-9">
                                     <div class="form-group">
                                         <label class="col-sm-3 control-label no-padding-right" for="form-field-1">{{ __('label.choose_image') }}</label>
+
                                         <div class="col-sm-9">
-                                            <input type="file" class="form-control" id="listenexerciseimage" name="listenexerciseimage" accept="image/*">
+                                            <input type="file" class="form-control" id="listenexerciseimage"
+                                                name="listenexerciseimage" accept="image/*">
                                         </div>
                                     </div>
                                 </div>

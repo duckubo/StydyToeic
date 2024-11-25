@@ -113,6 +113,38 @@
 
 </div>
 </div>
+<div class="chatboxai" >
+    <div>
+        <div >
+            <span>Chat với chúng tôi!</span>
+        </div>
+    </div>
+    <img src="{{asset('images/chatbox.png')}}"  id="toggleChatBtn"  alt=''  />
+
+</div>
+<div id="chatbox" class="chatbox">
+        <div class="chatbox-header" style="justify-content: end;">
+            <button id="closeChatBtn" >Đóng</button>
+        </div>
+         <div id="messages" class="chatbox-content">
+            <p>Chào bạn! Bạn cần hỗ trợ gì?</p>
+        </div>
+
+            <div class="chatbox-footer"  style="">
+                 <div style="margin: 10px 10px 0px 0px; position:relative;" id="prompt" >
+                    <div class="menu-prompts" id="menuPrompts" style="position:absolute;bottom: 44px; left:-6px;">
+                    <button class="menu-btn" data-question="What are your hours of operation?">What are your hours of operation?</button>
+                    <button class="menu-btn" data-question="How can I contact support?">How can I contact support?</button>
+                    <button class="menu-btn" data-question="Where is your office located?">Where is your office located?</button>
+                    <button class="menu-btn" data-question="What services do you offer?">What services do you offer?</button>
+                    <button class="menu-btn" data-question="Xin chào">Xin chào</button>
+                    </div>
+                    <i class="fa fa-list" aria-hidden="true"></i>
+                </div>
+            <input type="text" id="message-input" placeholder="Nhập câu hỏi...">
+            <button id="sendBtn">Gửi</button>
+        </div>
+    </div>
 <div id="size1">
     @include('includes.footer')
 </div>
@@ -195,7 +227,107 @@
 
 @endsection
 @section('scripts')
+
 <script type="text/javascript">
+    // Lấy các phần tử trong HTML
+   // Lấy các phần tử trong HTML
+    const chatbox = document.getElementById("chatbox");
+    const prompt =document . getElementById("prompt");
+    const menuPrompts= document . getElementById("menuPrompts");
+
+    const toggleChatBtn = document.getElementById("toggleChatBtn");
+    const closeChatBtn = document.getElementById("closeChatBtn");
+    const buttons = menuPrompts.querySelectorAll('.menu-btn');
+
+    // Lắng nghe sự kiện click vào nút toggle
+    toggleChatBtn.addEventListener("click", function() {
+        if (chatbox.style.display === "none" || chatbox.style.display === "") {
+            chatbox.style.display = "block"; // Hiển thị chatbox
+            toggleChatBtn.style.display = "none";
+        } else {
+            chatbox.style.display = "none"; // Ẩn chatbox
+             toggleChatBtn.style.display = "block";
+        }
+    });
+    prompt.addEventListener("click", function() {
+        if (menuPrompts.style.display === "none" || menuPrompts.style.display === "") {
+            menuPrompts.style.display = "block"; // Hiển thị chatbox
+        } else {
+            menuPrompts.style.display = "none"; // Ẩn chatbox
+        }
+    });
+
+    // Lắng nghe sự kiện click vào nút đóng chatbox
+    closeChatBtn.addEventListener("click", function() {
+        chatbox.style.display = "none"; // Ẩn chatbox khi click vào nút đóng
+        toggleChatBtn.style.display = "block";
+    });
+buttons.forEach(button => {
+    button.addEventListener('click', function() {
+         const message = button.getAttribute('data-question');
+        var messages = document.getElementById("messages");
+        var userMessage = document.createElement("div");
+        userMessage.classList.add("message");
+        userMessage.textContent = "Bạn: " + message;
+        messages.appendChild(userMessage);
+
+       // Lấy nội dung từ thuộc tính data-question
+         var botResponse = getBotResponse(message);
+         var botMessage = document.createElement("div");
+        botMessage.classList.add("message");
+        botMessage.textContent = "Bot: " + botResponse;
+        messages.appendChild(botMessage);
+
+        // Cuộn xuống dưới khi có tin nhắn mới
+        messages.scrollTop = messages.scrollHeight;
+    });
+});
+ document
+        .getElementById("sendBtn")
+        .addEventListener("click", function () {
+            var messageInput = document.getElementById("message-input");
+            var message = messageInput.value.trim();
+
+            if (message !== "") {
+                // Hiển thị câu hỏi của người dùng
+                var messages = document.getElementById("messages");
+                var userMessage = document.createElement("div");
+                userMessage.classList.add("message");
+                userMessage.textContent = "Bạn: " + message;
+                messages.appendChild(userMessage);
+
+                // Trả lời tự động từ bot
+                var botResponse = getBotResponse(message);
+
+                // Hiển thị câu trả lời của bot
+                var botMessage = document.createElement("div");
+                botMessage.classList.add("message");
+                botMessage.textContent = "Bot: " + botResponse;
+                messages.appendChild(botMessage);
+
+                // Cuộn xuống dưới khi có tin nhắn mới
+                messages.scrollTop = messages.scrollHeight;
+
+                // Xóa nội dung ô nhập liệu
+                messageInput.value = "";
+            }
+        });
+
+    // Định nghĩa các câu trả lời tự động
+    function getBotResponse(message) {
+        message = message.toLowerCase();
+
+        if (message.includes("xin chào") || message.includes("hello")) {
+            return "Chào bạn! Tôi có thể giúp gì cho bạn?";
+        } else if (message.includes("cảm ơn")) {
+            return "Bạn thật tuyệt vời! Nếu cần thêm gì, cứ hỏi tôi nhé!";
+        } else if (message.includes("thời tiết")) {
+            return "Tôi không biết thời tiết hôm nay, nhưng bạn có thể kiểm tra trên Google!";
+        } else {
+            return "Xin lỗi, tôi không hiểu câu hỏi của bạn. Bạn có thể thử hỏi lại không?";
+        }
+    }
+
     function Search() {
         var xhttp;
         var grammarname = document.myform.grammarname.value;
@@ -232,5 +364,9 @@
 
     }
 </script>
-
+<script src="https://app.tudongchat.com/js/chatbox.js"></script>
+<script>
+  const tudong_chatbox = new TuDongChat('MNOCdr2vIL14VCKZqafzN')
+  tudong_chatbox.initial()
+</script>
 @endsection

@@ -45,7 +45,7 @@ class ExaminationManageController extends Controller
     {
         $examinationId = $request->input('examinationid'); // Lấy ID của đề thi từ request
 
-// Gọi hàm Uploadcauhoidethi (mô phỏng hàm xử lý upload câu hỏi)
+        // Gọi hàm Uploadcauhoidethi (mô phỏng hàm xử lý upload câu hỏi)
         $test = $this->uploadQuestionToExam($request, $examinationId);
 
         if ($test === "Success") {
@@ -108,4 +108,11 @@ class ExaminationManageController extends Controller
 
     }
 
+    public function delete($examinationid)
+    {
+        $examination = Examination::find($examinationid);
+
+        $examination->delete();
+        return redirect()->back()->with('success', 'Xóa thành công!');
+    }
 }

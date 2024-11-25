@@ -2,22 +2,24 @@
 
 @section('title', 'Trang Chủ')
 @section('content')
+
 <body class="no-skin">
     <!-- Header -->
     @include('Admin.includes.header')
     <!-- End Header -->
 
-        <!-- Begin menu -->
-        @include('Admin.includes.menu')
+    <!-- Begin menu -->
+    @include('Admin.includes.menu')
     <!-- Bootstrap CSS -->
     <div class="container mt-5">
        <a href="{{route('admin.account')}}">
             <ul class="breadcrumb" >
                     <i class="menu-icon fa fa-arrow-left"></i>
                 <li style="color: #0088cc">&nbsp; &nbsp;{{ __('label.back') }}</li>
+
             </ul><!-- /.breadcrumb -->
         </a>
-        <div class="row justify-content-center" >
+        <div class="row justify-content-center">
             <div class="col-md-8">
 
                 <!-- Card -->
@@ -28,17 +30,18 @@
                     </div>
                     <div class="card-body" style="width: 600px; margin: auto;">
                         <!-- Form -->
-                        <form action="{{route('admin.update.profile', ['id' => $user->id])}}" method="POST" enctype="multipart/form-data">
+                        <form action="{{route('admin.update.profile', ['id' => $user->id])}}" method="POST"
+                            enctype="multipart/form-data">
                             <!-- CSRF Token (Laravel) -->
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             @if(session('success'))
-                                <div class="alert alert-success">
-                                    {{ session('success') }}
-                                </div>
+                            <div class="alert alert-success">
+                                {{ session('success') }}
+                            </div>
                             @endif
                             <!-- Full Name -->
-                             <div style="display:flex ; column-gap: 100px;">
-                             <div>
+                            <div style="display:flex ; column-gap: 100px;">
+                                <div>
 
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email</label>
@@ -72,8 +75,8 @@
                                             <option value="1">{{ __('label.user') }}</option>
                                             <!-- Thêm các vai trò khác nếu cần -->
                                         </select>
+
                                     </div>
-                                </div>
 
                             </div>
                             <div>
@@ -86,13 +89,16 @@
                                 <input type="file" class="form-control" id="profile_picture" name="profile_picture" accept="image/*">
                             </div>
 
-                            <!-- Submit Button -->
 
+                                    <!-- Submit Button -->
+
+                                </div>
                             </div>
                     </div>
                     <br>
                      <div class="d-grid">
                                 <button type="submit" class="btn btn-primary">{{ __('label.savechange') }}</button>
+
                             </div>
                         </form>
                         <!-- End Form -->
@@ -105,4 +111,4 @@
     @include('Admin.includes.footer')
 
     <!-- Bootstrap JS -->
-@endsection
+    @endsection

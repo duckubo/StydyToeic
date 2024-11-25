@@ -2,6 +2,7 @@
 
 @section('title', 'Trang Chủ')
 @section('content')
+
 <body class="no-skin">
     <!-- Header -->
     @include('Admin.includes.header')
@@ -9,11 +10,13 @@
 
     <div class="main-container ace-save-state" id="main-container">
         <script type="text/javascript">
-            try { ace.settings.loadState('main-container'); } catch (e) {}
+            try {
+                ace.settings.loadState('main-container');
+            } catch (e) { }
         </script>
 
         <!-- Begin menu -->
-      @include('Admin.includes.menu')
+        @include('Admin.includes.menu')
         <!-- End menu -->
 
         <!-- Begin Content -->
@@ -63,13 +66,21 @@
                                                     <td class="center">{{ $list->examinatioimage }}</td>
 
                                                     <td class="center">
-                                                        <a class="red" href="{{ route('delete.examination', ['examinationid' => $list->examinationid]) }}">
-                                                            <i class="ace-icon fa fa-trash-o bigger-130"></i>
-                                                        </a>
+                                                        <form
+                                                            action="{{ route('delete.examination', ['examinationid' => $list->examinationid]) }}"
+                                                            method="POST"
+                                                            onsubmit="return confirm('Bạn có chắc chắn muốn xóa đề thi này?');">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="btn btn-danger">
+                                                                <i class="ace-icon fa fa-trash bigger-130"></i>
+                                                            </button>
+                                                        </form>
                                                     </td>
 
                                                     <td class="center">
-                                                        <a class="green" href="{{ route('edit.examinationcontent', ['examinationid' => $list->examinationid]) }}">
+                                                        <a class="green"
+                                                            href="{{ route('edit.examinationcontent', ['examinationid' => $list->examinationid]) }}">
                                                             <i class="ace-icon fa fa-pencil bigger-130"></i>
                                                         </a>
                                                     </td>
@@ -107,6 +118,7 @@
                                             @else
                                                 <li><a href="{{ route('admin.examination', ['pageid' => $pageid-1]) }}">{{ __('label.prev') }}</a></li>
                                                 <li><a href="{{ route('admin.examination', ['pageid' => $pageid+1]) }}">{{ __('label.next') }}</a></li>
+
                                             @endif
                                         </ul>
                                     </div>
@@ -119,6 +131,7 @@
                                     {{ __('label.add_exam') }}
                                     </button>
                                       <a href="{{route('media.examination')}}" role="button" class="btn btn-white btn-warning btn-bold">{{ __('label.add_audio_image') }}</a>
+
                                 </div>
                             </div>
                         </div>
@@ -154,8 +167,10 @@
                                 <div class="col-sm-9">
                                     <div class="form-group">
                                         <label class="col-sm-3 control-label no-padding-right" for="form-field-1">{{ __('label.enter_name') }}</label>
+
                                         <div class="col-sm-9">
-                                            <input type="text" id="form-field-1-1" placeholder="Tên đề thi" class="form-control" name="examinationame"/>
+                                            <input type="text" id="form-field-1-1" placeholder="Tên đề thi"
+                                                class="form-control" name="examinationame" />
                                         </div>
                                     </div>
                                 </div>
@@ -164,15 +179,17 @@
                                 <div class="col-sm-9">
                                     <div class="form-group">
                                         <label class="col-sm-3 control-label no-padding-right" for="form-field-1">{{ __('label.choose_image') }}</label>
+
                                         <div class="col-sm-9">
-                                            <input type="file" class="form-control" id="examinationimage" name="examinationimage" accept="image/*">
+                                            <input type="file" class="form-control" id="examinationimage"
+                                                name="examinationimage" accept="image/*">
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <br/>
+                    <br />
                     <div class="modal-footer">
                         <button class="btn btn-info" type="submit">
                             <i class="ace-icon fa fa-check bigger-110"></i>
