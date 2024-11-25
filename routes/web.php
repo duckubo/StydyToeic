@@ -17,6 +17,7 @@ use App\Http\Controllers\ListeningController;
 use App\Http\Controllers\ReadingController;
 use App\Http\Controllers\SmsController;
 use App\Http\Controllers\VocabularyController;
+use App\Http\Controllers\CourseController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -109,7 +110,6 @@ Route::delete('/admin/account/{id}', [AccountController::class, 'delete'])->name
 Route::get('profile-manage/{id}', [AccountController::class, 'profile'])->name('admin.profile');
 Route::post('/update-profile-manage', [AccountController::class, 'update'])->name('admin.update.profile');
 
-// Danh sách bài hướng dẫn ngữ pháp
 Route::get('/admin/grammarguideline', [GrammarManageController::class, 'index'])->name('admin.grammar');
 Route::post('/admin/grammarguideline', [GrammarManageController::class, 'store'])->name('insert.grammarguideline');
 Route::delete('/admin/grammarguideline/{grammarguidelineid}', [GrammarManageController::class, 'delete'])->name('delete.grammarguideline');
@@ -140,6 +140,13 @@ Route::post('/admin/listeningexercisemedia', [ListeningManageController::class, 
 Route::get('/admin/examination', [ExaminationManageController::class, 'index'])->name('admin.examination');
 Route::post('/admin/examination', [ExaminationManageController::class, 'store'])->name('insert.examination');
 Route::delete('/admin/examination/{examinationid}', [ExaminationManageController::class, 'delete'])->name('delete.examination');
+
+Route::get('/courses', [CourseController::class, 'index'])->name('courses');
+Route::get('/courses/{courseid}', [CourseController::class, 'show'])->name('course.show');
+Route::post('/courses/enroll/{courseid}', [CourseController::class, 'enroll'])->name('course.enroll');
+Route::get('/lession/{lessionid}', [CourseController::class, 'showLession'])->name('lession');
+Route::get('/return-payment', [CourseController::class, 'returnPayment'])->name('returnpayment');
+Route::get('/my-courses', [CourseController::class, 'myCourses'])->name('mycourses');
 
 Route::get('/admin/examination/edit', [ExaminationManageController::class, 'edit'])->name('edit.examinationcontent');
 Route::post('/admin/examinationcontent', [ExaminationManageController::class, 'update'])->name('examinationcontent.update');
