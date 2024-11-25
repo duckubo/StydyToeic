@@ -2,6 +2,7 @@
 
 @section('title', 'Trang Chủ')
 @section('content')
+
 <body class="no-skin">
     <!-- Header -->
     @include('Admin.includes.header')
@@ -9,7 +10,9 @@
 
     <div class="main-container ace-save-state" id="main-container">
         <script type="text/javascript">
-            try { ace.settings.loadState('main-container') } catch (e) {}
+            try {
+                ace.settings.loadState('main-container')
+            } catch (e) { }
         </script>
 
         <!-- Begin menu -->
@@ -61,12 +64,20 @@
                                                     <td class="center">{{ $list->listenexercisename }}</td>
                                                     <td class="center">{{ $list->listenexerciseimage }}</td>
                                                     <td class="center">
-                                                        <a class="red" href="{{ route('delete.listeningexercise', ['listenexerciseid' => $list->listenexerciseid]) }}">
-                                                            <i class="ace-icon fa fa-trash-o bigger-130"></i>
-                                                        </a>
+                                                        <form
+                                                            action="{{ route('delete.listeningexercise', ['listenexerciseid' => $list->listenexerciseid]) }}"
+                                                            method="POST"
+                                                            onsubmit="return confirm('Bạn có chắc chắn muốn xóa bài tập nghe này?');">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="btn btn-danger">
+                                                                <i class="ace-icon fa fa-trash bigger-130"></i>
+                                                            </button>
+                                                        </form>
                                                     </td>
                                                     <td class="center">
-                                                        <a class="green" href="{{ route('edit.listeningexercisecontent', ['listenexerciseid' => $list->listenexerciseid]) }}">
+                                                        <a class="green"
+                                                            href="{{ route('edit.listeningexercisecontent', ['listenexerciseid' => $list->listenexerciseid]) }}">
                                                             <i class="ace-icon fa fa-pencil bigger-130"></i>
                                                         </a>
                                                     </td>
@@ -96,13 +107,21 @@
                                         <ul class="pagination">
                                             @if ($pageid == 1)
                                                 <li class="active"><a href="#">Prev</a></li>
-                                                <li><a href="{{ route('admin.listeningexercise', ['pageid' => $pageid + 1]) }}">Next</a></li>
+                                                <li><a
+                                                        href="{{ route('admin.listeningexercise', ['pageid' => $pageid + 1]) }}">Next</a>
+                                                </li>
                                             @elseif ($pageid == $maxPageId)
-                                                <li><a href="{{ route('admin.listeningexercise', ['pageid' => $pageid - 1]) }}">Prev</a></li>
+                                                <li><a
+                                                        href="{{ route('admin.listeningexercise', ['pageid' => $pageid - 1]) }}">Prev</a>
+                                                </li>
                                                 <li class="active"><a href="#">Next</a></li>
                                             @else
-                                                <li><a href="{{ route('admin.listeningexercise', ['pageid' => $pageid - 1]) }}">Prev</a></li>
-                                                <li><a href="{{ route('admin.listeningexercise', ['pageid' => $pageid + 1]) }}">Next</a></li>
+                                                <li><a
+                                                        href="{{ route('admin.listeningexercise', ['pageid' => $pageid - 1]) }}">Prev</a>
+                                                </li>
+                                                <li><a
+                                                        href="{{ route('admin.listeningexercise', ['pageid' => $pageid + 1]) }}">Next</a>
+                                                </li>
                                             @endif
                                         </ul>
                                     </div>
@@ -111,10 +130,13 @@
 
                             <div class="row">
                                 <div class="col-xs-12">
-                                    <button type="button" class="btn btn-white btn-warning btn-bold" data-toggle="modal" data-target="#myModal">
+                                    <button type="button" class="btn btn-white btn-warning btn-bold" data-toggle="modal"
+                                        data-target="#myModal">
                                         Thêm đề bài tập nghe
                                     </button>
-                                      <a href="{{route('media.listeningexercise')}}" role="button" class="btn btn-white btn-warning btn-bold">Thêm audio và hình ảnh bài tập nghe</a>
+                                    <a href="{{route('media.listeningexercise')}}" role="button"
+                                        class="btn btn-white btn-warning btn-bold">Thêm audio và hình ảnh bài tập
+                                        nghe</a>
                                 </div>
                             </div>
                         </div>
@@ -136,7 +158,7 @@
     <!-- Modal thêm tên đề thi -->
     <div class="modal fade" id="myModal" role="dialog">
         <div class="modal-dialog">
-              <form action="{{ route('insert.listeningexercise')}}" method="POST">
+            <form action="{{ route('insert.listeningexercise')}}" method="POST">
                 @csrf
                 <!-- Modal content-->
                 <div class="modal-content">
@@ -149,9 +171,11 @@
                             <div class="col-xs-12">
                                 <div class="col-sm-9">
                                     <div class="form-group">
-                                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1">Nhập tên</label>
+                                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1">Nhập
+                                            tên</label>
                                         <div class="col-sm-9">
-                                            <input type="text" id="form-field-1-1" placeholder="Tên đề thi" class="form-control" name="readname" />
+                                            <input type="text" id="form-field-1-1" placeholder="Tên đề thi"
+                                                class="form-control" name="readname" />
                                         </div>
                                     </div>
                                 </div>
@@ -159,9 +183,11 @@
                             <div class="col-xs-12">
                                 <div class="col-sm-9">
                                     <div class="form-group">
-                                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1">Chọn ảnh</label>
+                                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1">Chọn
+                                            ảnh</label>
                                         <div class="col-sm-9">
-                                            <input type="file" class="form-control" id="listenexerciseimage" name="listenexerciseimage" accept="image/*">
+                                            <input type="file" class="form-control" id="listenexerciseimage"
+                                                name="listenexerciseimage" accept="image/*">
                                         </div>
                                     </div>
                                 </div>

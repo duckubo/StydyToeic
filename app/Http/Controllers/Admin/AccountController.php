@@ -123,4 +123,12 @@ class AccountController extends Controller
         // Redirect hoặc trả về thông báo thành công
         return redirect()->back()->with('success', 'Profile updated successfully!');
     }
+
+    public function delete($id)
+    {
+        $user = User::find($id);
+
+        $user->delete();
+        return redirect()->back()->with('success', 'Profile soft deleted successfully!');
+    }
 }

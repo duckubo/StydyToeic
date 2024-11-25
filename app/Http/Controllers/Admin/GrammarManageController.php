@@ -118,4 +118,11 @@ class GrammarManageController extends Controller
         }
     }
 
+    public function delete($grammarguidelineid)
+    {
+        $grammarguideline = Grammarguideline::find($grammarguidelineid);
+
+        $grammarguideline->delete();
+        return redirect()->back()->with('success', 'Xóa thành công!');
+    }
 }

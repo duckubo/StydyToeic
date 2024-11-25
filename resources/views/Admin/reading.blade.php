@@ -2,6 +2,7 @@
 
 @section('title', 'Trang Chủ')
 @section('content')
+
 <body class="no-skin">
     <!-- Header -->
     @include('Admin.includes.header')
@@ -9,7 +10,9 @@
 
     <div class="main-container ace-save-state" id="main-container">
         <script type="text/javascript">
-            try { ace.settings.loadState('main-container') } catch (e) {}
+            try {
+                ace.settings.loadState('main-container')
+            } catch (e) { }
         </script>
 
         <!-- Begin menu -->
@@ -61,12 +64,20 @@
                                                     <td class="center">{{ $list->readname }}</td>
                                                     <td class="center">{{ $list->readimage }}</td>
                                                     <td class="center">
-                                                        <a class="red" href="{{ route('delete.readingexercise', ['readexerciseid' => $list->readexeriseid]) }}">
-                                                            <i class="ace-icon fa fa-trash-o bigger-130"></i>
-                                                        </a>
+                                                        <form
+                                                            action="{{ route('delete.readingexercise', ['readexerciseid' => $list->readexeriseid]) }}"
+                                                            method="POST"
+                                                            onsubmit="return confirm('Bạn có chắc chắn muốn xóa bài tập đọc này?');">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="btn btn-danger">
+                                                                <i class="ace-icon fa fa-trash bigger-130"></i>
+                                                            </button>
+                                                        </form>
                                                     </td>
                                                     <td class="center">
-                                                        <a class="green" href="{{ route('edit.readingexercisecontent', ['readexerciseid' => $list->readexeriseid]) }}">
+                                                        <a class="green"
+                                                            href="{{ route('edit.readingexercisecontent', ['readexerciseid' => $list->readexeriseid]) }}">
                                                             <i class="ace-icon fa fa-pencil bigger-130"></i>
                                                         </a>
                                                     </td>
@@ -96,13 +107,21 @@
                                         <ul class="pagination">
                                             @if ($pageid == 1)
                                                 <li class="active"><a href="#">Prev</a></li>
-                                                <li><a href="{{ route('admin.readingexercise', ['pageid' => $pageid + 1]) }}">Next</a></li>
+                                                <li><a
+                                                        href="{{ route('admin.readingexercise', ['pageid' => $pageid + 1]) }}">Next</a>
+                                                </li>
                                             @elseif ($pageid == $maxPageId)
-                                                <li><a href="{{ route('admin.readingexercise', ['pageid' => $pageid - 1]) }}">Prev</a></li>
+                                                <li><a
+                                                        href="{{ route('admin.readingexercise', ['pageid' => $pageid - 1]) }}">Prev</a>
+                                                </li>
                                                 <li class="active"><a href="#">Next</a></li>
                                             @else
-                                                <li><a href="{{ route('admin.readingexercise', ['pageid' => $pageid - 1]) }}">Prev</a></li>
-                                                <li><a href="{{ route('admin.readingexercise', ['pageid' => $pageid + 1]) }}">Next</a></li>
+                                                <li><a
+                                                        href="{{ route('admin.readingexercise', ['pageid' => $pageid - 1]) }}">Prev</a>
+                                                </li>
+                                                <li><a
+                                                        href="{{ route('admin.readingexercise', ['pageid' => $pageid + 1]) }}">Next</a>
+                                                </li>
                                             @endif
                                         </ul>
                                     </div>
@@ -111,7 +130,8 @@
 
                             <div class="row">
                                 <div class="col-xs-12">
-                                    <button type="button" class="btn btn-white btn-warning btn-bold" data-toggle="modal" data-target="#myModal">
+                                    <button type="button" class="btn btn-white btn-warning btn-bold" data-toggle="modal"
+                                        data-target="#myModal">
                                         Thêm đề bài tập đọc
                                     </button>
                                 </div>
@@ -148,9 +168,11 @@
                             <div class="col-xs-12">
                                 <div class="col-sm-9">
                                     <div class="form-group">
-                                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1">Nhập tên</label>
+                                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1">Nhập
+                                            tên</label>
                                         <div class="col-sm-9">
-                                            <input type="text" id="form-field-1-1" placeholder="Tên đề thi" class="form-control" name="readname" />
+                                            <input type="text" id="form-field-1-1" placeholder="Tên đề thi"
+                                                class="form-control" name="readname" />
                                         </div>
                                     </div>
                                 </div>
@@ -158,9 +180,11 @@
                             <div class="col-xs-12">
                                 <div class="col-sm-9">
                                     <div class="form-group">
-                                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1">Chọn ảnh</label>
+                                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1">Chọn
+                                            ảnh</label>
                                         <div class="col-sm-9">
-                                            <input type="file" class="form-control" id="readexerciseimage" name="readexerciseimage" accept="image/*">
+                                            <input type="file" class="form-control" id="readexerciseimage"
+                                                name="readexerciseimage" accept="image/*">
                                         </div>
                                     </div>
                                 </div>

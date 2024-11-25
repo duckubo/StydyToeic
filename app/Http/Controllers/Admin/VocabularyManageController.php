@@ -94,4 +94,12 @@ class VocabularyManageController extends Controller
         }
 
     }
+
+    public function delete($vocabularyguidelineid)
+    {
+        $vocabularyguideline = Vocabularyguideline::find($vocabularyguidelineid);
+
+        $vocabularyguideline->delete();
+        return redirect()->back()->with('success', 'Xóa thành công!');
+    }
 }

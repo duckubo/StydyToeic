@@ -66,4 +66,12 @@ class ReadingManageController extends Controller
 
         }
     }
+
+    public function delete($readexerciseid)
+    {
+        $readexercise = ReadingExercise::find($readexerciseid);
+
+        $readexercise->delete();
+        return redirect()->back()->with('success', 'Xóa thành công!');
+    }
 }

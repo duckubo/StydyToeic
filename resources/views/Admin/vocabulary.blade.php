@@ -2,6 +2,7 @@
 
 @section('title', 'Trang Chủ')
 @section('content')
+
 <body class="no-skin">
     <!-- Header -->
     @include('Admin.includes.header')
@@ -11,7 +12,7 @@
         <script type="text/javascript">
             try {
                 ace.settings.loadState('main-container')
-            } catch (e) {}
+            } catch (e) { }
         </script>
 
         <!-- Begin menu -->
@@ -59,34 +60,42 @@
                                         </thead>
                                         <tbody>
                                             @foreach($danhsachtuvung as $list)
-                                                <tr>
-                                                    <td class="center">{{ $list->vocabularyguidelineid }}</td>
-                                                    <td class="center">{{ $list->vocabularyname }}</td>
-                                                    <td class="center">{{ $list->vocabularyimage }}</td>
+                                                                                        <tr>
+                                                                                            <td class="center">{{ $list->vocabularyguidelineid }}</td>
+                                                                                            <td class="center">{{ $list->vocabularyname }}</td>
+                                                                                            <td class="center">{{ $list->vocabularyimage }}</td>
 
-                                                    <td class="center">
-                                                        <a class="red" href="{{ route('delete.vocabularyguideline', $list->vocabularyguidelineid) }}">
-                                                            <i class="ace-icon fa fa-trash-o bigger-130"></i>
-                                                        </a>
-                                                    </td>
+                                                                                            <td class="center">
+                                                                                                <form
+                                                                                                    action="{{ route('delete.vocabularyguideline', ['vocabularyguidelineid' => $list->vocabularyguidelineid]) }}"
+                                                                                                    method="POST"
+                                                                                                    onsubmit="return confirm('Bạn có chắc chắn muốn xóa bài HD từ vựng này?');">
+                                                                                                    @csrf
+                                                                                                    @method('DELETE')
+                                                                                                    <button type="submit" class="btn btn-danger">
+                                                                                                        <i class="ace-icon fa fa-trash bigger-130"></i>
+                                                                                                    </button>
+                                                                                                </form>
+                                                                                            </td>
 
-                                                    <td class="center">
-                                                        <a class="green" href="{{ route('edit.vocabularyguidelinecontent',[
-                                                            'vocabularyguidelineid' => $list->vocabularyguidelineid]) }}">
-                                                            <i class="ace-icon fa fa-pencil bigger-130"></i>
-                                                        </a>
-                                                    </td>
+                                                                                            <td class="center">
+                                                                                                <a class="green" href="{{ route('edit.vocabularyguidelinecontent', [
+                                                    'vocabularyguidelineid' => $list->vocabularyguidelineid
+                                                ]) }}">
+                                                                                                    <i class="ace-icon fa fa-pencil bigger-130"></i>
+                                                                                                </a>
+                                                                                            </td>
 
-                                                    <td class="center">
-                                                        <ul class="list-unstyled">
-                                                            @if($list->checknoidung == 1)
-                                                                <li><i class="ace-icon fa fa-check-square-o"></i></li>
-                                                            @else
-                                                                <li><i class="ace-icon fa fa-square-o"></i></li>
-                                                            @endif
-                                                        </ul>
-                                                    </td>
-                                                </tr>
+                                                                                            <td class="center">
+                                                                                                <ul class="list-unstyled">
+                                                                                                    @if($list->checknoidung == 1)
+                                                                                                        <li><i class="ace-icon fa fa-check-square-o"></i></li>
+                                                                                                    @else
+                                                                                                        <li><i class="ace-icon fa fa-square-o"></i></li>
+                                                                                                    @endif
+                                                                                                </ul>
+                                                                                            </td>
+                                                                                        </tr>
                                             @endforeach
                                         </tbody>
                                     </table>
@@ -100,13 +109,21 @@
                                         <ul class="pagination">
                                             @if($pageid == 1)
                                                 <li class="active"><a href="#">Prev</a></li>
-                                                <li><a href="{{ route('admin.vocabulary', ['pageid' => $pageid + 1]) }}">Next</a></li>
+                                                <li><a
+                                                        href="{{ route('admin.vocabulary', ['pageid' => $pageid + 1]) }}">Next</a>
+                                                </li>
                                             @elseif($pageid == $maxPageId)
-                                                <li><a href="{{ route('admin.vocabulary', ['pageid' => $pageid - 1]) }}">Prev</a></li>
+                                                <li><a
+                                                        href="{{ route('admin.vocabulary', ['pageid' => $pageid - 1]) }}">Prev</a>
+                                                </li>
                                                 <li class="active"><a href="#">Next</a></li>
                                             @else
-                                                <li><a href="{{ route('admin.vocabulary', ['pageid' => $pageid - 1]) }}">Prev</a></li>
-                                                <li><a href="{{ route('admin.vocabulary', ['pageid' => $pageid + 1]) }}">Next</a></li>
+                                                <li><a
+                                                        href="{{ route('admin.vocabulary', ['pageid' => $pageid - 1]) }}">Prev</a>
+                                                </li>
+                                                <li><a
+                                                        href="{{ route('admin.vocabulary', ['pageid' => $pageid + 1]) }}">Next</a>
+                                                </li>
                                             @endif
                                         </ul>
                                     </div>
@@ -116,10 +133,12 @@
                             <!-- Add Buttons -->
                             <div class="row">
                                 <div class="col-xs-12">
-                                    <button type="button" class="btn btn-white btn-warning btn-bold" data-toggle="modal" data-target="#myModal">
+                                    <button type="button" class="btn btn-white btn-warning btn-bold" data-toggle="modal"
+                                        data-target="#myModal">
                                         Thêm chủ đề từ vựng
                                     </button>
-                                    <a href="{{route('media.vocabularyguideline')}}" role="button" class="btn btn-white btn-warning btn-bold">Thêm hình ảnh cho chủ đề từ vựng</a>
+                                    <a href="{{route('media.vocabularyguideline')}}" role="button"
+                                        class="btn btn-white btn-warning btn-bold">Thêm hình ảnh cho chủ đề từ vựng</a>
                                 </div>
                             </div>
                         </div>
@@ -154,9 +173,11 @@
                             <div class="col-xs-12">
                                 <div class="col-sm-9">
                                     <div class="form-group">
-                                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1">Nhập tên</label>
+                                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1">Nhập
+                                            tên</label>
                                         <div class="col-sm-9">
-                                            <input type="text" id="form-field-1-1" placeholder="Tên chủ đề từ vựng" class="form-control" name="vocabularyname" />
+                                            <input type="text" id="form-field-1-1" placeholder="Tên chủ đề từ vựng"
+                                                class="form-control" name="vocabularyname" />
                                         </div>
                                     </div>
                                 </div>
@@ -164,9 +185,11 @@
                             <div class="col-xs-12">
                                 <div class="col-sm-9">
                                     <div class="form-group">
-                                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1">Chọn ảnh</label>
+                                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1">Chọn
+                                            ảnh</label>
                                         <div class="col-sm-9">
-                                            <input type="file" class="form-control" id="grammarimage" name="grammarimage" accept="image/*">
+                                            <input type="file" class="form-control" id="grammarimage"
+                                                name="grammarimage" accept="image/*">
                                         </div>
                                     </div>
                                 </div>
