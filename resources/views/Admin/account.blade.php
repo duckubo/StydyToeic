@@ -282,5 +282,6 @@
             }
         }
     });
+    </script>
 
     @endsection
