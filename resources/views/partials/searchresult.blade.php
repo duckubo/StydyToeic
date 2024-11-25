@@ -18,7 +18,7 @@
                         <p>
                             {{ $item->grammarname }}
                         </p>
-                        <a href="{{ url('Chitietbaihdnguphapforward?mabaihdnguphap=' . $item->grammarguidelineid) }}" class="btn" type="button">Xem bài hướng dẫn</a>
+                        <a href="{{ url('Chitietbaihdnguphapforward?mabaihdnguphap=' . $item->grammarguidelineid) }}" class="btn" type="button">{{ __('label.view_guide') }}</a>
                     </div>
                 </div>
             </div>

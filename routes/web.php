@@ -22,6 +22,21 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
+
+//change language
+Route::get('/lang/{locale}', function($locale) {
+    $availableLocales = ['vi', 'en'];
+
+    if (!in_array($locale, $availableLocales)) {
+        abort(404);
+    }
+
+    session(['locale' => $locale]);
+
+    return redirect()->back();
+});
+
+//
 Route::get('/', function () {
     return view('welcome');
 });

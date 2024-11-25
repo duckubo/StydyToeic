@@ -26,11 +26,11 @@
                     <ul class="breadcrumb">
                         <li>
                             <i class="ace-icon fa fa-home home-icon"></i>
-                            <a href="{{ route('admin.dashboard') }}">Trang chủ</a>
+                            <a href="{{ route('admin.dashboard') }}">{{ __('label.home') }}</a>
                         </li>
 
                         <li>
-                            <a class="active">Quản lý bài hướng dẫn từ vựng</a>
+                            <a class="active">{{ __('label.manage_vocabulary_guides') }}</a>
                         </li>
                     </ul>
                 </div>
@@ -51,11 +51,11 @@
                                         <thead>
                                             <tr>
                                                 <th class="center">ID</th>
-                                                <th class="center">Tên chủ đề từ vựng</th>
-                                                <th class="center">Tên hình chủ đề</th>
-                                                <th class="center">Xóa bài HD từ vựng</th>
-                                                <th class="center">Thêm nội dung chủ đề</th>
-                                                <th class="center">Checked nội dung chủ đề</th>
+                                                <th class="center">{{ __('label.vocabulary_topic_name') }}</th>
+                                                <th class="center">{{ __('label.vocabulary_topic_image') }}</th>
+                                                <th class="center">{{ __('label.delete_vocabulary_guide') }}</th>
+                                                <th class="center">{{ __('label.add_vocabulary_topic_content') }}</th>
+                                                <th class="center">{{ __('label.checked_vocabulary_topic_content') }}</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -108,22 +108,15 @@
                                     <div>
                                         <ul class="pagination">
                                             @if($pageid == 1)
-                                                <li class="active"><a href="#">Prev</a></li>
-                                                <li><a
-                                                        href="{{ route('admin.vocabulary', ['pageid' => $pageid + 1]) }}">Next</a>
-                                                </li>
+                                                <li class="active"><a href="#">{{ __('label.prev') }}</a></li>
+                                                <li><a href="{{ route('admin.vocabulary', ['pageid' => $pageid + 1]) }}">{{ __('label.next') }}</a></li>
                                             @elseif($pageid == $maxPageId)
-                                                <li><a
-                                                        href="{{ route('admin.vocabulary', ['pageid' => $pageid - 1]) }}">Prev</a>
-                                                </li>
-                                                <li class="active"><a href="#">Next</a></li>
+                                                <li><a href="{{ route('admin.vocabulary', ['pageid' => $pageid - 1]) }}">{{ __('label.prev') }}</a></li>
+                                                <li class="active"><a href="#">{{ __('label.next') }}</a></li>
                                             @else
-                                                <li><a
-                                                        href="{{ route('admin.vocabulary', ['pageid' => $pageid - 1]) }}">Prev</a>
-                                                </li>
-                                                <li><a
-                                                        href="{{ route('admin.vocabulary', ['pageid' => $pageid + 1]) }}">Next</a>
-                                                </li>
+                                                <li><a href="{{ route('admin.vocabulary', ['pageid' => $pageid - 1]) }}">{{ __('label.prev') }}</a></li>
+                                                <li><a href="{{ route('admin.vocabulary', ['pageid' => $pageid + 1]) }}">{{ __('label.next') }}</a></li>
+
                                             @endif
                                         </ul>
                                     </div>
@@ -133,9 +126,9 @@
                             <!-- Add Buttons -->
                             <div class="row">
                                 <div class="col-xs-12">
-                                    <button type="button" class="btn btn-white btn-warning btn-bold" data-toggle="modal"
-                                        data-target="#myModal">
-                                        Thêm chủ đề từ vựng
+                                    <button type="button" class="btn btn-white btn-warning btn-bold" data-toggle="modal" data-target="#myModal">
+                                        {{ __('label.add_vocabulary_topic') }}
+
                                     </button>
                                     <a href="{{route('media.vocabularyguideline')}}" role="button"
                                         class="btn btn-white btn-warning btn-bold">Thêm hình ảnh cho chủ đề từ vựng</a>
@@ -166,15 +159,15 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Thêm chủ đề từ vựng</h4>
+                        <h4 class="modal-title">{{ __('label.add_vocabulary_topic') }}</h4>
                     </div>
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-xs-12">
                                 <div class="col-sm-9">
                                     <div class="form-group">
-                                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1">Nhập
-                                            tên</label>
+                                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1">{{ __('label.enter_name') }}</label>
+
                                         <div class="col-sm-9">
                                             <input type="text" id="form-field-1-1" placeholder="Tên chủ đề từ vựng"
                                                 class="form-control" name="vocabularyname" />
@@ -185,8 +178,8 @@
                             <div class="col-xs-12">
                                 <div class="col-sm-9">
                                     <div class="form-group">
-                                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1">Chọn
-                                            ảnh</label>
+                                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1">{{ __('label.choose_image') }}</label>
+
                                         <div class="col-sm-9">
                                             <input type="file" class="form-control" id="grammarimage"
                                                 name="grammarimage" accept="image/*">
@@ -199,7 +192,7 @@
                     <div class="modal-footer">
                         <button class="btn btn-info" type="submit">
                             <i class="ace-icon fa fa-check bigger-110"></i>
-                            Thêm chủ đề từ vựng
+                            {{ __('label.add_vocabulary_topic') }}
                         </button>
                     </div>
                 </div>

@@ -10,7 +10,7 @@
         <div class="span12">
             <div class="page-header">
                 <h3>
-                    Danh sách bài tập phần nghe
+                {{ __('label.list_listening_exercises') }}
                 </h3>
             </div>
         </div>
@@ -40,7 +40,7 @@
                             <p>
                                 {{ $item->listenexercisename }}
                             </p>
-                            <a href="{{ route('listeningexercise.show',['pageid' => 1, 'listenexerciseid' => $item->listenexerciseid]) }}" class="btn" type="button">Làm bài tập</a>
+                            <a href="{{ route('listeningexercise.show',['pageid' => 1, 'listenexerciseid' => $item->listenexerciseid]) }}" class="btn" type="button">{{ __('label.do_exercise') }}</a>
                         </div>
                     </div>
                 </div>
@@ -53,14 +53,14 @@
             <div class="pagination">
                 <ul>
                     @if($currentPage == 1)
-                        <li class="disabled"><a href="#">Prev</a></li>
-                        <li><a href="{{ route('listeningexercise', ['pageid' => $currentPage + 1]) }}">Next</a></li>
+                        <li class="disabled"><a href="#">{{ __('label.prev') }}</a></li>
+                        <li><a href="{{ route('listeningexercise', ['pageid' => $currentPage + 1]) }}">{{ __('label.next') }}</a></li>
                     @elseif($currentPage == $maxPageId)
-                        <li><a href="{{ route('listeningexercise', ['pageid' => $currentPage - 1]) }}">Prev</a></li>
-                        <li class="disabled"><a href="#">Next</a></li>
+                        <li><a href="{{ route('listeningexercise', ['pageid' => $currentPage - 1]) }}">{{ __('label.prev') }}</a></li>
+                        <li class="disabled"><a href="#">{{ __('label.next') }}</a></li>
                     @else
-                        <li><a href="{{ route('listeningexercise', ['pageid' => $currentPage - 1]) }}">Prev</a></li>
-                        <li><a href="{{ route('listeningexercise', ['pageid' => $currentPage + 1]) }}">Next</a></li>
+                        <li><a href="{{ route('listeningexercise', ['pageid' => $currentPage - 1]) }}">{{ __('label.prev') }}</a></li>
+                        <li><a href="{{ route('listeningexercise', ['pageid' => $currentPage + 1]) }}">{{ __('label.next') }}</a></li>
                     @endif
                 </ul>
             </div>

@@ -12,11 +12,11 @@
                  <a href="{{route('vocabularyguideline')}}">
                         <ul class="breadcrumb" >
                                 <i class="menu-icon fa fa-arrow-left"></i>
-                            <li style="color: #0088cc">&nbsp; &nbsp;Quay Lại</li>
+                            <li style="color: #0088cc">&nbsp; &nbsp;{{ __('label.back') }}</li>
                         </ul><!-- /.breadcrumb -->
                     </a>
                 <h3>
-                    Nội dung chủ đề từ vựng
+                {{ __('label.vocabulary_topic_content') }}
                 </h3>
             </div>
         </div>
@@ -44,13 +44,13 @@
                         </a>
                         <div class="media-body">
                             <p>
-                                Từ: {{ $item->vocabularycontentname }}
+                            {{ __('label.word') }}: {{ $item->vocabularycontentname }}
                             </p>
                             <p>
-                                Phiên âm: {{ $item->transcribe }}
+                            {{ __('label.pronunciation') }}: {{ $item->transcribe }}
                             </p>
                             <p>
-                                Nghĩa và từ loại: {{ $item->mean }}
+                            {{ __('label.meaning_and_part_of_speech') }}: {{ $item->mean }}
                             </p>
                             <p>
                                 <audio controls>
