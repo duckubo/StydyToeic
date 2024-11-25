@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AccountController;
+use App\Http\Controllers\Admin\CourseManagementController;
 use App\Http\Controllers\Admin\ExaminationManageController;
 use App\Http\Controllers\Admin\GrammarManageController;
 use App\Http\Controllers\Admin\HomeController as AdminHomeController;
@@ -9,6 +10,7 @@ use App\Http\Controllers\Admin\ReadingManageController;
 use App\Http\Controllers\Admin\VocabularyManageController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ChatGPTController;
+use App\Http\Controllers\CourseController;
 use App\Http\Controllers\ExaminationController;
 use App\Http\Controllers\ExcelController;
 use App\Http\Controllers\GrammarController;
@@ -17,15 +19,13 @@ use App\Http\Controllers\ListeningController;
 use App\Http\Controllers\ReadingController;
 use App\Http\Controllers\SmsController;
 use App\Http\Controllers\VocabularyController;
-use App\Http\Controllers\CourseController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-
 //change language
-Route::get('/lang/{locale}', function($locale) {
+Route::get('/lang/{locale}', function ($locale) {
     $availableLocales = ['vi', 'en'];
 
     if (!in_array($locale, $availableLocales)) {
@@ -137,10 +137,6 @@ Route::post('/admin/listeningexercisecontent', [ListeningManageController::class
 Route::get('/admin/listeningexercisemedia', [ListeningManageController::class, 'media'])->name('media.listeningexercise');
 Route::post('/admin/listeningexercisemedia', [ListeningManageController::class, 'media_insert'])->name('media.insert.listeningexercise');
 
-Route::get('/admin/examination', [ExaminationManageController::class, 'index'])->name('admin.examination');
-Route::post('/admin/examination', [ExaminationManageController::class, 'store'])->name('insert.examination');
-Route::delete('/admin/examination/{examinationid}', [ExaminationManageController::class, 'delete'])->name('delete.examination');
-
 Route::get('/courses', [CourseController::class, 'index'])->name('courses');
 Route::get('/courses/{courseid}', [CourseController::class, 'show'])->name('course.show');
 Route::post('/courses/enroll/{courseid}', [CourseController::class, 'enroll'])->name('course.enroll');
@@ -148,6 +144,15 @@ Route::get('/lession/{lessionid}', [CourseController::class, 'showLession'])->na
 Route::get('/return-payment', [CourseController::class, 'returnPayment'])->name('returnpayment');
 Route::get('/my-courses', [CourseController::class, 'myCourses'])->name('mycourses');
 
+Route::get('/admin/courses', [CourseManagementController::class, 'index'])->name('admin.courses');
+Route::post('/admin/courses', [CourseManagementController::class, 'store'])->name('admin.course.store');
+Route::post('/admin/coursesdetails', [CourseManagementController::class, 'update'])->name('admin.course.update');
+Route::get('/admin/coursesdetails', [CourseManagementController::class, 'edit'])->name('admin.coursedetails');
+Route::delete('/admin/courses/{id}', [CourseManagementController::class, 'delete'])->name('delete.course');
+
+Route::get('/admin/examination', [ExaminationManageController::class, 'index'])->name('admin.examination');
+Route::post('/admin/examination', [ExaminationManageController::class, 'store'])->name('insert.examination');
+Route::delete('/admin/examination/{examinationid}', [ExaminationManageController::class, 'delete'])->name('delete.examination');
 Route::get('/admin/examination/edit', [ExaminationManageController::class, 'edit'])->name('edit.examinationcontent');
 Route::post('/admin/examinationcontent', [ExaminationManageController::class, 'update'])->name('examinationcontent.update');
 Route::get('/admin/examinationmedia', [ExaminationManageController::class, 'media'])->name('media.examination');

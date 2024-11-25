@@ -197,4 +197,6 @@ return [
     'incorrect_questions' => 'Số câu sai',
     'activecource' => 'Kích hoạt khoá học',
     'my-course' => 'Khóa học của tôi',
+    'course_management' => 'Quản lý khóa học',
+    'course' => 'Khóa học',
 ];
