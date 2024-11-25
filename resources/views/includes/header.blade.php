@@ -50,12 +50,6 @@
                 <div class="span9">
                     <div class="navbar pull-right">
                         <div class="navbar-inner">
-                            <a data-target=".navbar-responsive-collapse" data-toggle="collapse" class="btn btn-navbar">
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                            </a>
-                            
                             <div class="nav-collapse collapse navbar-responsive-collapse">
                             <div class="btn-group pull-right nav">
                             <div class="btn-group">
@@ -70,6 +64,8 @@
                             </div>
                         </div>
                                 <ul class="nav">
+                                    <li><a href="{{ route('courses') }}">{{ __('label.activecource') }}</a></li>
+                                    <li><a href="{{ route('mycourses') }}">{{ __('label.my-course') }}</a></li>
                                     <li><a href="{{ route('profile', ['id' => Auth::user()->id]) }}">{{ __('label.hello') }} {{ Auth::user()->name }}</a></li>
                                     <li><a href="{{ route('logout') }}">{{ __('label.exit') }}</a></li>
                                 </ul>
