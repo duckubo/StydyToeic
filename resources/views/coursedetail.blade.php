@@ -10,7 +10,7 @@
     <div class="row">
         <div class="span12">
             <div class="page-header">
-                 <a href="{{route('grammarguideline')}}">
+                 <a href="{{route('courses')}}">
                         <ul class="breadcrumb" >
                                 <i class="menu-icon fa fa-arrow-left"></i>
                             <li style="color: #0088cc">&nbsp; &nbsp;Quay Lại</li>
@@ -40,11 +40,14 @@
                                     <p>Mô tả khóa học:<span> {{ $course->description}}</span></p>
                                     <img src="{{ asset('images/' . $course->image) }}" class="media-object" alt="" width="100%" height="500px"/>
                                     <p>Giá:<span> {{ $course->price}}</span></p>
-                                    @if ($is_enroll)
+                                    @if ($is_enroll == 1)
                                         <p>Bạn đã đăng ký khóa học này</p>
-                                        <a href="">Vào học</a>
+                                        <a href="{{ route('lession', ['lessionid'=>1]) }}">Vào học</a>
                                     @else
-                                        <a href="">Đăng ký ngay</a>
+                                    <form action="{{ route('course.enroll', ['courseid'=> $course->id]) }}" method="POST">
+                                        @csrf
+                                        <button type="submit" name="redirect">Đăng ký ngay</button>
+                                    </form>
                                     @endif
                         </div>
                     </div>
@@ -54,7 +57,11 @@
                 <h3>Các bài học</h3>
                 <ul class="nav nav-list">
                     @foreach ($lessons as $lesson)
-                        <li><a href="{{ route('lession', ['lessionid' => $lesson->id]) }}"> {{ $lesson->title }}</a></li>
+                        @if ($is_enroll == 1)
+                            <li><a href="{{ route('lession', ['lessionid' => $lesson->id]) }}"> {{ $lesson->title }}</a></li>
+                        @else
+                            <li><a href="#"> {{ $lesson->title }}</a></li>
+                        @endif
                     @endforeach
                 </ul>
             </div>

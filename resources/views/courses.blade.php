@@ -44,15 +44,28 @@
         <div class="col-6">
             <div class="pagination">
                 <ul>
-                    @if($currentPage == 1)
-                        <li class="disabled"><a href="#">Prev</a></li>
-                        <li><a href="{{ route('courses', ['pageid' => $currentPage + 1]) }}">Next</a></li>
-                    @elseif($currentPage == $maxPageId)
-                        <li><a href="{{ route('courses', ['pageid' => $currentPage - 1]) }}">Prev</a></li>
-                        <li class="disabled"><a href="#">Next</a></li>
+                    @if ($ismycourse == 1)
+                        @if($currentPage == 1)
+                            <li class="disabled"><a href="#">Prev</a></li>
+                            <li><a href="{{ route('mycourses', ['pageid' => $currentPage + 1]) }}">Next</a></li>
+                        @elseif($currentPage == $maxPageId)
+                            <li><a href="{{ route('mycourses', ['pageid' => $currentPage - 1]) }}">Prev</a></li>
+                            <li class="disabled"><a href="#">Next</a></li>
+                        @else
+                            <li><a href="{{ route('mycourses', ['pageid' => $currentPage - 1]) }}">Prev</a></li>
+                            <li><a href="{{ route('mycourses', ['pageid' => $currentPage + 1]) }}">Next</a></li>
+                        @endif
                     @else
-                        <li><a href="{{ route('courses', ['pageid' => $currentPage - 1]) }}">Prev</a></li>
-                        <li><a href="{{ route('courses', ['pageid' => $currentPage + 1]) }}">Next</a></li>
+                        @if($currentPage == 1)
+                            <li class="disabled"><a href="#">Prev</a></li>
+                            <li><a href="{{ route('courses', ['pageid' => $currentPage + 1]) }}">Next</a></li>
+                        @elseif($currentPage == $maxPageId)
+                            <li><a href="{{ route('courses', ['pageid' => $currentPage - 1]) }}">Prev</a></li>
+                            <li class="disabled"><a href="#">Next</a></li>
+                        @else
+                            <li><a href="{{ route('courses', ['pageid' => $currentPage - 1]) }}">Prev</a></li>
+                            <li><a href="{{ route('courses', ['pageid' => $currentPage + 1]) }}">Next</a></li>
+                        @endif
                     @endif
                 </ul>
             </div>

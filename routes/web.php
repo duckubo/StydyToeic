@@ -94,5 +94,7 @@ Route::get('/admin/examination/edit/{examinationid}', [ExaminationManageControll
 // Course
 Route::get('/courses', [CourseController::class, 'index'])->name('courses');
 Route::get('/courses/{courseid}', [CourseController::class, 'show'])->name('course.show');
-Route::get('/courses/enroll/{courseid}', [CourseController::class, 'enroll'])->name('course.enroll');
+Route::post('/courses/enroll/{courseid}', [CourseController::class, 'enroll'])->name('course.enroll');
 Route::get('/lession/{lessionid}', [CourseController::class, 'showLession'])->name('lession');
+Route::get('/return-payment', [CourseController::class, 'returnPayment'])->name('returnpayment');
+Route::get('/my-courses', [CourseController::class, 'myCourses'])->name('mycourses');
