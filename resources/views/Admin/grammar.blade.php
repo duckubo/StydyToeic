@@ -68,7 +68,7 @@
                                         <tbody>
                                             @foreach($listgrammarguidelinemanage as $list)
                                                 <tr>
-                                                    <td class="center">{{ $list->grammarguidelineid }}</td>
+                                                    <td class="center">{{ $loop->iteration }}</td>
                                                     <td class="center">{{ $list->grammarname }}</td>
                                                     <td class="center">{{ $list->grammarimage }}</td>
                                                     <td class="center">
