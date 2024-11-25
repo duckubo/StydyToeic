@@ -280,7 +280,8 @@
                     }
                 }
             }
-        });
+        }
+    });
     </script>
 
     @endsection
