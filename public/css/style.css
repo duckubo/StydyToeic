@@ -315,8 +315,8 @@ footer {
 }
 .chatboxai {
     position: fixed;
-    bottom: 30px;
-    right: 30px;
+    bottom: 117px;
+    right: 8px;
     width: 100px;
     height: 100px;
     border-radius: 50%;
@@ -331,7 +331,7 @@ footer {
 }
 .chatbox {
     position: fixed;
-    bottom: 20px;
+    bottom: 100px;
     right: 20px;
     width: 300px;
     background-color: #f1f1f1;
@@ -385,5 +385,14 @@ footer {
     color: white;
     border: none;
     padding: 5px;
+    cursor: pointer;
+}
+.menu-btn {
+    width: 290px;
+}
+#menuPrompts {
+    display: none;
+}
+#prompt i {
     cursor: pointer;
 }

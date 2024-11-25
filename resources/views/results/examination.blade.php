@@ -157,6 +157,8 @@
             </div>
             <div class="modal-body">
                 @foreach($ketquathi as $list)
+                <div style="display:flex; column-gap:20px;">
+                    <div>
                     <div class="media">
                         <div class="media-body">
                             <h3>Thời gian: {{ $list->created_at }}</h3>
@@ -177,14 +179,74 @@
                             </h4>
                         </div>
                     </div>
+
+                    </div>
+
+                    <div>
+                            <canvas class="myPieChart" width="200" height="200"></canvas>
+                    </div>
+                     </div>
                     <hr>
                 @endforeach
             </div>
+
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Thoát</button>
             </div>
         </div>
     </div>
 </div>
+   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    // Truyền toàn bộ dữ liệu từ PHP sang JavaScript
+    var ketquathi = @json($ketquathi);
+
+    var pieCharts = document.querySelectorAll('.myPieChart');
+
+    pieCharts.forEach(function(canvas, index) {
+        var ctx = canvas.getContext('2d'); // Lấy context của mỗi canvas
+
+        // Sử dụng index để lấy dữ liệu từ mảng ketquathi
+        var correctAnswerNum = ketquathi[index].correctanswernum;
+        var incorrectAnswerNum = ketquathi[index].incorrectanswernum;
+
+        console.log(correctAnswerNum, incorrectAnswerNum);
+
+        var myPieChart = new Chart(ctx, {
+            type: "pie",
+            data: {
+                labels: ["True", "False"], // Các nhãn cho các phần
+                datasets: [
+                    {
+                        label: "My First Dataset",
+                        data: [correctAnswerNum, incorrectAnswerNum], // Dữ liệu cho các phần của pie chart
+                        backgroundColor: ["red", "blue"], // Màu sắc cho mỗi phần
+                        hoverOffset: 4,
+                    },
+                ],
+            },
+            options: {
+                responsive: false, // Đảm bảo biểu đồ phản hồi theo kích thước màn hình
+                plugins: {
+                    legend: {
+                        position: "top",
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function (tooltipItem) {
+                                return (
+                                    tooltipItem.label +
+                                    ": " +
+                                    tooltipItem.raw
+                                );
+                            },
+                        },
+                    },
+                },
+            },
+        });
+    });
+</script>
+
 <!-- end modal -->
 @endsection
