@@ -9,7 +9,7 @@
         <div class="span6">
            <div id="size">
               <form name="myform">
-                 <input type="text" class="form-control" placeholder="Tìm kiếm"
+                 <input type="text" class="form-control" placeholder="{{ __('label.search') }}"
                  style="width:500px; height:35px;" name="grammarname" onkeyup="Search()">
              </form>
          </div>
@@ -27,9 +27,9 @@
                     <div class="row">
                         <div class="span6">
                             <div class="carousel-caption">
-                                <h1>Hướng Dẫn Phần Nghe, Đọc Toeic</h1>
-                                <p class="lead">Chúng tôi cung cấp cho các bạn những kiến thức tốt nhất</p>
-                                <a class="btn btn-large btn-primary" href="#">Hãy tham gia ngay</a>
+                                <h1>{{ __('label.listening_reading_guide') }}</h1>
+                                <p class="lead">{{ __('label.best_knowledge') }}</p>
+                                <a class="btn btn-large btn-primary" href="#">{{ __('label.join_now') }}</a>
                             </div>
                         </div>
                         <div class="span6">
@@ -48,7 +48,7 @@
                             <div class="carousel-caption">
                                 <h1>{{ $list->slidename }}</h1>
                                 <p class="lead">{{ $list->slidecontent }}</p>
-                                <a class="btn btn-large btn-primary" href="#">Hãy tham gia</a>
+                                <a class="btn btn-large btn-primary" href="#">{{ __('label.join_now') }}</a>
                             </div>
                         </div>
                         <div class="span6">
@@ -68,29 +68,29 @@
     <!-- Feature -->
     <div class="row feature-box">
         <div class="span12 cnt-title">
-            <h1>Chúng tôi cung cấp cho bạn các giao diện học và thi thân thiện với người dùng</h1>
-            <span>(--Học thử, Làm bài tập, Thi thử--)</span>
+            <h1>{{ __('label.user_friendly_interface') }}</h1>
+            <span>{{ __('label.practice_test') }}</span>
         </div>
 
         <div class="span4">
             <img src="{{ asset('images/guideline.png') }}" alt="Guideline">
-            <h2>Hướng dẫn phần từ vựng, ngữ pháp</h2>
-            <p>Cung cấp các bài hướng dẫn sát với đề thi.</p>
-            <a href="#" data-toggle="modal" data-target="#myModal">Chi tiết &rarr;</a>
+            <h2>{{ __('label.vocabulary_grammar_guide') }}</h2>
+            <p>{{ __('label.exam_relevant_guides') }}</p>
+            <a href="#" data-toggle="modal" data-target="#myModal">{{ __('label.detail') }} &rarr;</a>
         </div>
 
         <div class="span4">
             <img src="{{ asset('images/exercises.png') }}" alt="Exercises">
-            <h2>Bài tập phần nghe, đọc</h2>
-            <p>Chúng tôi cung cấp các dạng bài tập có trong đề thi Toeic.</p>
-            <a href="#" data-toggle="modal" data-target="#myModal1">Chi tiết &rarr;</a>
+            <h2>{{ __('label.listening_reading_exercises') }}</h2>
+            <p>{{ __('label.toeic_mock_test') }}</p>
+            <a href="#" data-toggle="modal" data-target="#myModal1">{{ __('label.detail') }} &rarr;</a>
         </div>
 
         <div class="span4">
             <img src="{{ asset('images/thitoeic.png') }}" alt="Thi thử Toeic">
-            <h2>Đề thi thử</h2>
-            <p>Chúng tôi cung cấp cho các bạn đề thi sát với thi thật.</p>
-            <a href="{{ route('examination' , ['pageid' => 1]) }}">Chi tiết &rarr;</a>
+            <h2>{{ __('label.mock_exam') }}</h2>
+            <p>{{ __('label.realistic_mock_exam') }}</p>
+            <a href="{{ route('examination' , ['pageid' => 1]) }}">{{ __('label.detail') }} &rarr;</a>
         </div>
     </div>
     <!-- /.Feature -->
@@ -105,9 +105,9 @@
 
         <div class="span6">
             <img class="hidden-phone" src="{{ asset('images/icon4.png') }}" alt="Icon 4">
-            <h1>Fully Responsive</h1>
-            <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
-            <a href="#">Read More &rarr;</a>
+            <h1>{{ __('label.mock_toeic_exam') }}</h1>
+            <p>{{ __('label.exam_description') }}</p>
+            <a href="#">{{ __('label.detail') }} &rarr;</a>
         </div>
     </div>
 
@@ -124,7 +124,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">DANH SÁCH LOẠI BÀI HƯỚNG DẪN</h4>
+                <h4 class="modal-title">{{ __('label.guide_category_list') }}</h4>
             </div>
             <div class="modal-body">
 
@@ -132,7 +132,7 @@
                     <a class="pull-left"><img src="{{asset('images/loaibtnghe.png')}}" class="media-object" alt='' /></a>
                     <div class="media-body">
                         <h4>
-                            <a href="{{ route('vocabularyguideline', ['pageid' => 1]) }}">Bài hướng dẫn phần từ vựng</a>
+                            <a href="{{ route('vocabularyguideline', ['pageid' => 1]) }}">{{ __('label.vocabulary_guide_article') }}</a>
                         </h4>
                     </div>
                 </div>
@@ -141,13 +141,13 @@
                     <a class="pull-left"><img src="{{asset('images/loaibtdoc.png')}}" class="media-object" alt='' /></a>
                     <div class="media-body">
                         <h4>
-                            <a href="grammarguideline?pageid=1">Bài hướng dẫn phần ngữ pháp</a>
+                            <a href="grammarguideline?pageid=1">{{ __('label.grammar_guide_article') }}</a>
                         </h4>
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Thoát</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">{{ __('label.exit') }}</button>
             </div>
         </div>
 
@@ -162,7 +162,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">DANH SÁCH LOẠI BÀI TẬP</h4>
+        <h4 class="modal-title">{{ __('label.exercise_category_list') }}</h4>
     </div>
     <div class="modal-body">
 
@@ -170,7 +170,7 @@
          <a class="pull-left"><img src="{{asset('images/loaibtnghe.png')}}" class="media-object" alt='' /></a>
          <div class="media-body">
             <h4>
-               <a href="{{ route('listeningexercise', ['pageid' => 1]) }}">Bài tập phần nghe</a>
+               <a href="{{ route('listeningexercise', ['pageid' => 1]) }}">{{ __('label.listenex') }}</a>
            </h4>
        </div>
    </div>
@@ -179,13 +179,13 @@
      <a class="pull-left"><img src="{{asset('images/loaibtdoc.png')}}" class="media-object" alt='' /></a>
      <div class="media-body">
         <h4>
-           <a href="{{ route('readingexercise', ['pageid' => 1]) }}">Bài tập phần đọc</a>
+           <a href="{{ route('readingexercise', ['pageid' => 1]) }}">{{ __('label.readex') }}</a>
        </h4>
    </div>
 </div>
 </div>
 <div class="modal-footer">
-    <button type="button" class="btn btn-default" data-dismiss="modal">Thoát</button>
+    <button type="button" class="btn btn-default" data-dismiss="modal">{{ __('label.exit') }}</button>
 </div>
 </div>
 
@@ -226,7 +226,7 @@
 
         } else {
             document.getElementById("searchresult").innerHTML =
-                "Quay lại trang chủ bằng cách click vào logo website";
+                "{{ __('label.back_to_home') }}";
         }
         console.log('ok');
 

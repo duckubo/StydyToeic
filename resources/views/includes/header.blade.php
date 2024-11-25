@@ -22,8 +22,8 @@
                             </a>
                             <div class="nav-collapse collapse navbar-responsive-collapse">
                                 <ul class="nav">
-                                    <li><a href="{{route('form_login')}}">Đăng nhập</a></li>
-                                    <li><a href="{{route('register')}}">Đăng Ký</a></li>
+                                    <li><a href="{{route('form_login')}}">{{ __('label.login') }}</a></li>
+                                    <li><a href="{{route('register')}}">{{ __('label.register') }}</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -55,10 +55,23 @@
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
                             </a>
+                            
                             <div class="nav-collapse collapse navbar-responsive-collapse">
+                            <div class="btn-group pull-right nav">
+                            <div class="btn-group">
+                        <!-- Button to toggle the language dropdown -->
+                                <button type="button" class="btn btn-default dropdown-toggle usa" data-toggle="dropdown">
+                                {{ __('label.languages') }}
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a href="{{ url('lang/vi') }}">Tiếng Việt</a></li>
+                                    <li><a href="{{ url('lang/en') }}">English</a></li>
+                                </ul>
+                            </div>
+                        </div>
                                 <ul class="nav">
-                                    <li><a href="{{ route('profile', ['id' => Auth::user()->id]) }}">Welcome: {{ Auth::user()->name }}</a></li>
-                                    <li><a href="{{ route('logout') }}">Thoát</a></li>
+                                    <li><a href="{{ route('profile', ['id' => Auth::user()->id]) }}">{{ __('label.hello') }} {{ Auth::user()->name }}</a></li>
+                                    <li><a href="{{ route('logout') }}">{{ __('label.exit') }}</a></li>
                                 </ul>
                             </div>
                         </div>

@@ -22,12 +22,12 @@
                     <ul class="breadcrumb">
                         <li>
                             <i class="ace-icon fa fa-home home-icon"></i>
-                            <a href="#">Trang chủ</a>
+                            <a href="#">{{ __('label.home') }}</a>
                         </li>
                         <li>
-                            <a href="{{route('admin.grammar')}}">Quản lý phần hướng dẫn</a>
+                            <a href="{{route('admin.grammar')}}">{{ __('label.grammar_guideline_management') }}</a>
                         </li>
-                        <li class="active">Ngữ pháp</li>
+                        <li class="active">{{ __('label.grammar') }}</li>
                     </ul><!-- /.breadcrumb -->
                 </div>
 
@@ -41,12 +41,12 @@
 							 <a href="{{ route('admin.grammar', ['pageid' => 1]) }}">
 										<ul class="breadcrumb" >
 												<i class="menu-icon fa fa-arrow-left"></i>
-												<li style="color: #0088cc">&nbsp; &nbsp;Quay Lại</li>
+												<li style="color: #0088cc">&nbsp; &nbsp;{{ __('label.back') }}</li>
 											</ul><!-- /.breadcrumb -->
 										</a>
                             <div class="row">
                                 <div class="col-sm-7">
-                                    <h4 class="header green">Soạn thảo nội dung bài ngữ pháp</h4>
+                                    <h4 class="header green">{{ __('label.edit_grammar_content') }}</h4>
 
                                     <h4 class="pink">
                                         <a class="red" data-toggle="modal">
@@ -72,7 +72,7 @@
                                                     <div class="btn-group pull-right">
                                                         <button class="btn btn-sm btn-purple" type="submit">
                                                             <i class="ace-icon fa fa-floppy-o bigger-125"></i>
-                                                            Thêm nội dung
+                                                            {{ __('label.add_content') }}
                                                         </button>
                                                     </div>
                                                 </div>

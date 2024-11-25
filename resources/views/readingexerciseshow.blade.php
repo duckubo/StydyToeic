@@ -16,11 +16,11 @@
                      <a href="{{route('readingexercise')}}">
                         <ul class="breadcrumb" >
                                 <i class="menu-icon fa fa-arrow-left"></i>
-                            <li style="color: #0088cc">&nbsp; &nbsp;Quay Lại</li>
+                            <li style="color: #0088cc">&nbsp; &nbsp;{{ __('label.back') }}</li>
                         </ul><!-- /.breadcrumb -->
                     </a>
                     <h4>
-                        Lựa chọn câu trả lời đúng nhất
+                    {{ __('label.choose_correct_answer') }}
                     </h4>
                 </div>
             </div>
@@ -39,7 +39,7 @@
                                          {!! nl2br(e($list->paragraph)) !!}
                                     </p>
                                     <p>
-                                        Câu {{ $list->num }}. {{ $list->question }}
+                                    {{ __('label.question') }} {{ $list->num }}. {{ $list->question }}
                                     </p>
                                     <p>
                                         <input type="radio" name="radio" value="A"/>
@@ -70,20 +70,20 @@
             <div class="span12">
                 <div>
                     @if($currentPage == 1)
-                        <a href="#" class="btn btn-info disabled">Prev</a>
+                        <a href="#" class="btn btn-info disabled">{{ __('label.prev') }}</a>
                         <input type="button" value="Đáp án" class="btn btn-info" onclick="Xuatketqua()"/>
                         <a href="{{ route('readingexercise.show', ['pageid' => $currentPage, 'readexeriseid' => $readexeriseid]) }}" class="btn btn-info">Làm lại</a>
-                        <a href="{{ route('readingexercise.show', ['pageid' => $currentPage + 1, 'readexeriseid' => $readexeriseid]) }}" class="btn btn-info">Next</a>
+                        <a href="{{ route('readingexercise.show', ['pageid' => $currentPage + 1, 'readexeriseid' => $readexeriseid]) }}" class="btn btn-info">{{ __('label.next') }}</a>
                     @elseif($currentPage == $maxPageId)
-                        <a href="{{ route('readingexercise.show', ['pageid' => $currentPage - 1, 'readexeriseid' => $readexeriseid]) }}" class="btn btn-info">Prev</a>
+                        <a href="{{ route('readingexercise.show', ['pageid' => $currentPage - 1, 'readexeriseid' => $readexeriseid]) }}" class="btn btn-info">{{ __('label.prev') }}</a>
                         <input type="button" value="Đáp án" class="btn btn-info" onclick="Xuatketqua()"/>
                         <a href="{{ route('readingexercise.show', ['pageid' => $currentPage, 'readexeriseid' => $readexeriseid]) }}" class="btn btn-info">Làm lại</a>
-                        <a href="#" class="btn btn-info disabled">Next</a>
+                        <a href="#" class="btn btn-info disabled">{{ __('label.next') }}</a>
                     @else
-                        <a href="{{ route('readingexercise.show', ['pageid' => $currentPage - 1, 'readexeriseid' => $readexeriseid]) }}" class="btn btn-info">Prev</a>
+                        <a href="{{ route('readingexercise.show', ['pageid' => $currentPage - 1, 'readexeriseid' => $readexeriseid]) }}" class="btn btn-info">{{ __('label.prev') }}</a>
                         <input type="button" value="Đáp án" class="btn btn-info" onclick="Xuatketqua()"/>
                         <a href="{{ route('readingexercise.show', ['pageid' => $currentPage, 'readexeriseid' => $readexeriseid]) }}" class="btn btn-info">Làm lại</a>
-                        <a href="{{ route('readingexercise.show', ['pageid' => $currentPage + 1, 'readexeriseid' => $readexeriseid]) }}" class="btn btn-info">Next</a>
+                        <a href="{{ route('readingexercise.show', ['pageid' => $currentPage + 1, 'readexeriseid' => $readexeriseid]) }}" class="btn btn-info">{{ __('label.next') }}</a>
                     @endif
                 </div>
             </div>

@@ -23,10 +23,10 @@
                     <ul class="breadcrumb">
                         <li>
                             <i class="ace-icon fa fa-home home-icon"></i>
-                            <a href="{{ route('admin.dashboard') }}">Trang chủ</a>
+                            <a href="{{ route('admin.dashboard') }}">{{ __('label.home') }}</a>
                         </li>
                         <li>
-                            <a class="active">Quản lý danh sách bài tập đọc</a>
+                            <a class="active">{{ __('label.manage_reading_exercise_list') }}</a>
                         </li>
                     </ul><!-- /.breadcrumb -->
                 </div>
@@ -46,12 +46,12 @@
                                     <table id="simple-table" class="table table-bordered table-hover">
                                         <thead>
                                             <tr>
-                                                <th class="center">ID</th>
-                                                <th class="center">Tên bài tập đọc</th>
-                                                <th class="center">Tên hình bài tập đọc</th>
-                                                <th class="center">Xóa bài tập đọc</th>
-                                                <th class="center">Thêm câu hỏi bài tập đọc</th>
-                                                <th class="center">Checked câu hỏi bài tập đọc</th>
+                                            <th class="center">ID</th>
+                                                <th class="center">{{ __('label.read_exercise_name') }}</th>
+                                                <th class="center">{{ __('label.read_exercise_image_name') }}</th>
+                                                <th class="center">{{ __('label.delete_read_exercise') }}</th>
+                                                <th class="center">{{ __('label.add_read_exercise_question') }}</th>
+                                                <th class="center">{{ __('label.checked_read_exercise_question') }}</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -95,14 +95,14 @@
                                     <div>
                                         <ul class="pagination">
                                             @if ($pageid == 1)
-                                                <li class="active"><a href="#">Prev</a></li>
-                                                <li><a href="{{ route('admin.readingexercise', ['pageid' => $pageid + 1]) }}">Next</a></li>
+                                                <li class="active"><a href="#">{{ __('label.prev') }}</a></li>
+                                                <li><a href="{{ route('admin.readingexercise', ['pageid' => $pageid + 1]) }}">{{ __('label.{{ __('label.next') }}') }}</a></li>
                                             @elseif ($pageid == $maxPageId)
-                                                <li><a href="{{ route('admin.readingexercise', ['pageid' => $pageid - 1]) }}">Prev</a></li>
-                                                <li class="active"><a href="#">Next</a></li>
+                                                <li><a href="{{ route('admin.readingexercise', ['pageid' => $pageid - 1]) }}">{{ __('label.prev') }}</a></li>
+                                                <li class="active"><a href="#">{{ __('label.next') }}</a></li>
                                             @else
-                                                <li><a href="{{ route('admin.readingexercise', ['pageid' => $pageid - 1]) }}">Prev</a></li>
-                                                <li><a href="{{ route('admin.readingexercise', ['pageid' => $pageid + 1]) }}">Next</a></li>
+                                                <li><a href="{{ route('admin.readingexercise', ['pageid' => $pageid - 1]) }}">{{ __('label.prev') }}</a></li>
+                                                <li><a href="{{ route('admin.readingexercise', ['pageid' => $pageid + 1]) }}">{{ __('label.next') }}</a></li>
                                             @endif
                                         </ul>
                                     </div>
@@ -112,7 +112,7 @@
                             <div class="row">
                                 <div class="col-xs-12">
                                     <button type="button" class="btn btn-white btn-warning btn-bold" data-toggle="modal" data-target="#myModal">
-                                        Thêm đề bài tập đọc
+                                    {{ __('label.add_read_exercise') }}
                                     </button>
                                 </div>
                             </div>
@@ -141,7 +141,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Thêm đề bài tập đọc</h4>
+                        <h4 class="modal-title">{{ __('label.add_read_exercise') }}</h4>
                     </div>
                     <div class="modal-body">
                         <div class="row">
@@ -171,7 +171,7 @@
                     <div class="modal-footer">
                         <button class="btn btn-info" type="submit">
                             <i class="ace-icon fa fa-check bigger-110"></i>
-                            Thêm tên bài tập đọc
+                            {{ __('label.add_read_exercise_name') }}
                         </button>
                     </div>
                 </div>

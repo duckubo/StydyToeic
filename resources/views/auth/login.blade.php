@@ -32,7 +32,15 @@
 
 </body>
 </html> -->
+
+<!-- Thêm jQuery (Bootstrap cần jQuery để hoạt động) -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+
+<!-- Thêm Bootstrap JS -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+
 <!-- Bootstrap CSS -->
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="{{ asset('template/css/bootstrap.min.css') }}" />
 
 <!-- Font CSS -->
@@ -66,7 +74,7 @@
                                     <div class="widget-main">
                                         <h4 class="header blue lighter bigger">
                                             <i class="ace-icon fa fa-coffee green"></i>
-                                            Nhập thông tin tài khoản
+                                            {{ __('label.account_information') }}
                                         </h4>
 
                                         <div class="space-6"></div>
@@ -84,7 +92,7 @@
                                                 @enderror
                                                 <label class="block clearfix">
                                                     <span class="block input-icon input-icon-right">
-                                                        <input type="email" class="form-control" placeholder="Nhập email" name="email" value="" required/>
+                                                        <input type="email" class="form-control" placeholder="{{ __('label.nhapemail') }}" name="email" value="" required/>
                                                         <i class="ace-icon fa fa-user"></i>
                                                     </span>
                                                 </label>
@@ -93,19 +101,20 @@
                                                 @enderror
                                                 <label class="block clearfix">
                                                     <span class="block input-icon input-icon-right">
-                                                        <input type="password" class="form-control" placeholder="Nhập mật khẩu" name="password" required/>
+                                                        <input type="password" class="form-control" placeholder="{{ __('label.nhappass') }}" name="password" required/>
                                                         <i class="ace-icon fa fa-lock"></i>
                                                     </span>
                                                 </label>
 
                                                 <div class="space"></div>
 
-                                                <div class="clearfix">
-                                                    <button type="submit" class="width-35 pull-right btn btn-sm btn-primary">
+                                                <div class="clearfix text-center">
+                                                    <button type="submit" class="width-35 btn btn-sm btn-primary">
                                                         <i class="ace-icon fa fa-key"></i>
-                                                        <span class="bigger-110">Đăng nhập</span>
+                                                        <span class="bigger-110">{{ __('label.login') }}</span>
                                                     </button>
                                                 </div>
+
 
                                                 <div class="space-4"></div>
                                             </fieldset>
@@ -116,7 +125,7 @@
                                                         onclick="window.location.href='/auth/google'"
                                                         style="border-color: #ec640f; background-color: #ec640f !important; outline: none">
                                                         <i class="ace-icon fa fa-key"></i>
-                                                        <span class="bigger-110">Login with Google</span>
+                                                        <span class="bigger-110">{{ __('label.loginwg') }}</span>
                                                     </button>
                                                 </div>
 
@@ -132,13 +141,13 @@
                                         <div>
                                             <a href="{{ route('home') }}" class="forgot-password-link">
                                                 <i class="ace-icon fa fa-arrow-left"></i>
-                                                Trở về trang chủ
+                                                {{ __('label.ghome') }}
                                             </a>
                                         </div>
 
                                         <div>
                                             <a href="{{ route('register') }}" class="user-signup-link">
-                                                Đăng ký
+                                            {{ __('label.register') }}
                                                 <i class="ace-icon fa fa-arrow-right"></i>
                                             </a>
                                         </div>
@@ -147,18 +156,32 @@
                             </div><!-- /.login-box -->
                         </div><!-- /.position-relative -->
 
+                       
+                        
                         <div class="navbar-fixed-top align-right">
+                        <div class="btn-group pull-right">
+                            <div class="btn-group">
+                        <!-- Button to toggle the language dropdown -->
+                                <button type="button" class="btn btn-default dropdown-toggle usa" data-toggle="dropdown">
+                                {{ __('label.languages') }}
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a href="{{ url('lang/vi') }}">Tiếng Việt</a></li>
+                                    <li><a href="{{ url('lang/en') }}">English</a></li>
+                                </ul>
+                            </div>
+                        </div>
                             <br />
                             &nbsp;
-                            <a id="btn-login-dark" href="#">Dark</a>
+                            <a id="btn-login-dark" href="#">{{ __('label.dark') }}</a>
                             &nbsp;
                             <span class="blue">/</span>
                             &nbsp;
-                            <a id="btn-login-blur" href="#">Blur</a>
+                            <a id="btn-login-blur" href="#">{{ __('label.blue') }}</a>
                             &nbsp;
                             <span class="blue">/</span>
                             &nbsp;
-                            <a id="btn-login-light" href="#">Light</a>
+                            <a id="btn-login-light" href="#">{{ __('label.light') }}</a>
                             &nbsp; &nbsp; &nbsp;
                         </div>
                     </div>

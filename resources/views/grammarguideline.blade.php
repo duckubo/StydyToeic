@@ -10,7 +10,7 @@
         <div class="col-12">
             <div class="page-header">
                 <h3>
-                    Danh sách chủ đề ngữ pháp
+                {{ __('label.grammar_topics_list') }}
                 </h3>
             </div>
         </div>
@@ -38,7 +38,7 @@
                             <p>
                                 {{ $list->grammarname }}
                             </p>
-                            <a href="{{ route('grammarguideline.show', $list->grammarguidelineid) }}" class="btn" type="button">Xem nội dung chủ đề</a>
+                            <a href="{{ route('grammarguideline.show', $list->grammarguidelineid) }}" class="btn" type="button">{{ __('label.view_topic_content') }}</a>
                         </div>
                     </div>
                 </div>
@@ -52,14 +52,14 @@
             <div class="pagination">
                 <ul>
                     @if($currentPage == 1)
-                        <li class="disabled"><a href="#">Prev</a></li>
-                        <li><a href="{{ route('grammarguideline', ['pageid' => $currentPage + 1]) }}">Next</a></li>
+                        <li class="disabled"><a href="#">{{ __('label.prev') }}</a></li>
+                        <li><a href="{{ route('grammarguideline', ['pageid' => $currentPage + 1]) }}">{{ __('label.next') }}</a></li>
                     @elseif($currentPage == $maxPageId)
-                        <li><a href="{{ route('grammarguideline', ['pageid' => $currentPage - 1]) }}">Prev</a></li>
-                        <li class="disabled"><a href="#">Next</a></li>
+                        <li><a href="{{ route('grammarguideline', ['pageid' => $currentPage - 1]) }}">{{ __('label.prev') }}</a></li>
+                        <li class="disabled"><a href="#">{{ __('label.next') }}</a></li>
                     @else
-                        <li><a href="{{ route('grammarguideline', ['pageid' => $currentPage - 1]) }}">Prev</a></li>
-                        <li><a href="{{ route('grammarguideline', ['pageid' => $currentPage + 1]) }}">Next</a></li>
+                        <li><a href="{{ route('grammarguideline', ['pageid' => $currentPage - 1]) }}">{{ __('label.prev') }}</a></li>
+                        <li><a href="{{ route('grammarguideline', ['pageid' => $currentPage + 1]) }}">{{ __('label.next') }}</a></li>
                     @endif
                 </ul>
             </div>

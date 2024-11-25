@@ -1,3 +1,13 @@
+<!-- Thêm jQuery (Bootstrap cần jQuery để hoạt động) -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+
+<!-- Thêm Bootstrap JS -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+
+
+<!-- Bootstrap CSS -->
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
 <link rel="stylesheet" href="{{ asset('template/css/bootstrap.min.css') }}" />
 
 <!-- Font CSS -->
@@ -40,13 +50,13 @@
 										<a href="{{ route('admin.examination', ['pageid' => 1]) }}">
 										<ul class="breadcrumb" >
 												<i class="menu-icon fa fa-arrow-left"></i>
-												<li style="color: #0088cc">&nbsp; &nbsp;Quay Lại</li>
+												<li style="color: #0088cc">&nbsp; &nbsp;{{ __('label.back') }}</li>
 											</ul><!-- /.breadcrumb -->
 										</a>
 										<div class="widget-main">
 											<h4 class="header blue lighter bigger">
 												<i class="ace-icon fa fa-coffee green"></i>
-												Thêm audio và hình ảnh cho đề thi
+												{{ __('label.add_audio_and_image_for_exam') }}
 											</h4>
 
 											<div class="space-6"></div>
@@ -77,8 +87,8 @@
 
 													<div class="clearfix">
 
-														<input type="submit" value="Thêm audio và hình ảnh" class="btn btn-sm btn-primary">
-													 	<input id="addFile" type="button" value="Thêm choose file" class="btn btn-sm btn-primary"/>
+														<input type="submit" value="{{ __('label.add_exercise_audio_image') }}" class="btn btn-sm btn-primary">
+													 	<input id="addFile" type="button" value="{{ __('label.choose_file') }}" class="btn btn-sm btn-primary"/>
 
 													</div>
 
@@ -100,19 +110,31 @@
 							</div><!-- /.position-relative -->
 
 							<div class="navbar-fixed-top align-right">
-								<br />
-								&nbsp;
-								<a id="btn-login-dark" href="#">Dark</a>
-								&nbsp;
-								<span class="blue">/</span>
-								&nbsp;
-								<a id="btn-login-blur" href="#">Blur</a>
-								&nbsp;
-								<span class="blue">/</span>
-								&nbsp;
-								<a id="btn-login-light" href="#">Light</a>
-								&nbsp; &nbsp; &nbsp;
-							</div>
+                        <div class="btn-group pull-right">
+                            <div class="btn-group">
+                        <!-- Button to toggle the language dropdown -->
+                                <button type="button" class="btn btn-default dropdown-toggle usa" data-toggle="dropdown">
+                                {{ __('label.languages') }}
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a href="{{ url('lang/vi') }}">Tiếng Việt</a></li>
+                                    <li><a href="{{ url('lang/en') }}">English</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                            <br />
+                            &nbsp;
+                            <a id="btn-login-dark" href="#">{{ __('label.dark') }}</a>
+                            &nbsp;
+                            <span class="blue">/</span>
+                            &nbsp;
+                            <a id="btn-login-blur" href="#">{{ __('label.blue') }}</a>
+                            &nbsp;
+                            <span class="blue">/</span>
+                            &nbsp;
+                            <a id="btn-login-light" href="#">{{ __('label.light') }}</a>
+                            &nbsp; &nbsp; &nbsp;
+                        </div>
 						</div>
 					</div><!-- /.col -->
 				</div><!-- /.row -->
@@ -120,7 +142,7 @@
 		</div><!-- /.main-container -->
 <form action="{{ url('/upload-files') }}" method="POST" enctype="multipart/form-data">
     @csrf
-    <label for="files">Chọn các file âm thanh hoặc hình ảnh:</label>
+    <label for="files">{{ __('label.choose_file') }}</label>
     <input type="file" name="files[]" id="files" multiple required>
-    <button type="submit">Tải lên</button>
+    <button type="submit">{{ __('label.upload') }}</button>
 </form>

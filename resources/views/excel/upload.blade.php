@@ -2,7 +2,7 @@
     @csrf
     <input type="hidden" name="vocabularyguidelineid" value="1">
     <input type="file" name="excel_file" />
-    <button type="submit">Upload</button>
+    <button type="submit">{{ __('label.upload') }}</button>
 </form>
 @if (session('success'))
     <div class="alert alert-success">{{ session('success') }}</div>

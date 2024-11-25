@@ -43,10 +43,10 @@
                  <a href="{{route('grammarguideline')}}">
                         <ul class="breadcrumb" >
                                 <i class="menu-icon fa fa-arrow-left"></i>
-                            <li style="color: #0088cc">&nbsp; &nbsp;Quay Lại</li>
+                            <li style="color: #0088cc">&nbsp; &nbsp;{{ __('label.back') }}</li>
                         </ul><!-- /.breadcrumb -->
                     </a>
-                <h3>Bài hướng dẫn học ngữ pháp</h3>
+                <h3>{{ __('label.grammar_learning_guide_article') }}</h3>
             </div>
         </div>
     </div>
@@ -62,7 +62,7 @@
                             <i class="icon-calendar"></i>{{ now() }}
                         </li>
                         <li>
-                            <i class="icon-comment"></i> <a href="#">{{ $countrow }} bình luận</a>
+                            <i class="icon-comment"></i> <a href="#">{{ $countrow }} {{ __('label.comment') }}</a>
                         </li>
                     </ul>
                 </div>
@@ -75,23 +75,23 @@
             @if (session('sessionuser') == null)
                 <div class="blog-post">
                     <div>
-                        <h3>Bình luận</h3>
+                        <h3>{{ __('label.comment') }}</h3>
                         <textarea class="input-xxlarge" rows="4" name="comment" disabled style="color:red">
-                            Đăng nhập để bình luận
+                        {{ __('label.login_to_comment') }}
                         </textarea>
                     </div>
                     <div>
-                        <button type="button" class="btn btn-primary" disabled>Đăng bình luận</button>
+                        <button type="button" class="btn btn-primary" disabled>{{ __('label.post_comment') }}</button>
                     </div>
                 </div>
             @else
                 <form name="formbinhluan">
                     <div>
-                        <h3>Bình luận</h3>
+                        <h3>{{ __('label.comment') }}</h3>
                         <textarea class="input-xxlarge" rows="4" name="cmtgrammarcontent"></textarea>
                     </div>
                     <div>
-                        <button type="button" class="btn btn-primary" onclick="Binhluan()">Đăng bình luận</button>
+                        <button type="button" class="btn btn-primary" onclick="Binhluan()">{{ __('label.post_comment') }}</button>
                     </div>
                 </form>
             @endif
@@ -110,13 +110,13 @@
 
         <div class="span3">
             <div class="side-bar">
-                <h3>Danh mục</h3>
+                <h3>{{ __('label.category') }}</h3>
                 <ul class="nav nav-list">
-                    <li><a href="#">Hướng dẫn học ngữ pháp</a></li>
-                    <li><a href="#">Hướng dẫn học từ vựng</a></li>
-                    <li><a href="#">Làm bài tập phần đọc</a></li>
-                    <li><a href="#">Làm bài tập phần nghe</a></li>
-                    <li><a href="#">Thi thử toeic</a></li>
+                    <li><a href="#">{{ __('label.grammar_learning_guide') }}</a></li>
+                    <li><a href="#">{{ __('label.vocabulary_learning_guide') }}</a></li>
+                    <li><a href="#">{{ __('label.reading_exercise') }}</a></li>
+                    <li><a href="#">{{ __('label.listening_exercise') }}</a></li>
+                    <li><a href="#">{{ __('label.toeic_practice_test') }}</a></li>
                 </ul>
             </div>
         </div>

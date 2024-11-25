@@ -35,7 +35,7 @@
         <li>
             <a href="#" class="dropdown-toggle">
                 <i class="menu-icon fa fa-users"></i>
-                <span class="menu-text">Quản lý người dùng</span>
+                <span class="menu-text">{{ __('label.userm') }}</span>
                 <b class="arrow fa fa-angle-down"></b>
             </a>
 
@@ -44,7 +44,7 @@
                 <li>
                     <a href="{{route('admin.account')}}">
                         <i class="menu-icon fa fa-caret-right"></i>
-                        Người dùng
+                        {{ __('label.user') }}
                     </a>
                     <b class="arrow"></b>
                 </li>
@@ -55,7 +55,7 @@
         <li>
             <a href="#" class="dropdown-toggle">
                 <i class="menu-icon fa fa-folder"></i>
-                <span class="menu-text">Quản lý phần HD</span>
+                <span class="menu-text">{{ __('label.grammar_guideline_managementv1') }}</span>
                 <b class="arrow fa fa-angle-down"></b>
             </a>
 
@@ -64,7 +64,7 @@
                 <li>
                     <a href="{{ route('admin.grammar', ['pageid' => 1]) }}">
                         <i class="menu-icon fa fa-caret-right"></i>
-                        Ngữ pháp
+                        {{ __('label.grammar') }}
                     </a>
                     <b class="arrow"></b>
                 </li>
@@ -72,7 +72,7 @@
                 <li>
                     <a href="{{ route('admin.vocabulary', ['pageid' => 1]) }}">
                         <i class="menu-icon fa fa-caret-right"></i>
-                        Từ vựng
+                        {{ __('label.vocab') }}
                     </a>
                     <b class="arrow"></b>
                 </li>
@@ -83,7 +83,7 @@
         <li>
             <a href="#" class="dropdown-toggle">
                 <i class="menu-icon fa fa-table"></i>
-                <span class="menu-text">Quản lý phần bài tập</span>
+                <span class="menu-text">{{ __('label.exmana') }}</span>
                 <b class="arrow fa fa-angle-down"></b>
             </a>
 
@@ -92,7 +92,7 @@
                 <li>
                     <a href="{{ route('admin.readingexercise', ['pageid' => 1]) }}">
                         <i class="menu-icon fa fa-caret-right"></i>
-                        Bài tập đọc
+                        {{ __('label.readex') }}
                     </a>
                     <b class="arrow"></b>
                 </li>
@@ -100,7 +100,7 @@
                 <li>
                     <a href="{{ route('admin.listeningexercise', ['pageid' => 1]) }}">
                         <i class="menu-icon fa fa-caret-right"></i>
-                        Bài tập nghe
+                        {{ __('label.listenex') }}
                     </a>
                     <b class="arrow"></b>
                 </li>
@@ -111,7 +111,7 @@
         <li>
             <a href="#" class="dropdown-toggle">
                 <i class="menu-icon fa fa-list"></i>
-                <span class="menu-text">Quản lý đề thi</span>
+                <span class="menu-text">{{ __('label.exam_management') }}</span>
                 <b class="arrow fa fa-angle-down"></b>
             </a>
 
@@ -120,7 +120,7 @@
                 <li>
                     <a href="{{ route('admin.examination', ['pageid' => 1]) }}">
                         <i class="menu-icon fa fa-caret-right"></i>
-                        Đề thi
+                        {{ __('label.exam') }}
                     </a>
                     <b class="arrow"></b>
                 </li>

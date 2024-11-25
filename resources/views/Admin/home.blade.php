@@ -23,7 +23,7 @@
                     <ul class="breadcrumb">
                         <li>
                             <i class="ace-icon fa fa-home home-icon"></i>
-                            <a href="{{ route('admin.dashboard') }}">Trang chủ</a>
+                            <a href="{{ route('admin.dashboard') }}">{{ __('label.home') }}</a>
                         </li>
                     </ul>
                     <!-- /.breadcrumb -->
