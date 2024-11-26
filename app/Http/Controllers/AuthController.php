@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Laravel\Socialite\Facades\Socialite;
 
@@ -135,16 +136,17 @@ class AuthController extends Controller
             // Lấy file ảnh
             $image = $request->file('profile_picture');
 
-            // Tạo tên ảnh mới
-            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $filePath = uniqid() . '_' . $image->getClientOriginalName();
 
-            // Lưu ảnh vào thư mục public/images
-            $image->move(public_path('images'), $imageName);
+            $path = Storage::disk('s3')->put($filePath, file_get_contents($image));
+
+            if ($path) {
+                $url = Storage::disk('s3')->url($filePath);
+            }
 
             // Cập nhật tên ảnh trong cơ sở dữ liệu
-            $user->profile_picture = 'images/' . $imageName;
+            $user->profile_picture = $url;
         }
-
         // Lưu thay đổi
         $user->save();
 
