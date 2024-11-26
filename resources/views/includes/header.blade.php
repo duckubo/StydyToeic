@@ -15,11 +15,6 @@
                 <div class="span9">
                     <div class="navbar pull-right">
                         <div class="navbar-inner">
-                            <a data-target=".navbar-responsive-collapse" data-toggle="collapse" class="btn btn-navbar">
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                            </a>
                             <div class="nav-collapse collapse navbar-responsive-collapse">
                                 <ul class="nav">
                                     <li><a href="{{route('form_login')}}">{{ __('label.login') }}</a></li>
@@ -66,7 +61,9 @@
                                 <ul class="nav">
                                     <li><a href="{{ route('courses') }}">{{ __('label.activecource') }}</a></li>
                                     <li><a href="{{ route('mycourses') }}">{{ __('label.my-course') }}</a></li>
-                                    <li><a href="{{ route('profile', ['id' => Auth::user()->id]) }}">{{ __('label.hello') }} {{ Auth::user()->name }}</a></li>
+                                    <li style="margin-right:50px;"><a style="position: relative;" href="{{ route('profile', ['id' => Auth::user()->id]) }}">{{ __('label.hello') }} {{ Auth::user()->name }}
+                                        <span  style="width:50px ;height:50px;position: absolute;top:-10px;border-radius: 50%;overflow: hidden;right: -47px;" ><img src="{{ Auth::user()->profile_picture ?? asset('images/default-avatar.png') }}" alt="Avatar" width="50px" height="50px" ></span>
+                                    </a></li>
                                     <li><a href="{{ route('logout') }}">{{ __('label.exit') }}</a></li>
                                 </ul>
                             </div>

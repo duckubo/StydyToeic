@@ -15,6 +15,7 @@ use App\Http\Controllers\ExaminationController;
 use App\Http\Controllers\ExcelController;
 use App\Http\Controllers\GrammarController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ImageUploadController;
 use App\Http\Controllers\ListeningController;
 use App\Http\Controllers\ReadingController;
 use App\Http\Controllers\SmsController;
@@ -181,3 +182,9 @@ Route::get('/password/email', [AuthController::class, 'showResetLinkEmailForm'])
 
 Route::get('/send-sms', [SmsController::class, 'showForm'])->name('send.sms.form');
 Route::post('/send-sms', [SmsController::class, 'sendSMS'])->name('send.sms');
+
+// Hiển thị form upload
+Route::get('/upload-image', [ImageUploadController::class, 'index'])->name('upload-image.index');
+
+// Xử lý upload ảnh
+Route::post('/upload-image', [ImageUploadController::class, 'store'])->name('upload-image.store');
