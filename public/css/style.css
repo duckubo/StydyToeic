@@ -329,6 +329,26 @@ footer {
 }
 #chat-box {
 }
+
+.chat-icon {
+    position: fixed;
+    bottom: 240px;
+    right: 8px;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+.chat-icon img {
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+}
+
+.chat-icon img:hover {
+    cursor: pointer;
+}
+
 .chatbox {
     position: fixed;
     bottom: 100px;
