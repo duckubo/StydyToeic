@@ -52,8 +52,9 @@ class AuthController extends Controller
             if ($role_id == '1') {
                 return redirect()->route('home');
             } elseif ($role_id == '2') {
-
                 return redirect()->route('admin.dashboard');
+            } elseif ($role_id == '3') {
+                return redirect()->route('chatify');
             }
         }
         return redirect()->route('form_login')->with('msglogin', "Email hoặc mật khẩu không chính xác!");
@@ -167,8 +168,8 @@ class AuthController extends Controller
         );
 
         return $status === Password::RESET_LINK_SENT
-        ? back()->with('success', 'Reset Password link sent!')
-        : back()->with('error', 'Reset Password link sent failed');
+            ? back()->with('success', 'Reset Password link sent!')
+            : back()->with('error', 'Reset Password link sent failed');
     }
     public function resetPassword(Request $request)
     {
@@ -191,7 +192,7 @@ class AuthController extends Controller
         );
 
         return $status === Password::PASSWORD_RESET
-        ? back()->with('success', 'Reset Password successfully!')
-        : back()->with('error', 'Reset Password failed');
+            ? back()->with('success', 'Reset Password successfully!')
+            : back()->with('error', 'Reset Password failed');
     }
 }
