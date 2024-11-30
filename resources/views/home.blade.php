@@ -378,7 +378,7 @@
         var grammarname = document.myform.grammarname.value;
 
         if (grammarname !== "") {
-            var url = "{{ route('search') }}";
+            var url = "{{ route('searchgram') }}";
 
             // Tạo đối tượng XMLHttpRequest
             if (window.XMLHttpRequest) {

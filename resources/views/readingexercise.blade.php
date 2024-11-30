@@ -54,13 +54,13 @@
                 <ul>
                     @if($currentPage == 1)
                         <li class="disabled"><a href="#">Prev</a></li>
-                        <li><a href="{{ route('readingexercise', ['pageid' => $currentPage + 1]) }}">{{ __('label.{{ __('label.prev') }}') }}</a></li>
+                        <li><a href="{{ route('readingexercise', ['pageid' => $currentPage + 1]) }}">{{ __('label.prev') }}</a></li>
                     @elseif($currentPage == $maxPageId)
-                        <li><a href="{{ route('readingexercise', ['pageid' => $currentPage - 1]) }}">Prev</a></li>
-                        <li class="disabled"><a href="#">{{ __('label.{{ __('label.prev') }}') }}</a></li>
+                        <li><a href="{{ route('readingexercise', ['pageid' => $currentPage - 1]) }}">{{ __('label.prev') }}</a></li>
+                        <li class="disabled"><a href="#">{{ __('label.prev') }}</a></li>
                     @else
                         <li><a href="{{ route('readingexercise', ['pageid' => $currentPage - 1]) }}">Prev</a></li>
-                        <li><a href="{{ route('readingexercise', ['pageid' => $currentPage + 1]) }}">{{ __('label.{{ __('label.prev') }}') }}</a></li>
+                        <li><a href="{{ route('readingexercise', ['pageid' => $currentPage + 1]) }}">{{ __('label.prev') }}</a></li>
                     @endif
                 </ul>
             </div>
