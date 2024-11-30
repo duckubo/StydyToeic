@@ -1,0 +1,104 @@
+<style>
+    .chat-box {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 300px;
+        height: 400px;
+        background-color: #f1f1f1;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .messages {
+        flex: 1;
+        padding: 10px;
+        overflow-y: auto;
+    }
+
+    .input-container {
+        display: flex;
+        padding: 10px;
+        border-top: 1px solid #ccc;
+    }
+
+    #message-input {
+        flex: 1;
+        padding: 5px;
+        margin-right: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    #send-button {
+        padding: 5px 10px;
+        background-color: #0088cc;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    #send-button:hover {
+        background-color: #007bb5;
+    }
+</style>
+<div id="chat-box" class="chat-box">
+    <!-- Hiển thị các tin nhắn -->
+    <div id="messages" class="messages"></div>
+
+    <!-- Phần nhập liệu và nút gửi -->
+    <div class="input-container">
+        <input type="text" id="message-input" placeholder="Nhập câu hỏi..." />
+        <button id="send-button">Gửi</button>
+    </div>
+</div>
+<script>
+    document
+        .getElementById("send-button")
+        .addEventListener("click", function () {
+            var messageInput = document.getElementById("message-input");
+            var message = messageInput.value.trim();
+
+            if (message !== "") {
+                // Hiển thị câu hỏi của người dùng
+                var messages = document.getElementById("messages");
+                var userMessage = document.createElement("div");
+                userMessage.classList.add("message");
+                userMessage.textContent = "Bạn: " + message;
+                messages.appendChild(userMessage);
+
+                // Trả lời tự động từ bot
+                var botResponse = getBotResponse(message);
+
+                // Hiển thị câu trả lời của bot
+                var botMessage = document.createElement("div");
+                botMessage.classList.add("message");
+                botMessage.textContent = "Bot: " + botResponse;
+                messages.appendChild(botMessage);
+
+                // Cuộn xuống dưới khi có tin nhắn mới
+                messages.scrollTop = messages.scrollHeight;
+
+                // Xóa nội dung ô nhập liệu
+                messageInput.value = "";
+            }
+        });
+
+    // Định nghĩa các câu trả lời tự động
+    function getBotResponse(message) {
+        message = message.toLowerCase();
+
+        if (message.includes("xin chào") || message.includes("hello")) {
+            return "Chào bạn! Tôi có thể giúp gì cho bạn?";
+        } else if (message.includes("cảm ơn")) {
+            return "Bạn thật tuyệt vời! Nếu cần thêm gì, cứ hỏi tôi nhé!";
+        } else if (message.includes("thời tiết")) {
+            return "Tôi không biết thời tiết hôm nay, nhưng bạn có thể kiểm tra trên Google!";
+        } else {
+            return "Xin lỗi, tôi không hiểu câu hỏi của bạn. Bạn có thể thử hỏi lại không?";
+        }
+    }
+</script>
