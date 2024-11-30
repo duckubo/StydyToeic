@@ -81,7 +81,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
 });
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
-Route::post('/search', [HomeController::class, 'search'])->name('web.search');
+
+Route::post('/searchgram', [HomeController::class, 'search'])->name('searchgram');
 
 Route::post('/resultlistening', [ListeningController::class, 'result'])->name('resultlistening');
 Route::post('/resultreading', [ReadingController::class, 'result'])->name('resultreading');
