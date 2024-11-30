@@ -89,7 +89,7 @@ class CourseController extends Controller
         // Vnpay config
         $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
         // Sửa url khi chạy lại ngrok
-        $vnp_Returnurl = 'https://19fa-2401-d800-2740-e22-4e1-c8b0-d74a-9c14.ngrok-free.app/return-payment';
+        $vnp_Returnurl = '  https://a02a-123-19-211-162.ngrok-free.app/return-payment';
         $vnp_TmnCode = "GY1TKPFT";
         $vnp_HashSecret = "CXHOO01MZM7UOS1W8IIEQPKBGFLQQ53C";
         $vnp_OrderInfo = "Dang ky khoa hoc";

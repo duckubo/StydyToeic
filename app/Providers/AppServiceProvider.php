@@ -35,7 +35,7 @@ class AppServiceProvider extends ServiceProvider
         });
         // Tùy chỉnh email reset password
         ResetPassword::toMailUsing(function ($notifiable, $token) {
-            $resetUrl = url(config('app.url') . ':8000/reset-password?token=' . $token);
+            $resetUrl = url(config('app.url') . '/reset-password?token=' . $token);
 
             return (new MailMessage)
                 ->subject('Reset Your Password')
